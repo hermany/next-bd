@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2017 at 06:25 PM
+-- Generation Time: Jun 15, 2017 at 11:25 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -613,7 +613,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (1, 'Sistemas', '', 'sistemas', 'sistema', 'sis_', 'sistema_modulos:sis_mod_sis_id', 'modulos/sistemas/sistemas.adm.php', 'icn-system', '#191B1C', 2, 0, 1),
 (2, 'Modulos', '', 'modulos', 'modulo', 'mod_', 'modulo_categorias:mod_cat_mod_id,sistema_modulos:sis_mod_mod_id', 'modulos/modulos/modulos.adm.php', 'icn-box', '#99C14C', 2, 1, 1),
 (3, 'Aplicaciones', '', 'aplicaciones', 'aplicacion', 'app_', '', 'modulos/aplicaciones/apps.adm.php', 'icn-apps', '#f39333', 2, 0, 1),
-(4, 'Usuarios', '', 'usuarios', 'usuario', 'usu_', 'usuario_grupos:usu_grupo_usu_id,ususuario_roles:usu_rol_usu_id', 'modulos/usuarios/usuarios.adm.php', 'icn-users', '#0076ff', 2, 0, 1),
+(4, 'Usuarios', '', 'usuarios', 'usuario', 'usu_', 'usuario_grupos:usu_grupo_usu_id,usuario_roles:usu_rol_usu_id', 'modulos/usuarios/usuarios.adm.php', 'icn-users', '#0076ff', 2, 0, 1),
 (5, 'Estructura', '', 'estructura', 'categoria', 'cat_', '', 'modulos/categorias/categorias.adm.php', 'icn-category color-text-violeta-a', '#806aad', 2, 0, 1),
 (6, 'Estructura-Contenidos', '', 'estructura-contenidos', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/categorias/contenedor.adm.php', 'icn-block-page', '#806aad', 2, 5, 1),
 (7, 'Sitios', '', 'sitios', 'sitios', 'sitios_', '', 'modulos/sitios/sitios.adm.php', 'icn-boxs', '#2d9ee0', 2, 0, 1),
@@ -1507,8 +1507,7 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
-(1, 'bg-1', '', 'archivos/multimedia/bg-1.jpg', '8m1s.jpg', '', '_self', '', 'jpeg', 'Organiza y haz crecer tu <strong>negocio</strong>', '', 'Next  es la forma más sencilla de controlar tu negocio pyme, aplicaciones simples, eficientes y poderosas,  supera tus necesidades y lleva al éxito a tu empresa.', '1500 x 513', '168 KB', '2017-06-07 19:35:12', 1, 0, 1),
-(2, 'tomates', '', 'archivos/multimedia/tomates.jpg', 'tomates.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '121059', '2017-06-07 19:44:05', 1, 0, 1);
+(1, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1534,8 +1533,7 @@ INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_ca
 (9, 1, 5),
 (3, 83, 2),
 (4, 81, 2),
-(22, 76, 1),
-(1, 1, 6);
+(22, 76, 1);
 
 -- --------------------------------------------------------
 
@@ -2025,7 +2023,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
-(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, '', 0, '', 1);
+(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 'archivos/multimedia/foto-hermany.png', 0, '', 1),
+(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, '', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -2056,7 +2055,8 @@ CREATE TABLE `usuario_roles` (
 --
 
 INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`) VALUES
-(1, 1, 0);
+(1, 1, 0),
+(2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -2465,12 +2465,6 @@ ALTER TABLE `mod_productos`
 ALTER TABLE `mod_productos` ADD FULLTEXT KEY `busqueda` (`mod_prod_nombre`,`mod_prod_tags`,`mod_prod_detalles`,`mod_prod_especificaciones`);
 
 --
--- Indexes for table `mod_productos_mul`
---
-ALTER TABLE `mod_productos_mul`
-  ADD PRIMARY KEY (`mod_prod_mul_mul_id`);
-
---
 -- Indexes for table `mod_productos_pestana`
 --
 ALTER TABLE `mod_productos_pestana`
@@ -2522,7 +2516,7 @@ ALTER TABLE `nota_valores`
 -- Indexes for table `pestana`
 --
 ALTER TABLE `pestana`
-  ADD PRIMARY KEY (`mod_pes_id`);
+  ADD PRIMARY KEY (`mod_pes_id`) USING BTREE;
 
 --
 -- Indexes for table `plantilla`
@@ -2835,11 +2829,6 @@ ALTER TABLE `mod_plan`
 ALTER TABLE `mod_productos`
   MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mod_productos_mul`
---
-ALTER TABLE `mod_productos_mul`
-  MODIFY `mod_prod_mul_mul_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `mod_sucursales`
 --
 ALTER TABLE `mod_sucursales`
@@ -2848,7 +2837,7 @@ ALTER TABLE `mod_sucursales`
 -- AUTO_INCREMENT for table `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `nota`
 --
@@ -2923,7 +2912,7 @@ ALTER TABLE `solicitud_permiso`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `valor`
 --
