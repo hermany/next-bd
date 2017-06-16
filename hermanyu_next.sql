@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2017 at 11:25 PM
+-- Generation Time: Jun 16, 2017 at 04:30 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -620,12 +620,12 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (8, 'Contenedores', '', 'contenedores', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/config/contenedores.adm.php', ' icn-block-page', '#0076ff', 2, 13, 1),
 (9, 'Publicaciones', '', 'publicaciones', 'publicacion', 'pub_', 'publicacion_rel:pub_rel_pub_id', 'modulos/config/publicaciones.adm.php', 'icn-rocket', '#e71882', 2, 13, 1),
 (10, 'Plantillas', '', 'plantillas', 'plantilla', 'pla_', '', 'modulos/config/plantilas.adm.php', 'icn-level-page', '#8a7354', 2, 13, 1),
-(11, 'Roles', '', 'roles', 'rol', 'rol_', 'sitio_roles:sis_rol_rol_id,usuario_roles:usu_rol_rol_id,sistema_roles:sis_rol_rol_id,modulos_roles:mod_rol_rol_id', 'modulos/usuarios/roles.adm.php', 'icn icn-credential', '#8b3b8f', 2, 4, 1),
+(11, 'Roles', '', 'roles', 'rol', 'rol_', 'sitio_roles:sis_rol_rol_id,usuario_roles:usu_rol_rol_id,sistema_roles:sis_rol_rol_id,modulo_roles:mod_rol_rol_id,rol_categorias:rol_cat_rol_id', 'modulos/usuarios/roles.adm.php', 'icn icn-credential', '#8b3b8f', 2, 4, 1),
 (12, 'Grupos', '', 'grupos', 'grupos', 'grupo_', '', 'modulos/usuarios/grupos.adm.php', 'icn icn-group', '#eb5c43', 2, 4, 1),
 (13, 'Configuración General', '', 'configuracion-sites', 'configuracion', 'config_', '', 'modulos/config/config.adm.php', 'icn-conf color-text-rojo', '#e71882', 2, 0, 1),
 (50, 'Multimedia', '', 'multimedia', 'multimedia', 'mul_', 'multimedia_categorias:mul_cat_mul_id', 'modulos/multimedia/multimedia.adm.php', 'icn-media color-text-rojo-b', '#E83759', 0, 0, 1),
 (51, 'Slides', '', 'slides', 'slide', 'sli_', 'slide_categoria:sli_cat_sli_id', 'modulos/multimedia/slide.adm.php', 'icn-slide', '#c2b4d9', 0, 0, 1),
-(60, 'Notas', 'Modulo informativo, para sitios e intranet', 'noticias', 'noticia', 'not_', 'noticia_categoria:not_cat_not_id,noticia_multimedia:not_mul_not_id,noticia_valor:not_val_not_id', 'modulos/noticias/noticias.adm.php', 'icn-newspaper color-text-naranja-a', '#f39333', 0, 0, 1),
+(60, 'Notas', 'Modulo informativo, para sitios e intranet', 'notas', 'nota', 'not_', 'nota_categorias:not_cat_not_id,nota_multimedia:not_mul_not_id,nota_valor:not_val_not_id', 'modulos/notas/notas.adm.php', 'icn-newspaper color-text-naranja-a', '#f39333', 0, 0, 1),
 (61, 'Configuración', '', 'config-noticias', '', '', '', 'modulos/noticias/noticias-config.adm.php', 'icn-conf ', '#eb5c43', 1, 51, 1),
 (70, 'Contenidos', '', 'contenidos', 'contenidos', 'conte_', 'contenidos_categorias:conte_cat_conte_id,contenidos_documento:conte_doc_conte_id', 'modulos/contenidos/contenidos.adm.php', 'icn-content', '#00bdc6', 0, 0, 1),
 (80, 'Documentos', '', 'documentos', 'documento', 'doc_', 'documento_categoria:doc_cat_doc_id', 'modulos/documentos/documentos.adm.php', 'icn-folder', '#00bdc6', 0, 0, 1),
@@ -684,8 +684,15 @@ INSERT INTO `modulo_categorias` (`mod_cat_mod_id`, `mod_cat_cat_id`, `mod_cat_or
 CREATE TABLE `modulo_roles` (
   `mod_rol_mod_id` int(11) NOT NULL,
   `mod_rol_rol_id` int(11) NOT NULL,
-  `mod_rol_permisos` varchar(20) NOT NULL DEFAULT '0,0,0,0'
+  `mod_rol_permisos` varchar(20) NOT NULL DEFAULT '0,0,0,0,0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `modulo_roles`
+--
+
+INSERT INTO `modulo_roles` (`mod_rol_mod_id`, `mod_rol_rol_id`, `mod_rol_permisos`) VALUES
+(60, 2, '1,1,1,0,0');
 
 -- --------------------------------------------------------
 
@@ -1832,8 +1839,27 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`rol_id`, `rol_nombre`, `rol_descripcion`, `rol_funciones`, `rol_redireccion`, `rol_id_padre`, `rol_grupo`, `rol_permisos`, `rol_activar`) VALUES
-(1, 'Administrador', '', 'todo poderoso', 2, 1, 1, '', 1),
+(1, 'Administrador', '', 'todo poderoso', 2, 0, 1, '', 1),
 (2, 'Diseñador web', '', '', 1, 1, 1, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rol_categorias`
+--
+
+CREATE TABLE `rol_categorias` (
+  `rol_cat_cat_id` int(11) NOT NULL,
+  `rol_cat_rol_id` int(11) NOT NULL,
+  `rol_cat_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rol_categorias`
+--
+
+INSERT INTO `rol_categorias` (`rol_cat_cat_id`, `rol_cat_rol_id`, `rol_cat_orden`) VALUES
+(1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -1884,12 +1910,12 @@ CREATE TABLE `sistema_modulos` (
 --
 
 INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orden`) VALUES
-(1, 100, 0),
-(1, 80, 0),
-(1, 70, 0),
-(1, 60, 0),
-(1, 51, 0),
-(1, 50, 0),
+(1, 100, 2),
+(1, 80, 3),
+(1, 70, 4),
+(1, 60, 1),
+(1, 51, 5),
+(1, 50, 6),
 (2, 150, 0),
 (2, 151, 0),
 (2, 152, 0),
@@ -1917,8 +1943,7 @@ CREATE TABLE `sistema_roles` (
 --
 
 INSERT INTO `sistema_roles` (`sis_rol_sis_id`, `sis_rol_rol_id`) VALUES
-(1, 1),
-(2, 1);
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -1943,7 +1968,7 @@ CREATE TABLE `sitio` (
 
 INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
 (1, 'Sitio Raiz', '', '', 0, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', 2, 'www.landicorp/', '2', 1),
+(2, 'Dashboard', '', 'dashboard', 2, '', '2', 1),
 (3, 'Intranet', '', 'intranet', 0, '', '3', 1);
 
 -- --------------------------------------------------------
@@ -1975,7 +2000,8 @@ CREATE TABLE `sitio_roles` (
 --
 
 INSERT INTO `sitio_roles` (`sitio_rol_sitio_id`, `sitio_rol_rol_id`, `sitio_rol_orden`) VALUES
-(2, 1, 0);
+(2, 1, 0),
+(2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -2275,7 +2301,7 @@ ALTER TABLE `modulo_categorias`
 -- Indexes for table `modulo_roles`
 --
 ALTER TABLE `modulo_roles`
-  ADD PRIMARY KEY (`mod_rol_mod_id`);
+  ADD PRIMARY KEY (`mod_rol_mod_id`,`mod_rol_rol_id`);
 
 --
 -- Indexes for table `mod_almacen`
@@ -2562,6 +2588,12 @@ ALTER TABLE `sistema`
   ADD PRIMARY KEY (`sis_id`);
 
 --
+-- Indexes for table `sistema_roles`
+--
+ALTER TABLE `sistema_roles`
+  ADD PRIMARY KEY (`sis_rol_sis_id`,`sis_rol_rol_id`);
+
+--
 -- Indexes for table `sitio`
 --
 ALTER TABLE `sitio`
@@ -2571,7 +2603,7 @@ ALTER TABLE `sitio`
 -- Indexes for table `sitio_roles`
 --
 ALTER TABLE `sitio_roles`
-  ADD PRIMARY KEY (`sitio_rol_sitio_id`);
+  ADD PRIMARY KEY (`sitio_rol_sitio_id`,`sitio_rol_rol_id`);
 
 --
 -- Indexes for table `solicitud_permiso`
