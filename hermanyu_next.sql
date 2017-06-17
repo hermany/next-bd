@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2017 at 04:30 PM
+-- Generation Time: Jun 17, 2017 at 06:16 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -79,6 +79,20 @@ INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_a
 (1, 'Mensajes', '', '', '', '', 'icn-comment', '#2D9EE0', 0, 0),
 (2, 'Alertas', '', '', '', '', '', '', 0, 0),
 (3, 'Calendarios', '', '', '', '', '', '', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `autor`
+--
+
+CREATE TABLE `autor` (
+  `aut_id` int(11) NOT NULL,
+  `aut_nombre` varchar(100) NOT NULL,
+  `aut_descripcion` tinytext NOT NULL,
+  `aut_descripcion_larga` text NOT NULL,
+  `aut_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -625,7 +639,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (13, 'Configuración General', '', 'configuracion-sites', 'configuracion', 'config_', '', 'modulos/config/config.adm.php', 'icn-conf color-text-rojo', '#e71882', 2, 0, 1),
 (50, 'Multimedia', '', 'multimedia', 'multimedia', 'mul_', 'multimedia_categorias:mul_cat_mul_id', 'modulos/multimedia/multimedia.adm.php', 'icn-media color-text-rojo-b', '#E83759', 0, 0, 1),
 (51, 'Slides', '', 'slides', 'slide', 'sli_', 'slide_categoria:sli_cat_sli_id', 'modulos/multimedia/slide.adm.php', 'icn-slide', '#c2b4d9', 0, 0, 1),
-(60, 'Notas', 'Modulo informativo, para sitios e intranet', 'notas', 'nota', 'not_', 'nota_categorias:not_cat_not_id,nota_multimedia:not_mul_not_id,nota_valor:not_val_not_id', 'modulos/notas/notas.adm.php', 'icn-newspaper color-text-naranja-a', '#f39333', 0, 0, 1),
+(60, 'Notas', 'Modulo informativo, para sitios e intranet', 'notas', 'nota', 'not_', 'nota_categorias:not_cat_not_id,nota_multimedia:not_mul_not_id,nota_valores:not_val_not_id,nota_comentarios:not_com_not_id', 'modulos/notas/notas.adm.php', 'icn-newspaper color-text-naranja-a', '#2d9ee0', 0, 0, 1),
 (61, 'Configuración', '', 'config-noticias', '', '', '', 'modulos/noticias/noticias-config.adm.php', 'icn-conf ', '#eb5c43', 1, 51, 1),
 (70, 'Contenidos', '', 'contenidos', 'contenidos', 'conte_', 'contenidos_categorias:conte_cat_conte_id,contenidos_documento:conte_doc_conte_id', 'modulos/contenidos/contenidos.adm.php', 'icn-content', '#00bdc6', 0, 0, 1),
 (80, 'Documentos', '', 'documentos', 'documento', 'doc_', 'documento_categoria:doc_cat_doc_id', 'modulos/documentos/documentos.adm.php', 'icn-folder', '#00bdc6', 0, 0, 1),
@@ -1514,7 +1528,9 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
-(1, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1);
+(1, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1),
+(2, 'manosde', '', 'archivos/multimedia/manosde.jpg', 'manosde.jpg', '', '_self', '', 'jpeg', '', '', '', '480 x 287', '99454', '2017-06-16 13:31:44', 1, 0, 1),
+(3, 'prubea', '', '', 'prubea', '', '_self', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', '', '', '', '2017-06-16 14:30:57', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1539,7 +1555,6 @@ INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_ca
 (7, 90, 1),
 (9, 1, 5),
 (3, 83, 2),
-(4, 81, 2),
 (22, 76, 1);
 
 -- --------------------------------------------------------
@@ -1575,6 +1590,10 @@ CREATE TABLE `nota` (
   `not_imagen` varchar(255) NOT NULL,
   `not_fecha` datetime NOT NULL,
   `not_comentarios` int(11) NOT NULL DEFAULT '0' COMMENT '0 - no comentarios 1 - con comentarios',
+  `not_video` varchar(255) NOT NULL,
+  `not_tipo_video` varchar(50) NOT NULL,
+  `not_autor` varchar(100) NOT NULL,
+  `not_lugar` varchar(45) NOT NULL,
   `not_usuario` int(11) NOT NULL,
   `not_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1583,9 +1602,9 @@ CREATE TABLE `nota` (
 -- Dumping data for table `nota`
 --
 
-INSERT INTO `nota` (`not_id`, `not_titulo`, `not_ruta_amigable`, `not_tags`, `not_resumen`, `not_cuerpo`, `not_imagen`, `not_fecha`, `not_comentarios`, `not_usuario`, `not_activar`) VALUES
-(1, 'FUNDARE participó  de la Feria del Medio  Ambiente', 'hola-mundo', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptat<span style=\"background-color: rgb(255, 255, 0);\">e velit esse c</span>illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis</p><p><br></p><p><br></p><p><br></p>', 'archivos/noticias/194_noticia.jpg', '2017-12-24 17:09:00', 0, 1, 1),
-(2, 'Reciclaje, práctica  incipiente en Bolivia', 'toyo-lider-en-baterias-en-bolivia', '', 'Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed\n', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor<br></p>', 'archivos/noticias/cainco-santa-cruz-comenzo-a-reciclar-celulares-y-computadoras_636.jpg', '2017-11-24 09:42:00', 0, 1, 1);
+INSERT INTO `nota` (`not_id`, `not_titulo`, `not_ruta_amigable`, `not_tags`, `not_resumen`, `not_cuerpo`, `not_imagen`, `not_fecha`, `not_comentarios`, `not_video`, `not_tipo_video`, `not_autor`, `not_lugar`, `not_usuario`, `not_activar`) VALUES
+(1, 'FUNDARE participó  de la Feria del Medio  Ambiente', 'hola-mundo', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptat<span style=\"background-color: rgb(255, 255, 0);\">e velit esse c</span>illum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor erat, condimentum sagittis</p><p><br></p><p><br></p><p><br></p>', 'archivos/noticias/194_noticia.jpg', '2017-12-24 17:09:00', 0, '0', '0', '0', '', 1, 1),
+(2, 'Reciclaje, práctica  incipiente en Bolivia', 'toyo-lider-en-baterias-en-bolivia', '', 'Lorem Ipsum Dolor Sit Amet Consectetur Adipisicing Elit Sed\n', '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Donec elementum ligula eu sapien consequat eleifend. Donec nec dolor<br></p>', 'archivos/noticias/cainco-santa-cruz-comenzo-a-reciclar-celulares-y-computadoras_636.jpg', '2017-11-24 09:42:00', 0, '0', '0', '0', '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1604,7 +1623,6 @@ CREATE TABLE `nota_categorias` (
 --
 
 INSERT INTO `nota_categorias` (`not_cat_not_id`, `not_cat_cat_id`, `not_cat_orden`) VALUES
-(1, 4, 1),
 (2, 4, 2);
 
 -- --------------------------------------------------------
@@ -1636,10 +1654,8 @@ INSERT INTO `nota_comentarios` (`not_com_id`, `not_com_not_id`, `not_com_com_id`
 --
 
 CREATE TABLE `nota_multimedia` (
-  `not_mul_id` int(11) NOT NULL,
   `not_mul_not_id` int(11) NOT NULL,
-  `not_mul_ruta` varchar(250) CHARACTER SET utf16 NOT NULL,
-  `not_mul_dominio` int(11) NOT NULL
+  `not_mul_mul_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -1649,7 +1665,6 @@ CREATE TABLE `nota_multimedia` (
 --
 
 CREATE TABLE `nota_valores` (
-  `not_val_id` int(11) NOT NULL,
   `not_val_not_id` int(11) NOT NULL,
   `not_val_val_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -2129,6 +2144,12 @@ ALTER TABLE `aplicacion`
   ADD PRIMARY KEY (`app_id`);
 
 --
+-- Indexes for table `autor`
+--
+ALTER TABLE `autor`
+  ADD PRIMARY KEY (`aut_id`);
+
+--
 -- Indexes for table `calendario`
 --
 ALTER TABLE `calendario`
@@ -2530,13 +2551,13 @@ ALTER TABLE `nota_comentarios`
 -- Indexes for table `nota_multimedia`
 --
 ALTER TABLE `nota_multimedia`
-  ADD PRIMARY KEY (`not_mul_id`);
+  ADD PRIMARY KEY (`not_mul_not_id`,`not_mul_mul_id`);
 
 --
 -- Indexes for table `nota_valores`
 --
 ALTER TABLE `nota_valores`
-  ADD PRIMARY KEY (`not_val_id`);
+  ADD PRIMARY KEY (`not_val_not_id`,`not_val_val_id`);
 
 --
 -- Indexes for table `pestana`
@@ -2655,6 +2676,11 @@ ALTER TABLE `album`
 --
 ALTER TABLE `aplicacion`
   MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `autor`
+--
+ALTER TABLE `autor`
+  MODIFY `aut_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `calendario`
 --
@@ -2869,7 +2895,7 @@ ALTER TABLE `mod_sucursales`
 -- AUTO_INCREMENT for table `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `nota`
 --
@@ -2880,16 +2906,6 @@ ALTER TABLE `nota`
 --
 ALTER TABLE `nota_comentarios`
   MODIFY `not_com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `nota_multimedia`
---
-ALTER TABLE `nota_multimedia`
-  MODIFY `not_mul_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nota_valores`
---
-ALTER TABLE `nota_valores`
-  MODIFY `not_val_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pestana`
 --
