@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 17, 2017 at 06:16 PM
+-- Generation Time: Jun 23, 2017 at 10:46 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -646,7 +646,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (90, 'Calendarios', '', 'calendarios', 'calendario', 'cal_', 'calendario_categoria:cal_cat_cal_id, calendario_grupo:cal_grp_cal_id', 'modulos/calendarios/calendario.adm.php', 'icn-calendar', '#e83759', 0, 0, 1),
 (91, 'Eventos', '', '', 'eventos_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
 (100, 'Enlaces', '', 'enlaces', 'enlaces', 'enl_', 'enlaces_categorias:enl_cat_enl_id,enlaces_grupo_usuario:enl_grup_usu_enl_id,enlaces_publicaciones:enl_pub_enl_id', 'modulos/', 'icn-link', '#806aad', 0, 0, 1),
-(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/productos/productos.adm.php', 'icn-box-o ', '#2d9ee0', 0, 0, 1),
+(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#f39333', 0, 0, 1),
 (151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/productos/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
 (152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_productos_catalogos', 'mod_prod_catg_', '', 'modulos/productos/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
 (153, 'Marcas', '', 'marcas', 'mod_marcas', 'mod_mar_', 'mod_marcas_categorias:mod_mar_mar_id,mod_marcas_productos:mod_mar_mar_id', 'modulos/marcas/marcas.adm.php', 'icn-marca', '#24aa5b', 0, 10, 1),
@@ -1528,9 +1528,13 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
-(1, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1),
 (2, 'manosde', '', 'archivos/multimedia/manosde.jpg', 'manosde.jpg', '', '_self', '', 'jpeg', '', '', '', '480 x 287', '99454', '2017-06-16 13:31:44', 1, 0, 1),
-(3, 'prubea', '', '', 'prubea', '', '_self', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', '', '', '', '2017-06-16 14:30:57', 1, 0, 1);
+(3, 'prubea', '', '', 'prubea', '', '_self', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', '', '', '', '2017-06-16 14:30:57', 1, 0, 1),
+(4, 'bg-1', '', 'archivos/multimedia/bg-1.jpg', '', '', '', '', 'jpeg', 'Organiza y haz crecer tu <strong>negocio</strong>', '', 'Next  es la forma más sencilla de controlar tu negocio pyme, aplicaciones simples, eficientes y poderosas,  supera tus necesidades y lleva al éxito a tu empresa.', '1500 x 513', '168 KB', '2017-06-17 14:14:42', 1, 0, 1),
+(11, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1),
+(12, 'victoria-5', '', 'archivos/multimedia/victoria-5.mp4', 'victoria-5.mp4', '', '_self', '', 'mp4', '', '', '', ' x ', '200x200', '2017-06-18 01:49:09', 1, 0, 1),
+(13, 'kris-mayonesa-1', '', 'archivos/multimedia/kris-mayonesa-1.jpg', 'kris-mayonesa-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '78256', '2017-06-23 15:18:42', 1, 0, 1),
+(14, 'kris-salsa-golf-1', '', 'archivos/multimedia/kris-salsa-golf-1.jpg', 'kris-salsa-golf-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '77685', '2017-06-23 15:18:42', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1549,13 +1553,13 @@ CREATE TABLE `multimedia_categorias` (
 --
 
 INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_cat_orden`) VALUES
-(5, 1, 4),
 (6, 89, 1),
 (8, 97, 1),
 (7, 90, 1),
 (9, 1, 5),
 (3, 83, 2),
-(22, 76, 1);
+(22, 76, 1),
+(4, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -2895,7 +2899,7 @@ ALTER TABLE `mod_sucursales`
 -- AUTO_INCREMENT for table `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `nota`
 --
