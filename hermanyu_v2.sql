@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hermanyu_eldia`
+-- Database: `hermanyu_v2`
 --
 
 -- --------------------------------------------------------
@@ -72,6 +72,15 @@ CREATE TABLE `aplicacion` (
   `app_activar` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `aplicacion`
+--
+
+INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_amigable`, `app_nav_url`, `app_url`, `app_icono`, `app_color`, `app_orden`, `app_activar`) VALUES
+(1, 'Mensajes', '', '', '', '', 'icn-comment', '#2D9EE0', 0, 0),
+(2, 'Alertas', '', '', '', '', '', '', 0, 0),
+(3, 'Calendarios', '', '', '', '', '', '', 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -84,7 +93,7 @@ CREATE TABLE `autor` (
   `aut_descripcion` tinytext NOT NULL,
   `aut_descripcion_larga` text NOT NULL,
   `aut_activar` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
@@ -162,28 +171,37 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_descripcion`, `cat_ruta_amigable`, `cat_imagen`, `cat_icono`, `cat_color`, `cat_codigos`, `cat_css`, `cat_clase`, `cat_meta`, `cat_theme`, `cat_id_padre`, `cat_id_plantilla`, `cat_orden`, `cat_tipo`, `cat_url`, `cat_destino`, `cat_favicon`, `cat_analitica`, `cat_ruta_sitio`, `cat_dominio`, `cat_activar`) VALUES
-(1, 'Portada', '', 'portada', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 1),
-(2, 'Opinión', '', 'op', '', '', '#ffffff', '', '', '', '', '', 0, 1, 2, '0', '', '_self', '', '', '', '', 1),
-(3, 'Política', '', 'pol', '', '', '#ffffff', '', '', '', '', '', 0, 1, 3, '0', '', '_self', '', '', '', '', 1),
-(4, 'Nacional', '', 'nacional', '', '', '#ffffff', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', '', '', 1),
-(5, 'Deportes', '', 'deportes', '', '', '#ffffff', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', '', '', 1),
-(6, 'Santa Cruz', '', 'santa-cruz', '', '', '#ffffff', '', '', '', '', '', 0, 1, 6, '0', '', '_self', '', '', '', '', 1),
-(7, 'Encuentro', '', 'encuentro', '', '', '#ffffff', '', '', '', '', '', 0, 1, 7, '0', '', '_self', '', '', '', '', 1),
-(8, 'Portafolio', '', 'portafolio', '', '', '#ffffff', '', '', '', '', '', 0, 1, 8, '0', '', '_self', '', '', '', '', 1),
-(9, 'Internacional', '', 'internacional', '', '', '#ffffff', '', '', '', '', '', 22, 1, 1, '0', '', '_self', '', '', '', '', 1),
-(10, 'Al Cierre', '', 'al-cierre', '', '', '#ffffff', '', '', '', '', '', 22, 1, 10, '0', '', '_self', '', '', '', '', 1),
-(11, 'Especiales', '', 'especiales', '', '', '#ffffff', '', '', '', '', '', 22, 1, 11, '0', '', '_self', '', '', '', '', 1),
-(12, '+Vida', '', 'vida', '', '', '#ffffff', '', '', '', '', '', 22, 1, 12, '0', '', '_self', '', '', '', '', 1),
-(13, '10+Interesantes', '', '10interesantes', '', '', '#ffffff', '', '', '', '', '', 22, 1, 13, '0', '', '_self', '', '', '', '', 1),
-(14, 'Suscripción', '', 'suscripcin', '', '', '#ffffff', '', '', '', '', '', 0, 1, 16, '0', '', '_self', '', '', '', '', 0),
-(15, 'Publicaciones', '', 'publicaciones', '', '', '#ffffff', '', '', '', '', '', 0, 1, 14, '0', '', '_self', '', '', '', '', 0),
-(16, 'Portadas', '', 'portadas', '', '', '#ffffff', '', '', '', '', '', 15, 1, 0, '0', '', '_self', '', '', '', '', 1),
-(17, 'Portada Encuentro', '', 'portada-encuentro', '', '', '#ffffff', '', '', '', '', '', 15, 1, 0, '0', '', '_self', '', '', '', '', 1),
-(18, 'Portadas Deportes', '', 'portadas-deportes', '', '', '#ffffff', '', '', '', '', '', 15, 1, 0, '0', '', '_self', '', '', '', '', 1),
-(19, 'Trending', '', 'trending', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 0),
-(20, 'Magazine', '', 'magazine', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 0),
-(21, 'Destacados', '', 'destacados', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 0),
-(22, 'Más', '', 'ms', '', '', '#ffffff', '', '', '', '', '', 0, 1, 10, '0', '', '_self', '', '', '', '', 1);
+(1, 'Portada', '', 'portada', '', '', '', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 1),
+(76, 'Nosotros', '', 'nosotros', '', '', '', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', '', '', 1),
+(77, 'Productos', '', 'productos', '', '', '', '', '', '', '', '', 0, 1, 2, '0', '', '_self', '', '', '', '', 1),
+(78, 'Sucursales', '', 'sucursales', '', '', '', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', '', '', 1),
+(79, 'Social', '', 'social', '', '', '', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', '', '', 0),
+(80, 'Contacto', '', 'contacto', '', '', '', '', '', '', '', '', 0, 1, 6, '0', '', '_self', '', '', '', '', 1),
+(81, 'Panadería', '', 'panaderia', '', '', '', '', '', '', '', '', 77, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(82, 'Panetones', '', 'panetones', '', '', '', '', '', '', '', '', 81, 1, 0, '0', '', '_self', '', '', '', '', 0),
+(83, 'Pastelería', '', 'pasteleria', '', '', '', '', '', '', '', '', 77, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(84, 'Panes Dulces', '', 'panes-dulces', '', '', '', '', '', '', '', '', 81, 1, 0, '0', '', '_self', '', '', '', '', 0),
+(85, 'Pan Surtido', '', 'pan-surtido', '', '', '', '', '', '', '', '', 81, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(86, 'Tortas', '', 'tortas', '', '', '', '', '', '', '', '', 83, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(87, 'Pastelería dulce', '', 'pasteleria-dulce', '', '', '', '', '', '', '', '', 83, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(88, 'Masitas saladas', '', 'masitas-sal', '', '', '', '', '', '', '', '', 83, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(89, 'Pastelería personalizada', '', 'pasteleria-personalizada', 'archivos/multimedia/flores.jpg', '', '#ffffff', '', '', '', '', '', 77, 1, 0, '0', '', '_self', '', '', '', '', 0),
+(90, 'Combos', '', 'combos', '', '', '', '', '', '', '', '', 77, 1, 0, '0', '', '_self', '', '', '', '', 0),
+(91, 'Galletas', '', 'galletas', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(92, 'Tortas', '', 'tortas', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(93, 'Tortas mini', '', 'tortas-mini', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(94, 'Cupcakes', '', 'cupcakes', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(95, 'Popcakes', '', 'popcakes', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(96, 'Marshmallow', '', 'marshmallow', '', '', '', '', '', '', '', '', 89, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(97, 'Pedidos', '', 'pedidos', '', '', '', '', '', '', '', '', 0, 1, 3, '0', '', '_self', '', '', '', '', 0),
+(98, 'Panettone Especial', '', 'panettone-especial', '', '', '', '', '', '', '', '', 82, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(99, 'Panettone Tradicional', '', 'panettone-tradicional', '', '', '', '', '', '', '', '', 82, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(100, 'Nuevos Panettone ', '', 'nuevos-panettone-', '', '', '', '', '', '', '', '', 82, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(101, 'Cuenta', '', 'cuenta', '', '', '', '', '', '', '', '', 0, 1, 10, '0', '', '_self', '', '', '', '', 0),
+(102, 'Pan Integral', '', 'pan-integral', '', '', '', '', '', '', '', '', 81, 1, 4, '0', '', '_self', '', '', '', '', 0),
+(103, 'Catologo Interno', '', 'catologo-interno', '', '', '#ffffff', '', '', '', '', '', 0, 1, 20, '0', '', '_self', '', '', '', '', 0),
+(104, 'Categoria 1', '', 'categoria-1', '', '', '#ffffff', '', '', '', '', '', 103, 1, 0, '0', '', '_self', '', '', '', '', 1),
+(105, 'Categoria 2', '', 'categoria-2', '', '', '#ffffff', '', '', '', '', '', 103, 1, 0, '0', '', '_self', '', '', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -227,7 +245,7 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`conf_nombre_sitio`, `conf_imagen`, `conf_favicon`, `conf_script_head`, `conf_script_footer`, `conf_meta`) VALUES
-('El día, diario digital, Noticias de Bolivia', 'images/logo-eldia-o.svg', 'images/favicon.png', '', '', 'modulos/meta.pub.php');
+('Victoria - Panadería Victoria', 'images/logo-victoria.png', 'images/logo-victoria.png', '', '', 'modulos/meta.pub.php');
 
 -- --------------------------------------------------------
 
@@ -253,12 +271,7 @@ CREATE TABLE `contenedor` (
 INSERT INTO `contenedor` (`cont_id`, `cont_nombre`, `cont_clase`, `cont_css`, `cont_codigos`, `cont_id_padre`, `cont_orden`, `cont_activar`) VALUES
 (1, 'diagrama_general', '', '', '', 0, 1, 1),
 (2, 'diagrama_2', 'clase', 'css', 'codigos', 0, 2, 1),
-(4, 'bloque-pie', 'bloque-pie', '', '', 1, 3, 1),
-(5, 'bloque-cuerpo', 'bloque-cuerpo', '', '', 1, 2, 1),
-(6, 'bloque-cabecera', 'bloque-cabecera', '', '', 1, 1, 1),
-(7, 'bloque-cuerpo-header', 'bloque-cuerpo-header container', '', '', 5, 1, 1),
-(8, 'bloque-cuerpo-left', 'bloque-cuerpo-left', '', '', 5, 2, 1),
-(9, 'bloque-cuerpo-sidebar-left', 'bloque-cuerpo-sidebar-left', '', '', 5, 3, 1);
+(3, 'bloque_header', 'bloque-header', '', '', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -300,6 +313,13 @@ CREATE TABLE `contenido` (
   `conte_activar` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
+--
+-- Dumping data for table `contenido`
+--
+
+INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `conte_subtitulo`, `conte_cuerpo`, `conte_foto`, `conte_fecha`, `conte_id_usuario`, `conte_tag`, `conte_id_dominio`, `conte_activar`) VALUES
+(1, 'sobre nosotros', 'sobre-nosotros', '', '<h3 class=\"label-intro\" style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Creando desde 1925…</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Nuestra experiencia con cuatro generaciones de trabajo hasta la fecha, tiene sus inicios en la ciudad de Santa Cruz de la Sierra el año 1925; con la iniciativa del Sr. Santiago Sauto quien realiza el proceso de pan con harina de trigo y aplica por primera vez en la ciudad, el manejo de la levadura en panificación. Con el tiempo se hace cargo de la empresa Eduardo Sauto, hijo mayor de la familia, siguiendo la fabricación de forma artesanal. Con el emprendimiento creativo de su esposa Nelly Vaca, dan inicio a la diversificación de los productos y al mejoramiento tecnológico con la compra de maquinaria moderna. Posteriormente se incorpora a la empresa Javier Sauto, consolidando el crecimiento y mejora constante. El 14 de octubre de 1985 al retirarse la pareja, los hijos: Maria Nelly, Victoria y Javier Sauto conforman una nueva sociedad y nace la razón social Panadería Victoria Ltda., dando paso a una renovación de la empresa con nuevos equipos, a la diversificación de productos en panadería y dando inicio a la producción en pastelería. En el año 1998 se inaugura una nueva planta Industrial, con maquinaria totalmente nueva, logrando construir una fábrica modelo de panificación. La cuarta generación, con Greta y Carolina y Gabriela Banzer Sauto, ha dado un impulso a la línea de repostería y confitería, desarrollando nuevos productos para eventos infantiles y de fiesta. Actualmente, estamos trabajando en nuevos proyectos sobre futuras ampliaciones, tanto en panadería como en pastelería en otros sectores de la ciudad.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Misión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Panadería Victoria elabora productos de panificación y pastelería con materia prima de excelente calidad, procesos operativos estandarizados, brindando asesoramiento en la compra de los productos, por el conocimiento de las preferencias de sus clientes, satisfaciendo sus necesidades, a través de la capacitación constante del personal y la mejora continua, avalados por más de 90 años de experiencia y con el mismo cariño de siempre.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Visión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Ser una empresa eficiente, rentable, líder en el mercado cruceño en panificación y pastelería, con productos y servicios de excelente calidad. a través de: procesos productivos estandarizados, personal capacitado y comprometido, mejor infraestructura del país y sistemas de gestión e informático integrados.</span><br></p>', '', '2016-10-31 05:43:00', 1, '', 0, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -310,6 +330,13 @@ CREATE TABLE `contenido_categorias` (
   `conte_cat_conte_id` int(11) NOT NULL,
   `conte_cat_cat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `contenido_categorias`
+--
+
+INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`) VALUES
+(1, 76);
 
 -- --------------------------------------------------------
 
@@ -391,7 +418,16 @@ INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descr
 CREATE TABLE `documento_categorias` (
   `doc_cat_doc_id` int(11) NOT NULL,
   `doc_cat_cat_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `documento_categorias`
+--
+
+INSERT INTO `documento_categorias` (`doc_cat_doc_id`, `doc_cat_cat_id`) VALUES
+(1, 76),
+(2, 1),
+(3, 1);
 
 -- --------------------------------------------------------
 
@@ -608,7 +644,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (8, 'Contenedores', '', 'contenedores', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/config/contenedores.adm.php', ' icn-block-page', '#0076ff', 2, 13, 1),
 (9, 'Publicaciones', '', 'publicaciones', 'publicacion', 'pub_', 'publicacion_rel:pub_rel_pub_id', 'modulos/config/publicaciones.adm.php', 'icn-rocket', '#e71882', 2, 13, 1),
 (10, 'Plantillas', '', 'plantillas', 'plantilla', 'pla_', '', 'modulos/config/plantilas.adm.php', 'icn-level-page', '#8a7354', 2, 13, 1),
-(11, 'Roles', '', 'roles', 'rol', 'rol_', 'sitio_roles:sitio_rol_rol_id,usuario_roles:usu_rol_rol_id,sistema_roles:sis_rol_rol_id,modulo_roles:mod_rol_rol_id,rol_categorias:rol_cat_rol_id', 'modulos/usuarios/roles.adm.php', 'icn icn-credential', '#8b3b8f', 2, 4, 1),
+(11, 'Roles', '', 'roles', 'rol', 'rol_', 'sitio_roles:sis_rol_rol_id,usuario_roles:usu_rol_rol_id,sistema_roles:sis_rol_rol_id,modulo_roles:mod_rol_rol_id,rol_categorias:rol_cat_rol_id', 'modulos/usuarios/roles.adm.php', 'icn icn-credential', '#8b3b8f', 2, 4, 1),
 (12, 'Grupos', '', 'grupos', 'grupos', 'grupo_', '', 'modulos/usuarios/grupos.adm.php', 'icn icn-group', '#eb5c43', 2, 4, 1),
 (13, 'Configuración General', '', 'configuracion-sites', 'configuracion', 'config_', '', 'modulos/config/config.adm.php', 'icn-conf color-text-rojo', '#e71882', 2, 0, 1),
 (50, 'Multimedia', '', 'multimedia', 'multimedia', 'mul_', 'multimedia_categorias:mul_cat_mul_id', 'modulos/multimedia/multimedia.adm.php', 'icn-media color-text-rojo-b', '#E83759', 0, 0, 1),
@@ -620,7 +656,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (90, 'Calendarios', '', 'calendarios', 'calendario', 'cal_', 'calendario_categoria:cal_cat_cal_id, calendario_grupo:cal_grp_cal_id', 'modulos/calendarios/calendario.adm.php', 'icn-calendar', '#e83759', 0, 0, 1),
 (91, 'Eventos', '', '', 'eventos_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
 (100, 'Enlaces', '', 'enlaces', 'enlaces', 'enl_', 'enlaces_categorias:enl_cat_enl_id,enlaces_grupo_usuario:enl_grup_usu_enl_id,enlaces_publicaciones:enl_pub_enl_id', 'modulos/', 'icn-link', '#806aad', 0, 0, 1),
-(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/productos/productos.adm.php', 'icn-box-o ', '#2d9ee0', 0, 0, 1),
+(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#f39333', 0, 0, 1),
 (151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/productos/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
 (152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_productos_catalogos', 'mod_prod_catg_', '', 'modulos/productos/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
 (153, 'Marcas', '', 'marcas', 'mod_marcas', 'mod_mar_', 'mod_marcas_categorias:mod_mar_mar_id,mod_marcas_productos:mod_mar_mar_id', 'modulos/marcas/marcas.adm.php', 'icn-marca', '#24aa5b', 0, 10, 1),
@@ -647,7 +683,7 @@ CREATE TABLE `modulo_categorias` (
   `mod_cat_mod_id` int(11) NOT NULL,
   `mod_cat_cat_id` int(11) NOT NULL,
   `mod_cat_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `modulo_categorias`
@@ -673,24 +709,14 @@ CREATE TABLE `modulo_roles` (
   `mod_rol_mod_id` int(11) NOT NULL,
   `mod_rol_rol_id` int(11) NOT NULL,
   `mod_rol_permisos` varchar(20) NOT NULL DEFAULT '0,0,0,0,0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `modulo_roles`
 --
 
 INSERT INTO `modulo_roles` (`mod_rol_mod_id`, `mod_rol_rol_id`, `mod_rol_permisos`) VALUES
-(50, 2, '1,1,1,1,1'),
-(50, 3, '0,1,1,1,1'),
-(50, 4, '1,1,1,1,1'),
-(51, 2, '0,0,0,0,0'),
-(60, 2, '1,1,1,1,1'),
-(60, 3, '0,1,1,1,1'),
-(60, 4, '1,1,1,1,1'),
-(70, 2, '0,0,0,0,0'),
-(80, 2, '0,0,0,0,0'),
-(100, 2, '0,0,0,0,0'),
-(100, 4, '1,1,1,1,1');
+(60, 2, '1,1,1,0,0');
 
 -- --------------------------------------------------------
 
@@ -1319,6 +1345,113 @@ CREATE TABLE `mod_productos` (
   `mod_prod_precio_detalle` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
+--
+-- Dumping data for table `mod_productos`
+--
+
+INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_amigable`, `mod_prod_tags`, `mod_prod_codigo`, `mod_prod_sap`, `mod_prod_modelo`, `mod_prod_resumen`, `mod_prod_detalles`, `mod_prod_especificaciones`, `mod_prod_disponibilidad`, `mod_prod_imagen`, `mod_prod_precio`, `mod_prod_id_marca`, `mod_prod_id_doc`, `mod_prod_id_mul`, `mod_prod_id_dominio`, `mod_prod_activar`, `mod_prod_activar_cat`, `mod_prod_json`, `mod_prod_precio_detalle`) VALUES
+(234, 'Pan de Panchito', 'pan-de-panchito', '', '', '0', '', '', '- Panchi 24 unidades\r\n- Panchi 10 unidades', '', 0, 'archivos/productos/57.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(238, 'Marshmellow', 'marshmallow', '', '', '0', '', '', 'Colores: Lila, blanco, celeste, naranja, rosado, verde, amarillo.', '', 0, 'archivos/productos/img_0004.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(239, 'Trufas', 'trufas', '', '', '0', '', '', 'Trufa corazón de chocolate con dulce de leche.', '', 0, 'archivos/productos/img_0005.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(240, 'Rollo de crema con durazno', 'rollo-de-crema-con-durazno', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0007.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(241, 'Mini pie de limón ', 'mini-pie-de-limon-', '', '', '0', '', '', 'Mini pie de limon', '', 0, 'archivos/productos/img_0009.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(242, 'Palmeritas', 'palmeritas', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0010.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(243, 'Pañuelitos', 'panuelitos', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0011.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(244, 'Queque mini', 'queque-mini', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0012.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(245, 'Linea de oro', 'linea-de-oro', '', '', '0', '', '', 'Multigrano', '', 0, 'archivos/productos/img_0013.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(246, 'Linea de oro', 'linea-de-oro', '', '', '0', '', '', 'Multigrano', '', 0, 'archivos/productos/img_0014.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(247, 'Linea de oro', 'linea-de-or', '', '', '0', '', '', 'Sésamo', '', 0, 'archivos/productos/img_0015.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(248, 'Linea de oro', 'linea-de-', '', '', '0', '', '', 'Multigrano', '', 0, 'archivos/productos/img_0016.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(249, 'Almendras Acarameladas', 'almendras-acarameladas', '', '', '0', '', '', 'Masa: Bizcochuelo de vainilla.\r\nRelleno: Merengue, almendras acarameladas, dulce de leche, crema helada de vainilla.\r\nDecorado: Turrón y almendras acarameladas.  \r\n', '', 0, 'archivos/productos/img_0017.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(253, 'Soufle de Chocolate', 'soufle-de-chocolate', '', '', '0', '', '', 'Masa: Bizcochuelo de Chocolate suave.\r\nRelleno: Dulce de leche, crema helada vainilla, almendras acarameladas.\r\nDecorado: Turron, chocolate y almendras acarameladas.', '', 0, 'archivos/productos/img_0023.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(255, 'Toffee Chocolate', 'toffee-chocolate', '', '', '0', '', '', 'Masa: Bizcochuelo de chocolate suave.\r\nRelleno: Crema helada y licor.\r\nDecorado: Crema chantilly y dulce de leche.', '', 0, 'archivos/productos/img_0027.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(256, 'Balcárcel', 'balcarcel', '', '', '0', '', '', 'Masa: Bizcochuelo de vainilla suave\r\nRelleno: Merengue, almendras blancas, dulce de leche, crema helada, uvas pasas al ron.\r\nDecorado: Turron, dulce de leche, uvas pasas y almendras. ', '', 0, 'archivos/productos/img_0030.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(257, 'Empanadas de pollo', 'empanadas-de-pollo', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0031.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(258, 'Cuñapes', 'cunapes', '', '', '0', '', '', 'Masitas tipicas', '', 0, 'archivos/productos/img_0032.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(259, 'Pan molde blanco', 'pan-molde-blanco', '', '', '0', '', '', 'Peso Neto 280 gr.', '', 0, 'archivos/productos/img_0034.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(260, 'Palitos integrales', 'palitos-integrales', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0035.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(261, 'Pan integral', 'pan-integral', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0037.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(262, 'Cien pies', 'cien-pies', '', '', '0', '', '', 'Contiene almendras y canela', '', 0, 'archivos/productos/img_0038.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(263, 'Pan baguette', 'pan-baguette', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0039.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(265, 'Linea rústica', 'linea-rustica', '', '', '0', '', '', 'Sabores: Tomate, cebolla, especies, aceituna, alemán, charque.', '', 0, 'archivos/productos/img_0041.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(266, 'Pizzitas', 'pizzitas', '', '', '0', '', '', 'Pizzitas: Salsa de tomate, jamón y queso', '', 0, 'archivos/productos/img_0042.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(267, 'Donouts mini', 'donouts-mini', '', '', '0', '', '', 'Decoración: Confites', '', 0, 'archivos/productos/img_0043.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(268, 'Media luna con queso', 'media-luna-con-queso', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0044.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(304, 'Souffle de Frutilla', 'souffle-de-frutilla', '', '', '0', '', '', 'Crema helada de frutilla, frutillas, mermelada de frutilla y dulce de leche.\r\nDecorado: Turrón, frutillas y jalea.', '', 0, 'archivos/productos/souffle-de-frutilla.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(269, 'Cupcakes', 'cupcakes', '', '', '0', '', '', 'Sabores: Chocolate, zanahoria', '', 0, 'archivos/productos/img_0045.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(270, 'Panchito Especial', 'panchito-especial', '', '', '0', '', '', '- 14 unidades de 12cm.\r\n- 12 unidades de 16cm', '', 0, 'archivos/productos/img_0047.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(273, 'Torta Mini', 'torta-mini', '', '', '0', '', '', 'Sabores: Delicia de coco, zanahoria, pasion de chocolate.', '', 0, 'archivos/productos/img_0050.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(274, 'Amarula Vainilla', 'amarula-vainilla', '', '', '0', '', '', 'Masa: Bizcochuelo de vainilla\r\nCrema helada de Amarula y crema helada de 3 leches\r\nDecorado: Turrón con canelita de chocolate blanco', '', 0, 'archivos/productos/img_0051.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(275, 'Dominicana', 'dominicana', '', '', '0', '', '', 'Masa: Bizcochuelo de chocolate\r\nRelleno: Merengue, dulce de leche, frutillas, crema chantilly\r\nBaño: Turrón con jalea de frutilla y chocolate', '', 0, 'archivos/productos/img_0052.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(276, 'Pack de galletas', 'pack-de-galletas', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0053.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(277, 'Tres Sabores', 'tres-sabores', '', '', '0', '', '', 'Crema de vainilla, dulce de leche, durazno, frutilla y crema helada de chocolate\r\nDecorado: Turrón, frutilla, durazno, coco, chocolate y dulce de leche.', '', 0, 'archivos/productos/img_0054.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(278, 'Verano', 'verano', '', '', '0', '', '', 'Merengue, dulce de leche, crema helada, durazno, frutilla y coco.\r\nDecorado: Turrón, jalea, merengue, frutilla y durazno. ', '', 0, 'archivos/productos/img_0055.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(279, 'Amarula Mixta', 'amarula-mixta', '', '', '0', '', '', 'Masa: Bizcochuelo Mixto\r\nCrema helada de Amarula y crema helada de 3 leches\r\nDecorado: Turron con canelita de chocolate blanco y oscuro', '', 0, 'archivos/productos/img_0056.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(281, 'Empanadas integrales', 'empanadas-integrales', '', '', '0', '', '', 'Relleno de queso', '', 0, 'archivos/productos/img_0058.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(282, 'Marraqueta dulce', 'marraqueta-dulce', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0059.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(284, 'Galletas de salvado', 'galletas-de-salvado', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0061.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(285, 'Galletitas de miel', 'galletitas-de-miel', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0062.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(305, 'Africana', 'africana', '', '', '0', '', '', 'Masa: Bizcochuelo chocolate suave.\r\nRelleno: Merengue, pasata de coco, dulce de leche, crema helada de chocolate.\r\nDecorado: Turron, chocolate y cherry.', '', 0, 'archivos/productos/torta-africana-pix.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(287, 'Galletas Champañeras', 'galletas-champaneras', '', '', '0', '', '', '', '', 0, 'archivos/productos/img_0064.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(292, 'Mocca', 'mocca', '', '', '0', '', '', 'Masa: Bizcochuelo de vainilla.\r\nRelleno: Dulce de leche, crema moca y nuez.\r\nDecorado: Mocca.', '', 0, 'archivos/productos/img_0070.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(296, 'Galletas palito', 'galletas-palito', '', '', '0', '', '', 'Galletas personalizadas', '', 0, 'archivos/productos/img_0074.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(298, 'Popcakes', 'popcakes', '', '', '0', '', '', 'Decoración personalizada', '', 0, 'archivos/productos/img_0076.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(303, 'Hojaldre', 'hojaldre', '', '', '0', '', '', 'Masa: Hojaldre.\r\nRelleno: Crema Chiboust \r\nDecorado: Fondant vainilla con frutos \r\n', '', 0, 'archivos/productos/img_0081.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(306, 'Pasión de Chocolate', 'pasion-de-chocolate', '', '', '0', '', '', 'Masa: Bizcochuelo de chocolate especial.\r\nRelleno: Salsa de chocolate, dulce de leche.\r\nDecorado: Fudge de chocolate.', '', 0, 'archivos/productos/pasion-de-chocolate.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(307, 'Turrón', 'turron', '', '', '0', '', '', 'Masa: Bizcochuelo de vainilla.\r\nRelleno: Dulce de leche y mermelada de durazno.\r\nDecorado: Turrón.', '', 0, 'archivos/productos/img-20151003-wa0003.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(308, 'Chocolate', 'chocolate', '', '', '0', '', '', 'Masa: Bizcochuelo de chocolate.\r\nRelleno: Dulce de leche y mermelada de ciruela.\r\nDecorado: Turrón con chispas de chocolate.', '', 0, 'archivos/productos/dsc_1515.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(309, 'Amarula de Chocolate', 'amarula-de-chocolate', '', '', '0', '', '', 'Masa: Bizcochuelo de chocolate.\r\nRelleno: Crema helada de Amarula y crema helada de 3 leches.\r\nDecorado: Turrón con canelita de chocolate', '', 0, 'archivos/productos/dsc_1513.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(310, 'Pan molde Integral', 'pan-molde-integral', '', '', '0', '', '', 'Peso Neto 280 gr.', '', 0, 'archivos/productos/_rch7613.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(311, 'Prod 1', 'prod-1', 'prod, prueba, 1', 'prod-001', '0', 'asdf', '', 'asdf', '<p>asdf</p>', 0, 'archivos/productos/arte-para-web01.jpg', '5', 1, 'Array', 0, 0, 1, 1, '', ''),
+(316, 'Desayuno Personalizado', 'desayuno-personalizado', '', '', '0', '', '', '¡Usted decide el precio y sabor de su desayuno!', '', 0, 'archivos/productos/desayuno-personalizado-web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(313, 'Pack 2', 'pack-2', '', '', '0', '', '', '<p>1 Torta Turron p/20 personas.\r\n</p><p>\r\n2 Bolsitas 50g. Suspiritos mini.\r\n</p><p>\r\n6 Palmeritas.  12 Brigadeiros de colores.</p><p>\r\n12 Donouts mini.  12 Marshmallow.</p><p>\r\n15 Alfajores mini.  20 Galletas huevito.</p>', '', 0, 'archivos/productos/pack-2web.jpg', '250', 0, '', 0, 0, 1, 1, '', ''),
+(312, 'Pack 3', 'pack-3', '', '', '0', '', '', '<p>1 Torta Turron p/20 personas.\r\n</p><p>\r\n2 Torta Mini.\r\n</p><p>\r\n2 Bolsitas Coquitos.\r\n</p><p>\r\n5 Bolsitas 50g. Suspiritos mini.\r\n</p><p>\r\n6 Cupcakes.\r\n</p><p>\r\n6 Queques de Vainilla y Chocolate.\r\n</p><p>\r\n12 Palmeritas.\r\n</p><p>\r\n12 Pañuelitos.\r\n</p><p>\r\n12 Brigadeiros de colores.\r\n</p><p>\r\n12 Donouts mini.\r\n</p><p>15 Alfajores mini.\r\n</p><p>\r\n24 Marshmallow.\r\n</p><p>\r\n40 Galletas huevito.</p>', '', 0, 'archivos/productos/pack-3.jpg', '500', 0, '', 0, 0, 1, 1, '', ''),
+(314, 'Pack 1', 'pack-1', '', '', '0', '', '', '<p>1 Torta Turron p/10 personas\r\n</p><p>\r\n1 Bolsita 50g. suspiritos mini\r\n</p><p>\r\n15 Alfajores mini\r\n</p><p>\r\n6 Donouts mini\r\n</p><p>\r\n6 Marshmallow</p>', '<p><br></p>', 0, 'archivos/productos/pack-1.jpg', '100', 0, '', 0, 0, 1, 1, '', ''),
+(317, '2', '2', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/c5e33528-9394-494f-99db-41f7ce193541web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(318, '1', '1', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/bb08e011-d979-4c49-b390-542fa9c47518web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3143, '3', '3', '', '', '0', '', '', '', '', 0, 'archivos/productos/cef24145-a8e8-400d-a5f7-7a698743f5caweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3144, '4', '4', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/df8afb6a-4f68-4c76-baf3-fa5ef4832febweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3145, '5', '5', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/img-20150711-wa0046web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3146, '6', '6', '', '', '0', '', '', '', '', 0, 'archivos/productos/img-20150707-wa0015-web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3147, '7', '7', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/img-20150716-wa0021web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3148, '8', '8', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/manzanas-acarameladas-decoradasweb-copia.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3149, '9', '9', '', '', '0', '', '', '', '', 0, 'archivos/productos/masmelos-3web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3150, '10', '10', '', '', '0', '', '', '', '', 0, 'archivos/productos/masmelos.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3151, '11', '11', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/mini-torta-babyshower-vipweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3152, '12', '12', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/popcakes-2-babyshowervipweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3153, '13', '13', '', '', '0', '', '', '', '', 0, 'archivos/productos/9fdd2f4c-3039-4563-a757-cb46b16efeccweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3154, '14', '14', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/a44ed0b1-7d0e-499f-b464-11a6d23eb8fcweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3155, '15', '15', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/b3c5c2a4-1107-4642-8c1b-c6206224e6b1web.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(3156, '16', '16', '', '', '0', '', '', '', '', 0, 'archivos/productos/56b7baa9-ff63-456a-bb7e-5f0971464513web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3157, '17', '17', '', '', '0', '', '', '', '', 0, 'archivos/productos/c8a243ad-153b-4dd1-941d-601148d7885cweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3158, '18', '18', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/torta-popcornweb.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3159, '19', '19', '', '', '0', '', '', '', '', 0, 'archivos/productos/galletas-de-vainilla-web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3160, '20', '20', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/f715f163-0d22-4bc1-8ea1-9848563284c5web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3161, '21', '21', '', '', '0', '', '', '', '', 0, 'archivos/productos/pasteleria-personalizada/img-20150716-wa0023web.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3162, '22', '22', '', '', '0', '', '', '', '', 0, 'archivos/productos/14c2f4b1-8698-45ed-98c1-54e46358879e.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(3164, '24', '24', '', '', '0', '', '', '', '', 0, 'archivos/productos/76c7aa8b-6397-48d7-82f6-703d8f126798.jpeg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3165, '25', '25', '', '', '0', '', '', '', '', 0, 'archivos/productos/231ada75-7292-4d9e-b589-9380e17fb1c6.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(3166, '26', '26', '', '', '0', '', '', '', '', 0, 'archivos/productos/396c2b58-e71b-41b2-b891-f6d21926cfcb.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(3168, '28', '28', '', '', '0', '', '', '', '', 0, 'archivos/productos/6000df55-5cf7-4e90-888f-12da0aa867f5.jpg', '', 0, '', 0, 0, 0, 1, '', ''),
+(3169, '29', '29', '', '', '0', '', '', '', '', 0, 'archivos/productos/db52eebe-f8b4-4b80-b57f-fff16ff5418d.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3171, '31', '31', '', '', '0', '', '', '', '', 0, 'archivos/productos/ebb57661-4245-4faf-9300-05283fa06457.jpeg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3172, '32', '32', '', '', '0', '', 'Ramo de Galletas', 'Ramo de Galletas', '', 0, 'archivos/multimedia/fc1b2a46-dc49-492c-8177-09fbc51c24d1.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3173, '33', '33', '', '', '0', '', '', '', '', 0, 'archivos/productos/popcake-dia-de-la-amistad.png', '', 0, '', 0, 0, 1, 1, '', ''),
+(3174, 'Panettone Premium en lata 1Kg', 'panettone-premium-en-lata-1kg', 'frutas, frutas confitadas, uvas, uvas pasas, almendras', '', '0', '', '', '', '<p>1Kg. con 35% de frutas confitadas, uvas pasas y almendras.</p>', 0, 'archivos/productos/panettone-premium-lata.jpg', '69', 0, '', 0, 0, 1, 1, '', ''),
+(3175, 'Panettone Especial en caja 800g', 'panettone-especial-en-caja-800g', '', '', '0', '', '', '', '<p>80g.  Con 30% de frutas confitadas, uvas pasas y almendras</p>', 0, 'archivos/productos/pannettoner-premium-caja.jpg', '40', 0, '', 0, 0, 1, 1, '', ''),
+(3176, 'Panettone Chocotone en bolsa 70g', 'panettone-chocotone-en-bolsa-70g', '', '', '0', '', '', '<p>70g. Deliciosa masa dulce con 25% de chistas de chocolate.</p>', '', 0, 'archivos/productos/chocotonne-70g.jpg', '4.5', 0, '', 0, 0, 0, 1, '', ''),
+(3177, 'Panettone Chocottone en caja 700g', 'panettone-chocottone-en-caja-700g', '', '', '0', '', '', '<p>700g. Deliciosa masa dulce con 30% de chispas de chocolate.</p>', '', 0, 'archivos/productos/chocotonne-700g-caja.jpg', '38', 0, '', 0, 0, 1, 1, '', ''),
+(3178, 'Panettone Chocottone Naranja en caja 700g', 'panettone-chocottone-naranja-en-caja-700g', '', '', '0', '', '', '', '<p>700g.  Masa de chocolate con 25% de chispas de chocolate, más naranja confitada.</p>', 0, 'archivos/productos/chocottone-naranja-caja-700g.jpg', '39', 0, '', 0, 0, 1, 1, '', ''),
+(3179, 'Panettone tradicional 250g', 'panettone-tradicional-250g', '', '', '0', '', '', '', '', 0, 'archivos/productos/panettone-tradicional-250g.jpg', '10', 0, '', 0, 0, 0, 1, '', ''),
+(3180, 'Panettone Tradicional 400g', 'panettone-tradicional-400g', '', '', '0', '', '', '', '', 0, 'archivos/productos/panettone-tradicional-400g.jpg', '17', 0, '', 0, 0, 1, 1, '', ''),
+(3181, 'Panettone Tradicional 500g', 'panettone-tradicional-500g', '', '', '0', '', '', '', '', 0, 'archivos/productos/panettone-tradicional-500g.jpg', '19', 0, '', 0, 0, 1, 1, '', ''),
+(3182, 'Panettone Tradicional 600g', 'panettone-tradicional-600g', '', '', '0', '', '', '', '', 0, 'archivos/productos/panettone-tradicional-600g.jpg', '22', 0, '', 0, 0, 1, 1, '', ''),
+(3183, 'Panettone Tradicional 700g', 'panettone-tradicional-700g', '', '', '0', '', '', '', '', 0, 'archivos/productos/panettone-tradicional-700g.jpg', '26', 0, '', 0, 0, 0, 1, '', ''),
+(3184, 'Panettone Tradicional 850g', 'panettone-tradicional-850', '', '', '', '', '', '', '', 0, 'archivos/multimedia/panettone-tradicional-850g.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3185, 'Panettone Tradicional Historia caja 750g', 'panettone-tradicional-historia-caja-750g', '', '', '0', '', '', '', '<p>750g.</p>', 0, 'archivos/multimedia/panettone-tradiciona-caja-750g.jpg', '28', 0, '', 0, 0, 1, 1, '', ''),
+(3186, 'Panettone Nelly 600g', 'panettone-nelly-600g', '', '', '', '', '', '', '', 0, 'archivos/multimedia/panettone-nelly.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
+(3187, 'prueba producto', 'prueba-producto', 'torta, fresas, rojo, 9 personas', '', '', '', 'resumen dasd ', 'detallles ', '', 0, 'archivos/multimedia/_jpe4712.jpg', '', 0, '', 0, 0, 0, 0, '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -1330,6 +1463,21 @@ CREATE TABLE `mod_productos_categorias` (
   `mod_prod_cat_prod_id` int(50) NOT NULL,
   `mod_prod_cat_orden` int(50) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+
+--
+-- Dumping data for table `mod_productos_categorias`
+--
+
+INSERT INTO `mod_productos_categorias` (`mod_prod_cat_cat_id`, `mod_prod_cat_prod_id`, `mod_prod_cat_orden`) VALUES
+(105, 3186, 0),
+(104, 3186, 0),
+(97, 3186, 0),
+(100, 3186, 0),
+(103, 3184, 0),
+(97, 3184, 0),
+(99, 3184, 0),
+(105, 3184, 0),
+(104, 3187, 0);
 
 -- --------------------------------------------------------
 
@@ -1354,6 +1502,13 @@ CREATE TABLE `mod_productos_conf` (
   `mod_prod_conf_json` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `mod_productos_conf`
+--
+
+INSERT INTO `mod_productos_conf` (`mod_prod_conf_codigo`, `mod_prod_conf_sap`, `mod_prod_conf_modelo`, `mod_prod_conf_avanzado_img`, `mod_prod_conf_detalles`, `mod_prod_conf_especificaciones`, `mod_prod_conf_disponibilidad`, `mod_prod_conf_marca`, `mod_prod_conf_precio`, `mod_prod_conf_precio_detalle`, `mod_prod_conf_docs`, `mod_prod_conf_multimedia`, `mod_prod_conf_pestana`, `mod_prod_conf_json`) VALUES
+(0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -1364,7 +1519,7 @@ CREATE TABLE `mod_productos_mul` (
   `mod_prod_mul_mul_id` int(11) NOT NULL,
   `mod_prod_mul_prod_id` int(11) NOT NULL,
   `mod_prod_mul_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1498,8 +1653,26 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
-(1, 'manosde', '', 'archivos/multimedia/manosde.jpg', 'manosde.jpg', '', '_self', '', 'jpeg', '', '', '', '480 x 287', '99454', '2017-06-16 13:40:13', 1, 0, 1),
-(2, 'prueba 10', 'tags', '', 'prueba-10', '', '_self', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', '', '', '', '2017-06-16 14:04:08', 1, 0, 1);
+(1, 'fondo-pasteleria', '', 'archivos/multimedia/fondo-pasteleria.png', '', 'archivos/multimedia/fondo-catalogo.png', '_self', '', 'png', '', '', '', '1046 x 421', '681 KB', '2017-04-06 18:31:58', 1, 0, 1),
+(2, 'panaderia', '', 'archivos/multimedia/fondo-panaderia.jpg', '', 'archivos/multimedia/fondo-panaderia.jpg', '_self', '', 'jpeg', '', '', '', '1046 x 421', '296 KB', '2017-03-21 13:28:25', 1, 0, 1),
+(3, 'victoria-chocolate-1', '', 'archivos/multimedia/victoria-chocolate-1.mp4', '', 'archivos/multimedia/victoria-chocolate-1.mp4', '_self', '', 'mp4', '', '', '', ' x ', '2 MB', '2017-04-06 18:14:47', 1, 0, 1),
+(4, 'victoria-5', '', 'archivos/multimedia/victoria-5.mp4', '', 'archivos/multimedia/victoria-5.mp4', '_self', '', 'mp4', '', '', '', ' x ', '1 MB', '2017-04-06 18:18:29', 1, 0, 1),
+(5, 'publicidad 01', '', 'archivos/multimedia/arte-para-web01.jpg', '', 'archivos/multimedia/arte-para-web01.jpg', '_self', '', 'jpeg', '', '', '', '700 x 350', '72 KB', '2017-03-21 12:33:21', 1, 0, 1),
+(6, 'banner panadería personalizada', '', 'archivos/multimedia/fondo-pp.jpg', '', 'archivos/multimedia/fondo-pp.jpg', '_self', '', 'jpeg', '', '', '', '1046 x 421', '45 KB', '2017-03-21 12:44:14', 1, 0, 1),
+(7, 'fondo combos', '', 'archivos/multimedia/fondo-combos.jpg', '', 'archivos/multimedia/fondo-combos.jpg', '_self', '', 'jpeg', '', '', '', '1046 x 421', '71 KB', '2017-03-21 13:27:25', 1, 0, 1),
+(8, 'bg-pedidos', '', 'archivos/multimedia/bg-pedidos-2.jpg', '', 'archivos/multimedia/bg-pedidos-2.jpg', '_self', '', 'jpeg', '', '', '', '1200 x 200', '72 KB', '2017-03-21 13:24:51', 1, 0, 1),
+(9, 'Popup portada movil', '', 'archivos/multimedia/arte-para-web-version-movil-320-x-400.gif', '', 'archivos/multimedia/arte-para-web-version-movil-320-x-400.gif', '_self', '', 'gif', '', '', '', '320 x 400', '29 KB', '2017-03-30 22:30:03', 1, 0, 1),
+(11, 'panettone-nelly', '', 'archivos/multimedia/panettone-nelly.jpg', 'panettone-nelly.jpg', '', '_self', '', 'jpeg', '', '', '', '100px x 100px', '30297', '2017-04-07 07:40:48', 1, 0, 1),
+(13, 'panettone-tradiciona-caja-750g', '', 'archivos/multimedia/panettone-tradiciona-caja-750g.jpg', 'panettone-tradiciona-caja-750g.jpg', '', '_self', '', 'jpeg', '', '', '', '100px x 100px', '31340', '2017-04-07 00:54:28', 0, 0, 1),
+(14, 'panettone-tradicional-850g', '', 'archivos/multimedia/panettone-tradicional-850g.jpg', 'panettone-tradicional-850g.jpg', '', '_self', '', 'jpeg', '', '', '', '100px x 100px', '32544', '2017-04-07 00:58:16', 0, 0, 1),
+(16, '_rch7613', '', 'archivos/multimedia/_rch7613.jpg', '_rch7613.jpg', '', '_self', '', 'jpeg', '', '', '', '500 x 642', '98 KB', '2017-04-07 01:38:31', 1, 0, 1),
+(17, '57', '', 'archivos/multimedia/57.jpg', '57_original.jpg', '', '_self', '', 'jpeg', '', '', '', '265 x 255', '24 KB', '2017-04-07 01:41:10', 1, 0, 1),
+(18, 'fc1b2a46-dc49-492c-8177-09fbc51c24d1', '', 'archivos/multimedia/fc1b2a46-dc49-492c-8177-09fbc51c24d1.jpg', 'fc1b2a46-dc49-492c-8177-09fbc51c24d1.jpg', '', '_self', '', 'jpeg', '', '', '', '100px x 100px', '106172', '2017-04-07 09:40:13', 0, 0, 1),
+(19, 'fc1b2a46-dc49-492c-8177-09fbc51c24d1', '', 'archivos/multimedia/fc1b2a46-dc49-492c-8177-09fbc51c24d1.jpg', '', '', '', '', 'jpeg', '', '', '', '960 x 720', '104 KB', '2017-04-07 09:44:04', 2, 0, 1),
+(20, '_jpe4693', '', 'archivos/multimedia/_jpe4693.jpg', '_jpe4722.jpg', '', '_self', '', 'jpeg', '', '', '', '2992 x 2000', '2 MB', '2017-04-07 09:46:46', 2, 0, 1),
+(21, 'Torta frutilla', '', 'archivos/multimedia/_jpe4712.jpg', '', '', '', '', 'jpeg', '', '', '', '2992 x 2000', '2 MB', '2017-04-07 09:48:20', 2, 0, 1),
+(22, 'fondo-nosotros', '', 'archivos/multimedia/fondo-nosotros.jpg', '', '', '', '', 'jpeg', '', '', '', '1046 x 421', '153 KB', '2017-04-25 14:41:55', 1, 0, 1),
+(23, 'flores', '', 'archivos/multimedia/flores.jpg', 'flores.jpg', '', '_self', '', 'jpeg', '', '', '', '365 x 224', '16114', '2017-04-27 09:31:56', 2, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1513,6 +1686,22 @@ CREATE TABLE `multimedia_categorias` (
   `mul_cat_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Dumping data for table `multimedia_categorias`
+--
+
+INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_cat_orden`) VALUES
+(5, 1, 4),
+(6, 89, 1),
+(8, 97, 1),
+(7, 90, 1),
+(2, 81, 1),
+(9, 1, 5),
+(3, 83, 2),
+(4, 81, 2),
+(1, 83, 3),
+(22, 76, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1521,7 +1710,14 @@ CREATE TABLE `multimedia_categorias` (
 
 CREATE TABLE `multimedia_conf` (
   `mul_conf_cropp` varchar(500) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `multimedia_conf`
+--
+
+INSERT INTO `multimedia_conf` (`mul_conf_cropp`) VALUES
+('300x320:Estandar,250x170:prueba');
 
 -- --------------------------------------------------------
 
@@ -1547,14 +1743,6 @@ CREATE TABLE `nota` (
   `not_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
---
--- Dumping data for table `nota`
---
-
-INSERT INTO `nota` (`not_id`, `not_titulo`, `not_ruta_amigable`, `not_tags`, `not_resumen`, `not_cuerpo`, `not_imagen`, `not_fecha`, `not_comentarios`, `not_video`, `not_tipo_video`, `not_autor`, `not_lugar`, `not_usuario`, `not_activar`) VALUES
-(1, 'Envían a la cárcel a los cuatro involucrados en el caso de las \'narcoavionetas\'', 'envian-a-la-carcel-a-los-cuatro-involucrados-en-el-caso-de-las-\'narcoavionetas\'', '', 'resumen', '<p><span style=\"text-align: justify;\">Las cuatro personas, que fueron capturadas en un operativo de lucha contra el narcotráfico en Beni y donde también se secuestraron tres avionetas, fueron enviadas a la cárcel de Mocoví con detención preventiva.</span><br style=\"text-align: justify;\"><br style=\"text-align: justify;\"><span style=\"text-align: justify;\">\"En audiencia de medidas cautelares desarrollada (ayer) en el Juzgado 1° de Instrucción Cautelar en lo Penal de la ciudad de Trinidad, el Ministerio Público demostró que estas personas son con probabilidad autores de los delitos por los que se imputó\", dijo la directora Nacional de Sustancias Controladas, Ximena Morales.</span><br style=\"text-align: justify;\"><br style=\"text-align: justify;\"><span style=\"text-align: justify;\">Las cuatro personas, identificadas como Felipe A. A. (boliviano), Walter S. R. (boliviano), Víctor Alfredo V. G. (paraguayo) y Johan Manuel V. (colombiano), fueron imputadas por la comisión de los delitos de tráfico de sustancias controladas, asociación delictuosa y confabulación.</span><br style=\"text-align: justify;\"><br style=\"text-align: justify;\"><span style=\"text-align: justify;\">Morales recordó que estas personas fueron capturadas en un operativo que se realizó en la propiedad denominada \"Las Vegas\" en la provincia Santa Ana de Yacuma, departamento del Beni, y donde también fueron secuestrados 122 kilos con 918 gramos de clorhidrato de cocaína, además de las tres aeronaves.</span><br style=\"text-align: justify;\"><br style=\"text-align: justify;\"><span style=\"text-align: justify;\">Una de las avionetas tenía matrícula boliviana, otra brasileña y una tercera nave se encontraba sin matrícula.</span><span style=\"color: rgb(51, 51, 51); font-family: arial, helvetica, sans-serif; font-size: 12px; text-align: justify;\"> </span><br></p>', 'archivos/multimedia/manosde.jpg', '2017-06-16 13:41:00', 0, '0', '0', 'Martin  Llanos', 'Santa Cruz', 1, 1),
-(2, 'prueba nota', 'prueba-nota', 'dasdsa', 'asdasdas', '<p>as asdas dasdasd asd asdasd</p><p><br></p><p><br></p><p><br></p>', '', '2017-06-16 18:15:00', 0, '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -1566,14 +1754,6 @@ CREATE TABLE `nota_categorias` (
   `not_cat_cat_id` int(11) NOT NULL,
   `not_cat_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
---
--- Dumping data for table `nota_categorias`
---
-
-INSERT INTO `nota_categorias` (`not_cat_not_id`, `not_cat_cat_id`, `not_cat_orden`) VALUES
-(1, 20, 0),
-(2, 21, 0);
 
 -- --------------------------------------------------------
 
@@ -1772,7 +1952,7 @@ CREATE TABLE `publicacion` (
 --
 
 INSERT INTO `publicacion` (`pub_id`, `pub_nombre`, `pub_descripcion`, `pub_imagen`, `pub_titulo`, `pub_tipo`, `pub_archivo`, `pub_archivo_config`, `pub_css`, `pub_clase`, `pub_id_item`, `pub_numero`, `pub_id_cat`, `pub_activar`) VALUES
-(1, 'nav', '', '', '', 1, 'modulos/nav.pub.php', '', '', '', 0, 0, 0, 1),
+(1, 'portada', '', '', '', 1, 'modulos/portada.pub.php', '', '', '', 0, 0, 0, 1),
 (2, 'pagina_normal', '', '', '', 1, 'modulos/pagina-normal.pub.php', '', '', '', 0, 0, 0, 0),
 (3, 'catalogo', '', '', '', 1, 'modulos/catalogo.pub.php', '', '', '', 0, 0, 0, 0),
 (4, 'sucursales', '', '', '', 1, 'modulos/sucursales.pub.php', '', '', '', 0, 0, 0, 0),
@@ -1786,15 +1966,7 @@ INSERT INTO `publicacion` (`pub_id`, `pub_nombre`, `pub_descripcion`, `pub_image
 (12, 'pedido', '', '', '', 1, 'modulos/pedido.pub.php', '', '', '', 0, 0, 0, 1),
 (13, 'mi carrito', '', '', '', 1, 'modulos/mi_carrito.pub.php', '', '', '', 0, 0, 0, 1),
 (14, 'mi cuenta', '', '', '', 1, 'modulos/cuenta.pub.php', '', '', '', 0, 0, 0, 1),
-(15, 'cuenta', '', '', '', 1, 'modulos/mi_cuenta.pub.php', '', '', '', 0, 0, 0, 1),
-(16, 'sidebar', '', '', '', 1, 'modulos/sidebar.pub.php', '', '', '', 0, 0, 0, 1),
-(17, 'header', '', '', '', 1, 'modulos/header.pub.php', '', '', '', 0, 0, 0, 1),
-(18, 'slide', '', '', '', 1, 'modulos/slide.pub.php', '', '', '', 0, 0, 0, 1),
-(19, 'ads-vertical-left', '', '', '', 1, 'modulos/ads-vertical.pub.php', '', '', '', 0, 0, 0, 1),
-(20, 'trending', '', '', '', 1, 'modulos/trending.pub.php', '', '', '', 0, 0, 0, 1),
-(21, 'ads-vertical-right', '', '', '', 1, 'modulos/ads-vertical.pub.php', '', '', '', 0, 0, 0, 1),
-(22, 'ads-body', '', '', '', 1, 'modulos/ads-body.pub.php', '', '', '', 0, 0, 0, 1),
-(23, 'magazine', '', '', '', 1, 'modulos/magazine.pub.php', '', '', '', 0, 0, 0, 1);
+(15, 'cuenta', '', '', '', 1, 'modulos/mi_cuenta.pub.php', '', '', '', 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1817,6 +1989,7 @@ CREATE TABLE `publicacion_rel` (
 --
 
 INSERT INTO `publicacion_rel` (`pubrel_id`, `pubrel_cat_id`, `pubrel_pla_id`, `pubrel_cont_id`, `pubrel_pub_id`, `pubrel_activar`, `pubrel_orden`) VALUES
+(1, 1, 1, 1, 1, 1, 1),
 (2, 81, 1, 1, 3, 1, 1),
 (3, 82, 1, 1, 3, 1, 1),
 (4, 83, 1, 1, 3, 1, 1),
@@ -1833,13 +2006,7 @@ INSERT INTO `publicacion_rel` (`pubrel_id`, `pubrel_cat_id`, `pubrel_pla_id`, `p
 (17, 97, 1, 1, 12, 1, 0),
 (18, 97, 3, 1, 13, 1, 0),
 (19, 101, 1, 1, 14, 1, 0),
-(20, 101, 3, 1, 15, 1, 0),
-(21, 1, 1, 1, 1, 1, 0),
-(22, 1, 1, 7, 19, 1, 0),
-(23, 1, 1, 7, 21, 1, 1),
-(24, 1, 1, 7, 20, 1, 2),
-(25, 1, 1, 7, 22, 1, 3),
-(26, 1, 1, 7, 23, 1, 4);
+(20, 101, 3, 1, 15, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1864,10 +2031,8 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`rol_id`, `rol_nombre`, `rol_descripcion`, `rol_funciones`, `rol_redireccion`, `rol_id_padre`, `rol_grupo`, `rol_permisos`, `rol_activar`) VALUES
-(1, 'Administrador', '', '', 2, 0, 0, '', 1),
-(2, 'Diseñador web', '', '', 2, 1, 0, '', 1),
-(3, 'Periodista', '', '', 2, 2, 0, '', 1),
-(4, 'Editor', '', '', 2, 1, 0, '', 1);
+(1, 'Administrador', '', 'todo poderoso', 2, 0, 1, '', 1),
+(2, 'Diseñador web', '', '', 1, 1, 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -1879,59 +2044,7 @@ CREATE TABLE `rol_categorias` (
   `rol_cat_cat_id` int(11) NOT NULL,
   `rol_cat_rol_id` int(11) NOT NULL,
   `rol_cat_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `rol_categorias`
---
-
-INSERT INTO `rol_categorias` (`rol_cat_cat_id`, `rol_cat_rol_id`, `rol_cat_orden`) VALUES
-(20, 3, 0),
-(21, 3, 0),
-(1, 2, 0),
-(20, 2, 0),
-(21, 2, 0),
-(19, 2, 0),
-(2, 2, 0),
-(3, 2, 0),
-(4, 2, 0),
-(5, 2, 0),
-(6, 2, 0),
-(7, 2, 0),
-(8, 2, 0),
-(22, 2, 0),
-(9, 2, 0),
-(10, 2, 0),
-(11, 2, 0),
-(12, 2, 0),
-(13, 2, 0),
-(15, 2, 0),
-(16, 2, 0),
-(17, 2, 0),
-(18, 2, 0),
-(14, 2, 0),
-(1, 4, 0),
-(20, 4, 0),
-(21, 4, 0),
-(19, 4, 0),
-(2, 4, 0),
-(3, 4, 0),
-(4, 4, 0),
-(5, 4, 0),
-(6, 4, 0),
-(7, 4, 0),
-(8, 4, 0),
-(22, 4, 0),
-(9, 4, 0),
-(10, 4, 0),
-(11, 4, 0),
-(12, 4, 0),
-(13, 4, 0),
-(15, 4, 0),
-(16, 4, 0),
-(17, 4, 0),
-(18, 4, 0),
-(14, 4, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -1956,14 +2069,14 @@ CREATE TABLE `sistema` (
 
 INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `sis_color`, `sis_tipo`, `sis_activar`, `sis_orden`) VALUES
 (1, 'Websites', '', 'icn-code', '#ffda43', 1, 1, 1),
-(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 0, 2),
-(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 0, 6),
+(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 1, 2),
+(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 1, 6),
 (4, 'Recursos Humanos', '', 'icn-rrhh color-text-violeta', '#8b3b8f', 4, 1, 4),
-(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 0, 3),
-(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 0, 5),
-(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 0, 7),
-(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 0, 8),
-(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 0, 9);
+(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 1, 3),
+(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 5),
+(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 7),
+(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 8),
+(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -1982,12 +2095,12 @@ CREATE TABLE `sistema_modulos` (
 --
 
 INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orden`) VALUES
-(1, 100, 3),
-(1, 80, 4),
-(1, 70, 5),
+(1, 100, 2),
+(1, 80, 3),
+(1, 70, 4),
 (1, 60, 1),
-(1, 51, 6),
-(1, 50, 2),
+(1, 51, 5),
+(1, 50, 6),
 (2, 150, 0),
 (2, 151, 0),
 (2, 152, 0),
@@ -2015,9 +2128,7 @@ CREATE TABLE `sistema_roles` (
 --
 
 INSERT INTO `sistema_roles` (`sis_rol_sis_id`, `sis_rol_rol_id`) VALUES
-(1, 2),
-(1, 3),
-(1, 4);
+(1, 2);
 
 -- --------------------------------------------------------
 
@@ -2042,7 +2153,8 @@ CREATE TABLE `sitio` (
 
 INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
 (1, 'Sitio Raiz', '', '', 0, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', 2, '', '2', 1);
+(2, 'Dashboard', '', 'dashboard', 2, '', '2', 1),
+(3, 'Intranet', '', 'intranet', 0, '', '3', 1);
 
 -- --------------------------------------------------------
 
@@ -2054,7 +2166,7 @@ CREATE TABLE `sitio_categorias` (
   `sitio_cat_sitio_id` int(11) NOT NULL,
   `sitio_cat_cat_id` int(11) NOT NULL,
   `sitio_cat_orden` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
 
 -- --------------------------------------------------------
 
@@ -2066,7 +2178,7 @@ CREATE TABLE `sitio_roles` (
   `sitio_rol_sitio_id` int(11) NOT NULL,
   `sitio_rol_rol_id` int(11) NOT NULL,
   `sitio_rol_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `sitio_roles`
@@ -2074,9 +2186,7 @@ CREATE TABLE `sitio_roles` (
 
 INSERT INTO `sitio_roles` (`sitio_rol_sitio_id`, `sitio_rol_rol_id`, `sitio_rol_orden`) VALUES
 (2, 1, 0),
-(2, 2, 0),
-(2, 3, 0),
-(2, 4, 0);
+(2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -2124,9 +2234,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
-(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, '', 0, 'hermany', 1),
-(2, 'Yascara', 'Caballero', 'ycaballero@eldia.com.bo', 'NDg2Mg==', 1, '', 0, 'yascara', 1),
-(4, 'Gerson', 'Rivero', 'grivero@eldia.com.bo', 'NDg2Mg==', 1, '', 1, '', 1);
+(3, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, '', 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -2158,8 +2266,8 @@ CREATE TABLE `usuario_roles` (
 
 INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`) VALUES
 (1, 1, 0),
-(2, 3, 0),
-(4, 4, 0);
+(2, 2, 0),
+(3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2631,7 +2739,7 @@ ALTER TABLE `nota_valores`
 -- Indexes for table `pestana`
 --
 ALTER TABLE `pestana`
-  ADD PRIMARY KEY (`mod_pes_id`);
+  ADD PRIMARY KEY (`mod_pes_id`) USING BTREE;
 
 --
 -- Indexes for table `plantilla`
@@ -2743,7 +2851,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT for table `aplicacion`
 --
 ALTER TABLE `aplicacion`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `autor`
 --
@@ -2758,7 +2866,7 @@ ALTER TABLE `calendario`
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `comentario`
 --
@@ -2768,12 +2876,12 @@ ALTER TABLE `comentario`
 -- AUTO_INCREMENT for table `contenedor`
 --
 ALTER TABLE `contenedor`
-  MODIFY `cont_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `cont_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `conte_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `conte_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `cron_jobs`
 --
@@ -2953,7 +3061,7 @@ ALTER TABLE `mod_plan`
 -- AUTO_INCREMENT for table `mod_productos`
 --
 ALTER TABLE `mod_productos`
-  MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3188;
 --
 -- AUTO_INCREMENT for table `mod_sucursales`
 --
@@ -2963,12 +3071,12 @@ ALTER TABLE `mod_sucursales`
 -- AUTO_INCREMENT for table `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `nota`
 --
 ALTER TABLE `nota`
-  MODIFY `not_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `not_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `nota_comentarios`
 --
@@ -2998,17 +3106,17 @@ ALTER TABLE `printer`
 -- AUTO_INCREMENT for table `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `pub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `pub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `publicacion_rel`
 --
 ALTER TABLE `publicacion_rel`
-  MODIFY `pubrel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `pubrel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `rol`
 --
 ALTER TABLE `rol`
-  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sistema`
 --
@@ -3018,7 +3126,7 @@ ALTER TABLE `sistema`
 -- AUTO_INCREMENT for table `sitio`
 --
 ALTER TABLE `sitio`
-  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `solicitud_permiso`
 --
@@ -3028,7 +3136,7 @@ ALTER TABLE `solicitud_permiso`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `valor`
 --

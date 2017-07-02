@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2017 at 10:46 PM
+-- Generation Time: Jul 02, 2017 at 09:25 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `album` (
   `alb_id` int(11) NOT NULL,
+  `alb_ruta_amigable` varchar(255) NOT NULL,
   `alb_nombre` varchar(255) NOT NULL,
   `alb_descripcion` varchar(255) NOT NULL,
   `alb_ubicacion` varchar(255) NOT NULL,
@@ -38,7 +39,14 @@ CREATE TABLE `album` (
   `alb_fecha` date NOT NULL,
   `alb_usuario` int(11) NOT NULL,
   `alb_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `album`
+--
+
+INSERT INTO `album` (`alb_id`, `alb_ruta_amigable`, `alb_nombre`, `alb_descripcion`, `alb_ubicacion`, `alb_tags`, `alb_etiquetados`, `alb_fecha`, `alb_usuario`, `alb_activar`) VALUES
+(1, 'album 1', 'album-1', '', '', 'asd', '', '2017-07-01', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -49,8 +57,16 @@ CREATE TABLE `album` (
 CREATE TABLE `album_multimedia` (
   `alb_mul_alb_id` int(11) NOT NULL,
   `alb_mul_mul_id` int(11) NOT NULL,
-  `alb_mul__orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+  `alb_mul_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `album_multimedia`
+--
+
+INSERT INTO `album_multimedia` (`alb_mul_alb_id`, `alb_mul_mul_id`, `alb_mul_orden`) VALUES
+(1, 11, 0),
+(1, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -1534,7 +1550,8 @@ INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`,
 (11, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1),
 (12, 'victoria-5', '', 'archivos/multimedia/victoria-5.mp4', 'victoria-5.mp4', '', '_self', '', 'mp4', '', '', '', ' x ', '200x200', '2017-06-18 01:49:09', 1, 0, 1),
 (13, 'kris-mayonesa-1', '', 'archivos/multimedia/kris-mayonesa-1.jpg', 'kris-mayonesa-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '78256', '2017-06-23 15:18:42', 1, 0, 1),
-(14, 'kris-salsa-golf-1', '', 'archivos/multimedia/kris-salsa-golf-1.jpg', 'kris-salsa-golf-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '77685', '2017-06-23 15:18:42', 1, 0, 1);
+(14, 'kris-salsa-golf-1', '', 'archivos/multimedia/kris-salsa-golf-1.jpg', 'kris-salsa-golf-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '77685', '2017-06-23 15:18:42', 1, 0, 1),
+(15, '02-milord', '', 'archivos/multimedia/02-milord.mp3', '02-milord.mp3', '', '_self', '', 'mp3', '', '', '', ' x ', '6536071', '2017-07-01 16:50:40', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2142,6 +2159,12 @@ ALTER TABLE `album`
   ADD PRIMARY KEY (`alb_id`);
 
 --
+-- Indexes for table `album_multimedia`
+--
+ALTER TABLE `album_multimedia`
+  ADD PRIMARY KEY (`alb_mul_mul_id`,`alb_mul_alb_id`);
+
+--
 -- Indexes for table `aplicacion`
 --
 ALTER TABLE `aplicacion`
@@ -2674,7 +2697,7 @@ ALTER TABLE `valor_notas`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `alb_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `alb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `aplicacion`
 --
@@ -2899,7 +2922,7 @@ ALTER TABLE `mod_sucursales`
 -- AUTO_INCREMENT for table `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `nota`
 --
