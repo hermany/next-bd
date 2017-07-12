@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-07-2017 a las 04:10:54
+-- Tiempo de generación: 12-07-2017 a las 20:59:02
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -1309,12 +1309,12 @@ CREATE TABLE `mod_pedidos_zonas_distribucion` (
 
 CREATE TABLE `mod_pestana` (
   `mod_pes_id` int(11) NOT NULL,
-  `mod_pes_nombre` varchar(150) NOT NULL,
-  `mod_pes_descripcion` varchar(255) NOT NULL,
+  `mod_pes_nombre` varchar(150) CHARACTER SET latin1 NOT NULL,
+  `mod_pes_descripcion` varchar(255) CHARACTER SET latin1 NOT NULL,
   `mod_pes_fecha` datetime NOT NULL,
   `mod_pes_usuario` int(11) NOT NULL,
   `mod_pes_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Volcado de datos para la tabla `mod_pestana`
@@ -1682,23 +1682,9 @@ CREATE TABLE `nota_multimedia` (
 
 CREATE TABLE `nota_valores` (
   `not_val_not_id` int(11) NOT NULL,
-  `not_val_val_id` int(11) NOT NULL
+  `not_val_val_id` int(11) NOT NULL,
+  `not_val_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `pestana`
---
-
-CREATE TABLE `pestana` (
-  `mod_pes_id` int(11) NOT NULL,
-  `mod_pes_nombre` varchar(150) NOT NULL,
-  `mod_pes_descripcion` varchar(255) NOT NULL,
-  `mod_pes_fecha` datetime NOT NULL,
-  `mod_pes_usuario` int(11) NOT NULL,
-  `mod_pes_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2059,6 +2045,28 @@ CREATE TABLE `solicitud_permiso` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tipo_empresa`
+--
+
+CREATE TABLE `tipo_empresa` (
+  `tip_emp_id` int(11) NOT NULL,
+  `tip_emp_nombre` varchar(150) NOT NULL,
+  `tip_emp_descripcion` varchar(255) NOT NULL,
+  `tip_emp_activar` int(11) NOT NULL,
+  `tip_emp_usuario` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tipo_empresa`
+--
+
+INSERT INTO `tipo_empresa` (`tip_emp_id`, `tip_emp_nombre`, `tip_emp_descripcion`, `tip_emp_activar`, `tip_emp_usuario`) VALUES
+(1, 'Corporación', '', 1, 1),
+(2, 'Proveedores', '', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -2141,7 +2149,7 @@ CREATE TABLE `valor_notas` (
   `val_tipo` int(11) NOT NULL COMMENT '1. Like  2. De 0 a 5 3. V o F  4. De 1 a 10  5. De 1 a 100',
   `val_valor` int(11) NOT NULL,
   `val_fecha` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Índices para tablas volcadas
@@ -2266,7 +2274,7 @@ ALTER TABLE `empresa`
 -- Indices de la tabla `empresa_categorias`
 --
 ALTER TABLE `empresa_categorias`
-  ADD PRIMARY KEY (`emp_cat_emp_id`);
+  ADD PRIMARY KEY (`emp_cat_emp_id`,`emp_cat_cat_id`);
 
 --
 -- Indices de la tabla `empresa_tipos`
@@ -2564,6 +2572,12 @@ ALTER TABLE `nota`
   ADD PRIMARY KEY (`not_id`);
 
 --
+-- Indices de la tabla `nota_categorias`
+--
+ALTER TABLE `nota_categorias`
+  ADD PRIMARY KEY (`not_cat_not_id`,`not_cat_cat_id`);
+
+--
 -- Indices de la tabla `nota_comentarios`
 --
 ALTER TABLE `nota_comentarios`
@@ -2580,12 +2594,6 @@ ALTER TABLE `nota_multimedia`
 --
 ALTER TABLE `nota_valores`
   ADD PRIMARY KEY (`not_val_not_id`,`not_val_val_id`);
-
---
--- Indices de la tabla `pestana`
---
-ALTER TABLE `pestana`
-  ADD PRIMARY KEY (`mod_pes_id`) USING BTREE;
 
 --
 -- Indices de la tabla `plantilla`
@@ -2653,6 +2661,12 @@ ALTER TABLE `sitio_roles`
 --
 ALTER TABLE `solicitud_permiso`
   ADD PRIMARY KEY (`sol_per_id`);
+
+--
+-- Indices de la tabla `tipo_empresa`
+--
+ALTER TABLE `tipo_empresa`
+  ADD PRIMARY KEY (`tip_emp_id`);
 
 --
 -- Indices de la tabla `usuario`
@@ -2929,11 +2943,6 @@ ALTER TABLE `nota`
 ALTER TABLE `nota_comentarios`
   MODIFY `not_com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT de la tabla `pestana`
---
-ALTER TABLE `pestana`
-  MODIFY `mod_pes_id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
@@ -2978,6 +2987,11 @@ ALTER TABLE `sitio`
 --
 ALTER TABLE `solicitud_permiso`
   MODIFY `sol_per_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `tipo_empresa`
+--
+ALTER TABLE `tipo_empresa`
+  MODIFY `tip_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
