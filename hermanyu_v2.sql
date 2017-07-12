@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jul 02, 2017 at 09:25 PM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Servidor: localhost
+-- Tiempo de generación: 12-07-2017 a las 04:11:43
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hermanyu_v2`
+-- Base de datos: `hermanyu_v2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `album`
+-- Estructura de tabla para la tabla `album`
 --
 
 CREATE TABLE `album` (
@@ -44,7 +44,7 @@ CREATE TABLE `album` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `album_multimedia`
+-- Estructura de tabla para la tabla `album_multimedia`
 --
 
 CREATE TABLE `album_multimedia` (
@@ -56,7 +56,7 @@ CREATE TABLE `album_multimedia` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `aplicacion`
+-- Estructura de tabla para la tabla `aplicacion`
 --
 
 CREATE TABLE `aplicacion` (
@@ -73,7 +73,7 @@ CREATE TABLE `aplicacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `aplicacion`
+-- Volcado de datos para la tabla `aplicacion`
 --
 
 INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_amigable`, `app_nav_url`, `app_url`, `app_icono`, `app_color`, `app_orden`, `app_activar`) VALUES
@@ -84,7 +84,7 @@ INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_a
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autor`
+-- Estructura de tabla para la tabla `autor`
 --
 
 CREATE TABLE `autor` (
@@ -98,7 +98,7 @@ CREATE TABLE `autor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calendario`
+-- Estructura de tabla para la tabla `calendario`
 --
 
 CREATE TABLE `calendario` (
@@ -115,7 +115,7 @@ CREATE TABLE `calendario` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calendario_categoria`
+-- Estructura de tabla para la tabla `calendario_categoria`
 --
 
 CREATE TABLE `calendario_categoria` (
@@ -126,7 +126,7 @@ CREATE TABLE `calendario_categoria` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `calendario_grupo`
+-- Estructura de tabla para la tabla `calendario_grupo`
 --
 
 CREATE TABLE `calendario_grupo` (
@@ -137,7 +137,7 @@ CREATE TABLE `calendario_grupo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categoria`
+-- Estructura de tabla para la tabla `categoria`
 --
 
 CREATE TABLE `categoria` (
@@ -167,7 +167,7 @@ CREATE TABLE `categoria` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `categoria`
+-- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_descripcion`, `cat_ruta_amigable`, `cat_imagen`, `cat_icono`, `cat_color`, `cat_codigos`, `cat_css`, `cat_clase`, `cat_meta`, `cat_theme`, `cat_id_padre`, `cat_id_plantilla`, `cat_orden`, `cat_tipo`, `cat_url`, `cat_destino`, `cat_favicon`, `cat_analitica`, `cat_ruta_sitio`, `cat_dominio`, `cat_activar`) VALUES
@@ -206,7 +206,7 @@ INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_descripcion`, `cat_ruta_am
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentario`
+-- Estructura de tabla para la tabla `comentario`
 --
 
 CREATE TABLE `comentario` (
@@ -218,7 +218,7 @@ CREATE TABLE `comentario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Dumping data for table `comentario`
+-- Volcado de datos para la tabla `comentario`
 --
 
 INSERT INTO `comentario` (`com_id`, `com_texto`, `com_usuario`, `com_fecha`, `com_activar`) VALUES
@@ -228,7 +228,7 @@ INSERT INTO `comentario` (`com_id`, `com_texto`, `com_usuario`, `com_fecha`, `co
 -- --------------------------------------------------------
 
 --
--- Table structure for table `configuracion`
+-- Estructura de tabla para la tabla `configuracion`
 --
 
 CREATE TABLE `configuracion` (
@@ -241,7 +241,7 @@ CREATE TABLE `configuracion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `configuracion`
+-- Volcado de datos para la tabla `configuracion`
 --
 
 INSERT INTO `configuracion` (`conf_nombre_sitio`, `conf_imagen`, `conf_favicon`, `conf_script_head`, `conf_script_footer`, `conf_meta`) VALUES
@@ -250,7 +250,7 @@ INSERT INTO `configuracion` (`conf_nombre_sitio`, `conf_imagen`, `conf_favicon`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenedor`
+-- Estructura de tabla para la tabla `contenedor`
 --
 
 CREATE TABLE `contenedor` (
@@ -265,7 +265,7 @@ CREATE TABLE `contenedor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `contenedor`
+-- Volcado de datos para la tabla `contenedor`
 --
 
 INSERT INTO `contenedor` (`cont_id`, `cont_nombre`, `cont_clase`, `cont_css`, `cont_codigos`, `cont_id_padre`, `cont_orden`, `cont_activar`) VALUES
@@ -276,7 +276,7 @@ INSERT INTO `contenedor` (`cont_id`, `cont_nombre`, `cont_clase`, `cont_css`, `c
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenedor_plantilla`
+-- Estructura de tabla para la tabla `contenedor_plantilla`
 --
 
 CREATE TABLE `contenedor_plantilla` (
@@ -285,7 +285,7 @@ CREATE TABLE `contenedor_plantilla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `contenedor_plantilla`
+-- Volcado de datos para la tabla `contenedor_plantilla`
 --
 
 INSERT INTO `contenedor_plantilla` (`contenedor_cont_id`, `plantilla_pla_id`) VALUES
@@ -296,7 +296,7 @@ INSERT INTO `contenedor_plantilla` (`contenedor_cont_id`, `plantilla_pla_id`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenido`
+-- Estructura de tabla para la tabla `contenido`
 --
 
 CREATE TABLE `contenido` (
@@ -314,7 +314,7 @@ CREATE TABLE `contenido` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `contenido`
+-- Volcado de datos para la tabla `contenido`
 --
 
 INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `conte_subtitulo`, `conte_cuerpo`, `conte_foto`, `conte_fecha`, `conte_id_usuario`, `conte_tag`, `conte_id_dominio`, `conte_activar`) VALUES
@@ -323,7 +323,7 @@ INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `con
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenido_categorias`
+-- Estructura de tabla para la tabla `contenido_categorias`
 --
 
 CREATE TABLE `contenido_categorias` (
@@ -332,7 +332,7 @@ CREATE TABLE `contenido_categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `contenido_categorias`
+-- Volcado de datos para la tabla `contenido_categorias`
 --
 
 INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`) VALUES
@@ -341,7 +341,7 @@ INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contenido_documentos`
+-- Estructura de tabla para la tabla `contenido_documentos`
 --
 
 CREATE TABLE `contenido_documentos` (
@@ -352,7 +352,7 @@ CREATE TABLE `contenido_documentos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cron_jobs`
+-- Estructura de tabla para la tabla `cron_jobs`
 --
 
 CREATE TABLE `cron_jobs` (
@@ -368,7 +368,7 @@ CREATE TABLE `cron_jobs` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cuenta`
+-- Estructura de tabla para la tabla `cuenta`
 --
 
 CREATE TABLE `cuenta` (
@@ -379,7 +379,7 @@ CREATE TABLE `cuenta` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documento`
+-- Estructura de tabla para la tabla `documento`
 --
 
 CREATE TABLE `documento` (
@@ -400,7 +400,7 @@ CREATE TABLE `documento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `documento`
+-- Volcado de datos para la tabla `documento`
 --
 
 INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descripcion`, `doc_url`, `doc_imagen`, `doc_tipo_archivo`, `doc_tamano`, `doc_tags`, `doc_fecha`, `doc_usuario`, `doc_id_dominio`, `doc_orden`, `doc_activar`) VALUES
@@ -412,7 +412,7 @@ INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `documento_categorias`
+-- Estructura de tabla para la tabla `documento_categorias`
 --
 
 CREATE TABLE `documento_categorias` (
@@ -421,7 +421,7 @@ CREATE TABLE `documento_categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `documento_categorias`
+-- Volcado de datos para la tabla `documento_categorias`
 --
 
 INSERT INTO `documento_categorias` (`doc_cat_doc_id`, `doc_cat_cat_id`) VALUES
@@ -432,7 +432,7 @@ INSERT INTO `documento_categorias` (`doc_cat_doc_id`, `doc_cat_cat_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa`
+-- Estructura de tabla para la tabla `empresa`
 --
 
 CREATE TABLE `empresa` (
@@ -455,10 +455,17 @@ CREATE TABLE `empresa` (
   `emp_email_contacto` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
+--
+-- Volcado de datos para la tabla `empresa`
+--
+
+INSERT INTO `empresa` (`emp_id`, `emp_nombre`, `emp_descripcion`, `emp_logo`, `emp_icon`, `emp_razon_social`, `emp_nit`, `emp_direccion`, `emp_coordenadas`, `emp_rubro`, `emp_telefono`, `emp_email`, `emp_web`, `emp_activar`, `emp_nombre_contacto`, `emp_telefono_contacto`, `emp_email_contacto`) VALUES
+(1, 'victoria', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_categorias`
+-- Estructura de tabla para la tabla `empresa_categorias`
 --
 
 CREATE TABLE `empresa_categorias` (
@@ -470,7 +477,7 @@ CREATE TABLE `empresa_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresa_tipos`
+-- Estructura de tabla para la tabla `empresa_tipos`
 --
 
 CREATE TABLE `empresa_tipos` (
@@ -482,7 +489,7 @@ CREATE TABLE `empresa_tipos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enlace`
+-- Estructura de tabla para la tabla `enlace`
 --
 
 CREATE TABLE `enlace` (
@@ -500,7 +507,7 @@ CREATE TABLE `enlace` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enlace_categorias`
+-- Estructura de tabla para la tabla `enlace_categorias`
 --
 
 CREATE TABLE `enlace_categorias` (
@@ -512,7 +519,7 @@ CREATE TABLE `enlace_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enlace_grupo_usuarios`
+-- Estructura de tabla para la tabla `enlace_grupo_usuarios`
 --
 
 CREATE TABLE `enlace_grupo_usuarios` (
@@ -524,7 +531,7 @@ CREATE TABLE `enlace_grupo_usuarios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `enlace_publicaciones`
+-- Estructura de tabla para la tabla `enlace_publicaciones`
 --
 
 CREATE TABLE `enlace_publicaciones` (
@@ -536,7 +543,7 @@ CREATE TABLE `enlace_publicaciones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evento`
+-- Estructura de tabla para la tabla `evento`
 --
 
 CREATE TABLE `evento` (
@@ -563,7 +570,7 @@ CREATE TABLE `evento` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evento_calendarios`
+-- Estructura de tabla para la tabla `evento_calendarios`
 --
 
 CREATE TABLE `evento_calendarios` (
@@ -574,7 +581,7 @@ CREATE TABLE `evento_calendarios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evento_grupos`
+-- Estructura de tabla para la tabla `evento_grupos`
 --
 
 CREATE TABLE `evento_grupos` (
@@ -585,7 +592,7 @@ CREATE TABLE `evento_grupos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `evento_roles`
+-- Estructura de tabla para la tabla `evento_roles`
 --
 
 CREATE TABLE `evento_roles` (
@@ -596,7 +603,7 @@ CREATE TABLE `evento_roles` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `grupo`
+-- Estructura de tabla para la tabla `grupo`
 --
 
 CREATE TABLE `grupo` (
@@ -610,7 +617,7 @@ CREATE TABLE `grupo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modulo`
+-- Estructura de tabla para la tabla `modulo`
 --
 
 CREATE TABLE `modulo` (
@@ -630,7 +637,7 @@ CREATE TABLE `modulo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `modulo`
+-- Volcado de datos para la tabla `modulo`
 --
 
 INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amigable`, `mod_bd`, `mod_bd_prefijo`, `mod_bd_relaciones`, `mod_url`, `mod_icono`, `mod_color`, `mod_tipo`, `mod_id_padre`, `mod_activar`) VALUES
@@ -657,8 +664,8 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (91, 'Eventos', '', '', 'eventos_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
 (100, 'Enlaces', '', 'enlaces', 'enlaces', 'enl_', 'enlaces_categorias:enl_cat_enl_id,enlaces_grupo_usuario:enl_grup_usu_enl_id,enlaces_publicaciones:enl_pub_enl_id', 'modulos/', 'icn-link', '#806aad', 0, 0, 1),
 (150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#f39333', 0, 0, 1),
-(151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/productos/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
-(152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_productos_catalogos', 'mod_prod_catg_', '', 'modulos/productos/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
+(151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/ecommerce/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
+(152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_catalogo', 'mod_catg_', 'mod_catalogo_categorias:mod_catg_cat_catg_id,mod_catalogo_roles:	mod_catg_rol_catg_id', 'modulos/ecommerce/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
 (153, 'Marcas', '', 'marcas', 'mod_marcas', 'mod_mar_', 'mod_marcas_categorias:mod_mar_mar_id,mod_marcas_productos:mod_mar_mar_id', 'modulos/marcas/marcas.adm.php', 'icn-marca', '#24aa5b', 0, 10, 1),
 (154, 'Sucursales', '', 'sucursales', 'mod_sucursales', 'mod_suc_', '', 'modulos/productos/sucursales.adm.php', 'icn-shop', '#e71882', 1, 0, 1),
 (155, 'Configuración', 'E-commerse', 'configuracion-ec', '', '', '', 'modulos/productos/config-ec.adm.php', 'icn icn-conf', '#8b3b8f', 1, 150, 1),
@@ -676,7 +683,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modulo_categorias`
+-- Estructura de tabla para la tabla `modulo_categorias`
 --
 
 CREATE TABLE `modulo_categorias` (
@@ -686,7 +693,7 @@ CREATE TABLE `modulo_categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `modulo_categorias`
+-- Volcado de datos para la tabla `modulo_categorias`
 --
 
 INSERT INTO `modulo_categorias` (`mod_cat_mod_id`, `mod_cat_cat_id`, `mod_cat_orden`) VALUES
@@ -702,7 +709,7 @@ INSERT INTO `modulo_categorias` (`mod_cat_mod_id`, `mod_cat_cat_id`, `mod_cat_or
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modulo_roles`
+-- Estructura de tabla para la tabla `modulo_roles`
 --
 
 CREATE TABLE `modulo_roles` (
@@ -712,7 +719,7 @@ CREATE TABLE `modulo_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `modulo_roles`
+-- Volcado de datos para la tabla `modulo_roles`
 --
 
 INSERT INTO `modulo_roles` (`mod_rol_mod_id`, `mod_rol_rol_id`, `mod_rol_permisos`) VALUES
@@ -721,7 +728,7 @@ INSERT INTO `modulo_roles` (`mod_rol_mod_id`, `mod_rol_rol_id`, `mod_rol_permiso
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_almacen`
+-- Estructura de tabla para la tabla `mod_almacen`
 --
 
 CREATE TABLE `mod_almacen` (
@@ -739,7 +746,7 @@ CREATE TABLE `mod_almacen` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_almacen_categorias`
+-- Estructura de tabla para la tabla `mod_almacen_categorias`
 --
 
 CREATE TABLE `mod_almacen_categorias` (
@@ -755,7 +762,7 @@ CREATE TABLE `mod_almacen_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_catalogo`
+-- Estructura de tabla para la tabla `mod_catalogo`
 --
 
 CREATE TABLE `mod_catalogo` (
@@ -763,16 +770,24 @@ CREATE TABLE `mod_catalogo` (
   `mod_catg_nombre` varchar(100) NOT NULL,
   `mod_catg_descripcion` text NOT NULL,
   `mod_catg_ruta_amigable` varchar(150) NOT NULL,
+  `mod_catg_id_cat_arranque` int(11) NOT NULL,
   `mod_catg_orden` int(11) NOT NULL,
   `mod_catg_id_padre` int(11) NOT NULL DEFAULT '0',
   `mod_catg_id_empresa` int(11) NOT NULL,
   `mod_catg_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Volcado de datos para la tabla `mod_catalogo`
+--
+
+INSERT INTO `mod_catalogo` (`mod_catg_id`, `mod_catg_nombre`, `mod_catg_descripcion`, `mod_catg_ruta_amigable`, `mod_catg_id_cat_arranque`, `mod_catg_orden`, `mod_catg_id_padre`, `mod_catg_id_empresa`, `mod_catg_activar`) VALUES
+(1, 'Victoria', 'descr', 'victoria', 81, 0, 0, 1, 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_catalogo_categorias`
+-- Estructura de tabla para la tabla `mod_catalogo_categorias`
 --
 
 CREATE TABLE `mod_catalogo_categorias` (
@@ -780,10 +795,21 @@ CREATE TABLE `mod_catalogo_categorias` (
   `mod_catg_cat_cat_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Volcado de datos para la tabla `mod_catalogo_categorias`
+--
+
+INSERT INTO `mod_catalogo_categorias` (`mod_catg_cat_catg_id`, `mod_catg_cat_cat_id`) VALUES
+(1, 81),
+(1, 83),
+(1, 89),
+(1, 90),
+(1, 103);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_catalogo_roles`
+-- Estructura de tabla para la tabla `mod_catalogo_roles`
 --
 
 CREATE TABLE `mod_catalogo_roles` (
@@ -791,10 +817,20 @@ CREATE TABLE `mod_catalogo_roles` (
   `mod_catg_rol_rol_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+--
+-- Volcado de datos para la tabla `mod_catalogo_roles`
+--
+
+INSERT INTO `mod_catalogo_roles` (`mod_catg_rol_catg_id`, `mod_catg_rol_rol_id`) VALUES
+(0, 1),
+(0, 2),
+(1, 1),
+(1, 2);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_cats`
+-- Estructura de tabla para la tabla `mod_cats`
 --
 
 CREATE TABLE `mod_cats` (
@@ -814,7 +850,7 @@ CREATE TABLE `mod_cats` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_clientes`
+-- Estructura de tabla para la tabla `mod_clientes`
 --
 
 CREATE TABLE `mod_clientes` (
@@ -834,7 +870,7 @@ CREATE TABLE `mod_clientes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_clientes_estados`
+-- Estructura de tabla para la tabla `mod_clientes_estados`
 --
 
 CREATE TABLE `mod_clientes_estados` (
@@ -849,7 +885,7 @@ CREATE TABLE `mod_clientes_estados` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex`
+-- Estructura de tabla para la tabla `mod_kardex`
 --
 
 CREATE TABLE `mod_kardex` (
@@ -918,7 +954,7 @@ CREATE TABLE `mod_kardex` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_bancos`
+-- Estructura de tabla para la tabla `mod_kardex_bancos`
 --
 
 CREATE TABLE `mod_kardex_bancos` (
@@ -932,7 +968,7 @@ CREATE TABLE `mod_kardex_bancos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_cargo`
+-- Estructura de tabla para la tabla `mod_kardex_cargo`
 --
 
 CREATE TABLE `mod_kardex_cargo` (
@@ -950,7 +986,7 @@ CREATE TABLE `mod_kardex_cargo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_kardex_cargo`
+-- Volcado de datos para la tabla `mod_kardex_cargo`
 --
 
 INSERT INTO `mod_kardex_cargo` (`mod_kdx_car_id`, `mod_kdx_car_nombre`, `mod_kdx_car_descripcion`, `mod_kdx_car_atribuciones`, `mod_kdx_car_responsabilidades`, `mod_kdx_car_dependiente`, `mod_kdx_car_ascendencia`, `mod_kdx_car_destrezas`, `mod_kdx_car_lugar_de_trabajo`, `mod_kdx_car_requisitos`, `mod_kdx_car_activar`) VALUES
@@ -959,7 +995,7 @@ INSERT INTO `mod_kardex_cargo` (`mod_kdx_car_id`, `mod_kdx_car_nombre`, `mod_kdx
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_departamento`
+-- Estructura de tabla para la tabla `mod_kardex_departamento`
 --
 
 CREATE TABLE `mod_kardex_departamento` (
@@ -972,7 +1008,7 @@ CREATE TABLE `mod_kardex_departamento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_kardex_departamento`
+-- Volcado de datos para la tabla `mod_kardex_departamento`
 --
 
 INSERT INTO `mod_kardex_departamento` (`mod_kdx_dep_id`, `mod_kdx_dep_nombre`, `mod_kdx_dep_descripcion`, `mod_kdx_dep_id_padre`, `mod_kdx_dep_orden`, `mod_kdx_dep_activar`) VALUES
@@ -982,7 +1018,7 @@ INSERT INTO `mod_kardex_departamento` (`mod_kdx_dep_id`, `mod_kdx_dep_nombre`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_division`
+-- Estructura de tabla para la tabla `mod_kardex_division`
 --
 
 CREATE TABLE `mod_kardex_division` (
@@ -993,7 +1029,7 @@ CREATE TABLE `mod_kardex_division` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_kardex_division`
+-- Volcado de datos para la tabla `mod_kardex_division`
 --
 
 INSERT INTO `mod_kardex_division` (`mod_kdx_div_id`, `mod_kdx_div_nombre`, `mod_kdx_div_descripcion`, `mod_kdx_div_activar`) VALUES
@@ -1002,7 +1038,7 @@ INSERT INTO `mod_kardex_division` (`mod_kdx_div_id`, `mod_kdx_div_nombre`, `mod_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_empresa`
+-- Estructura de tabla para la tabla `mod_kardex_empresa`
 --
 
 CREATE TABLE `mod_kardex_empresa` (
@@ -1021,7 +1057,7 @@ CREATE TABLE `mod_kardex_empresa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_kardex_empresa`
+-- Volcado de datos para la tabla `mod_kardex_empresa`
 --
 
 INSERT INTO `mod_kardex_empresa` (`mod_kdx_emp_id`, `mod_kdx_emp_nombre`, `mod_kdx_emp_descripcion`, `mod_kdx_emp_logo`, `mod_kdx_emp_razon_social`, `mod_kdx_emp_nit`, `mod_kdx_emp_direccion`, `mod_kdx_emp_coordenadas`, `mod_kdx_emp_rubro`, `mod_kdx_emp_email`, `mod_kdx_emp_web`, `mod_kdx_emp_activar`) VALUES
@@ -1030,7 +1066,7 @@ INSERT INTO `mod_kardex_empresa` (`mod_kdx_emp_id`, `mod_kdx_emp_nombre`, `mod_k
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_formacion`
+-- Estructura de tabla para la tabla `mod_kardex_formacion`
 --
 
 CREATE TABLE `mod_kardex_formacion` (
@@ -1044,7 +1080,7 @@ CREATE TABLE `mod_kardex_formacion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_hijos`
+-- Estructura de tabla para la tabla `mod_kardex_hijos`
 --
 
 CREATE TABLE `mod_kardex_hijos` (
@@ -1058,7 +1094,7 @@ CREATE TABLE `mod_kardex_hijos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_historial_corporativo`
+-- Estructura de tabla para la tabla `mod_kardex_historial_corporativo`
 --
 
 CREATE TABLE `mod_kardex_historial_corporativo` (
@@ -1073,7 +1109,7 @@ CREATE TABLE `mod_kardex_historial_corporativo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_manual_funciones`
+-- Estructura de tabla para la tabla `mod_kardex_manual_funciones`
 --
 
 CREATE TABLE `mod_kardex_manual_funciones` (
@@ -1085,7 +1121,7 @@ CREATE TABLE `mod_kardex_manual_funciones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_referencias`
+-- Estructura de tabla para la tabla `mod_kardex_referencias`
 --
 
 CREATE TABLE `mod_kardex_referencias` (
@@ -1098,7 +1134,7 @@ CREATE TABLE `mod_kardex_referencias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_kardex_ref_emergencia`
+-- Estructura de tabla para la tabla `mod_kardex_ref_emergencia`
 --
 
 CREATE TABLE `mod_kardex_ref_emergencia` (
@@ -1112,7 +1148,7 @@ CREATE TABLE `mod_kardex_ref_emergencia` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_marcas`
+-- Estructura de tabla para la tabla `mod_marcas`
 --
 
 CREATE TABLE `mod_marcas` (
@@ -1129,7 +1165,7 @@ CREATE TABLE `mod_marcas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_marcas_categorias`
+-- Estructura de tabla para la tabla `mod_marcas_categorias`
 --
 
 CREATE TABLE `mod_marcas_categorias` (
@@ -1141,7 +1177,7 @@ CREATE TABLE `mod_marcas_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_marcas_productos`
+-- Estructura de tabla para la tabla `mod_marcas_productos`
 --
 
 CREATE TABLE `mod_marcas_productos` (
@@ -1153,7 +1189,7 @@ CREATE TABLE `mod_marcas_productos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos`
+-- Estructura de tabla para la tabla `mod_pedidos`
 --
 
 CREATE TABLE `mod_pedidos` (
@@ -1170,7 +1206,7 @@ CREATE TABLE `mod_pedidos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_almacen`
+-- Estructura de tabla para la tabla `mod_pedidos_almacen`
 --
 
 CREATE TABLE `mod_pedidos_almacen` (
@@ -1184,7 +1220,7 @@ CREATE TABLE `mod_pedidos_almacen` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_cats`
+-- Estructura de tabla para la tabla `mod_pedidos_cats`
 --
 
 CREATE TABLE `mod_pedidos_cats` (
@@ -1201,7 +1237,7 @@ CREATE TABLE `mod_pedidos_cats` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_clientes`
+-- Estructura de tabla para la tabla `mod_pedidos_clientes`
 --
 
 CREATE TABLE `mod_pedidos_clientes` (
@@ -1219,7 +1255,7 @@ CREATE TABLE `mod_pedidos_clientes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_estados`
+-- Estructura de tabla para la tabla `mod_pedidos_estados`
 --
 
 CREATE TABLE `mod_pedidos_estados` (
@@ -1238,7 +1274,7 @@ CREATE TABLE `mod_pedidos_estados` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_productos`
+-- Estructura de tabla para la tabla `mod_pedidos_productos`
 --
 
 CREATE TABLE `mod_pedidos_productos` (
@@ -1253,7 +1289,7 @@ CREATE TABLE `mod_pedidos_productos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_sucursales`
+-- Estructura de tabla para la tabla `mod_pedidos_sucursales`
 --
 
 CREATE TABLE `mod_pedidos_sucursales` (
@@ -1264,7 +1300,7 @@ CREATE TABLE `mod_pedidos_sucursales` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_tipo`
+-- Estructura de tabla para la tabla `mod_pedidos_tipo`
 --
 
 CREATE TABLE `mod_pedidos_tipo` (
@@ -1278,7 +1314,7 @@ CREATE TABLE `mod_pedidos_tipo` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pedidos_zonas_distribucion`
+-- Estructura de tabla para la tabla `mod_pedidos_zonas_distribucion`
 --
 
 CREATE TABLE `mod_pedidos_zonas_distribucion` (
@@ -1289,7 +1325,7 @@ CREATE TABLE `mod_pedidos_zonas_distribucion` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_pestana`
+-- Estructura de tabla para la tabla `mod_pestana`
 --
 
 CREATE TABLE `mod_pestana` (
@@ -1304,7 +1340,7 @@ CREATE TABLE `mod_pestana` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_plan`
+-- Estructura de tabla para la tabla `mod_plan`
 --
 
 CREATE TABLE `mod_plan` (
@@ -1318,7 +1354,7 @@ CREATE TABLE `mod_plan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_productos`
+-- Estructura de tabla para la tabla `mod_productos`
 --
 
 CREATE TABLE `mod_productos` (
@@ -1346,7 +1382,7 @@ CREATE TABLE `mod_productos` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 --
--- Dumping data for table `mod_productos`
+-- Volcado de datos para la tabla `mod_productos`
 --
 
 INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_amigable`, `mod_prod_tags`, `mod_prod_codigo`, `mod_prod_sap`, `mod_prod_modelo`, `mod_prod_resumen`, `mod_prod_detalles`, `mod_prod_especificaciones`, `mod_prod_disponibilidad`, `mod_prod_imagen`, `mod_prod_precio`, `mod_prod_id_marca`, `mod_prod_id_doc`, `mod_prod_id_mul`, `mod_prod_id_dominio`, `mod_prod_activar`, `mod_prod_activar_cat`, `mod_prod_json`, `mod_prod_precio_detalle`) VALUES
@@ -1438,7 +1474,7 @@ INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_am
 (3172, '32', '32', '', '', '0', '', 'Ramo de Galletas', 'Ramo de Galletas', '', 0, 'archivos/multimedia/fc1b2a46-dc49-492c-8177-09fbc51c24d1.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
 (3173, '33', '33', '', '', '0', '', '', '', '', 0, 'archivos/productos/popcake-dia-de-la-amistad.png', '', 0, '', 0, 0, 1, 1, '', ''),
 (3174, 'Panettone Premium en lata 1Kg', 'panettone-premium-en-lata-1kg', 'frutas, frutas confitadas, uvas, uvas pasas, almendras', '', '0', '', '', '', '<p>1Kg. con 35% de frutas confitadas, uvas pasas y almendras.</p>', 0, 'archivos/productos/panettone-premium-lata.jpg', '69', 0, '', 0, 0, 1, 1, '', ''),
-(3175, 'Panettone Especial en caja 800g', 'panettone-especial-en-caja-800g', '', '', '0', '', '', '', '<p>80g.  Con 30% de frutas confitadas, uvas pasas y almendras</p>', 0, 'archivos/productos/pannettoner-premium-caja.jpg', '40', 0, '', 0, 0, 1, 1, '', ''),
+(3175, 'Panettone Especial en caja 800g', 'panettone-especial-en-caja-800g', '', '', '', '', '', '', '', 0, 'archivos/productos/pannettoner-premium-caja.jpg', '', 0, '', 0, 0, 1, 1, '', ''),
 (3176, 'Panettone Chocotone en bolsa 70g', 'panettone-chocotone-en-bolsa-70g', '', '', '0', '', '', '<p>70g. Deliciosa masa dulce con 25% de chistas de chocolate.</p>', '', 0, 'archivos/productos/chocotonne-70g.jpg', '4.5', 0, '', 0, 0, 0, 1, '', ''),
 (3177, 'Panettone Chocottone en caja 700g', 'panettone-chocottone-en-caja-700g', '', '', '0', '', '', '<p>700g. Deliciosa masa dulce con 30% de chispas de chocolate.</p>', '', 0, 'archivos/productos/chocotonne-700g-caja.jpg', '38', 0, '', 0, 0, 1, 1, '', ''),
 (3178, 'Panettone Chocottone Naranja en caja 700g', 'panettone-chocottone-naranja-en-caja-700g', '', '', '0', '', '', '', '<p>700g.  Masa de chocolate con 25% de chispas de chocolate, más naranja confitada.</p>', 0, 'archivos/productos/chocottone-naranja-caja-700g.jpg', '39', 0, '', 0, 0, 1, 1, '', ''),
@@ -1455,34 +1491,184 @@ INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_am
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_productos_categorias`
+-- Estructura de tabla para la tabla `mod_productos_categorias`
 --
 
 CREATE TABLE `mod_productos_categorias` (
-  `mod_prod_cat_cat_id` int(50) NOT NULL,
-  `mod_prod_cat_prod_id` int(50) NOT NULL,
-  `mod_prod_cat_orden` int(50) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+  `mod_prod_cat_prod_id` int(11) NOT NULL,
+  `mod_prod_cat_cat_id` int(11) NOT NULL,
+  `mod_prod_cat_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `mod_productos_categorias`
+-- Volcado de datos para la tabla `mod_productos_categorias`
 --
 
-INSERT INTO `mod_productos_categorias` (`mod_prod_cat_cat_id`, `mod_prod_cat_prod_id`, `mod_prod_cat_orden`) VALUES
-(105, 3186, 0),
-(104, 3186, 0),
-(97, 3186, 0),
-(100, 3186, 0),
-(103, 3184, 0),
-(97, 3184, 0),
-(99, 3184, 0),
-(105, 3184, 0),
-(104, 3187, 0);
+INSERT INTO `mod_productos_categorias` (`mod_prod_cat_prod_id`, `mod_prod_cat_cat_id`, `mod_prod_cat_orden`) VALUES
+(281, 85, 0),
+(284, 85, 0),
+(282, 85, 0),
+(285, 85, 0),
+(0, 76, 0),
+(311, 77, 0),
+(311, 78, 0),
+(311, 0, 0),
+(311, 0, 1),
+(317, 89, 0),
+(317, 91, 0),
+(3153, 89, 0),
+(3153, 92, 0),
+(3144, 89, 0),
+(3144, 91, 0),
+(318, 89, 0),
+(318, 91, 0),
+(3149, 89, 0),
+(3149, 96, 0),
+(3146, 89, 0),
+(3146, 92, 0),
+(3143, 89, 0),
+(3162, 89, 0),
+(3162, 91, 0),
+(3164, 89, 0),
+(3164, 94, 0),
+(3166, 89, 0),
+(3166, 91, 0),
+(3168, 89, 0),
+(3168, 91, 0),
+(3165, 89, 0),
+(3165, 93, 0),
+(3155, 89, 0),
+(3171, 89, 0),
+(3171, 94, 0),
+(3159, 89, 0),
+(3159, 91, 0),
+(3160, 89, 0),
+(3160, 92, 0),
+(3161, 89, 0),
+(3161, 92, 0),
+(3158, 89, 0),
+(3158, 92, 0),
+(3147, 89, 0),
+(3147, 92, 0),
+(3145, 89, 0),
+(3145, 92, 0),
+(3154, 89, 0),
+(3154, 92, 0),
+(3157, 89, 0),
+(3157, 93, 0),
+(3151, 89, 0),
+(3151, 93, 0),
+(3156, 89, 0),
+(3156, 94, 0),
+(3152, 89, 0),
+(3169, 89, 0),
+(3169, 94, 0),
+(3148, 89, 0),
+(3150, 89, 0),
+(3150, 96, 0),
+(234, 85, 0),
+(238, 87, 0),
+(239, 87, 0),
+(240, 87, 0),
+(241, 87, 0),
+(242, 87, 0),
+(244, 87, 0),
+(245, 85, 0),
+(246, 85, 0),
+(247, 85, 0),
+(248, 85, 0),
+(249, 86, 0),
+(253, 86, 0),
+(255, 86, 0),
+(256, 86, 0),
+(257, 88, 0),
+(258, 88, 0),
+(259, 85, 0),
+(260, 85, 0),
+(261, 85, 0),
+(262, 87, 0),
+(263, 85, 0),
+(265, 85, 0),
+(266, 88, 0),
+(267, 87, 0),
+(269, 87, 0),
+(268, 87, 0),
+(270, 85, 0),
+(273, 86, 0),
+(274, 86, 0),
+(275, 86, 0),
+(277, 86, 0),
+(278, 86, 0),
+(279, 86, 0),
+(3143, 95, 0),
+(3148, 95, 1),
+(3152, 95, 2),
+(3155, 95, 3),
+(287, 87, 0),
+(292, 86, 0),
+(296, 87, 0),
+(298, 87, 0),
+(303, 86, 0),
+(304, 83, 0),
+(304, 86, 0),
+(305, 83, 0),
+(305, 86, 0),
+(316, 90, 3),
+(306, 83, 0),
+(306, 86, 0),
+(310, 85, 0),
+(307, 86, 0),
+(308, 86, 0),
+(309, 86, 0),
+(314, 90, 0),
+(313, 77, 0),
+(313, 90, 0),
+(312, 77, 0),
+(312, 90, 0),
+(3173, 89, 0),
+(3173, 95, 0),
+(3180, 99, 0),
+(3180, 97, 0),
+(3179, 99, 0),
+(3179, 97, 0),
+(3181, 99, 0),
+(3181, 97, 0),
+(3182, 99, 0),
+(3182, 97, 0),
+(3183, 99, 0),
+(3183, 97, 0),
+(3174, 98, 0),
+(3174, 97, 0),
+(3175, 98, 0),
+(3175, 97, 0),
+(3176, 98, 0),
+(3176, 97, 0),
+(3177, 98, 0),
+(3177, 97, 0),
+(3178, 98, 0),
+(3178, 97, 0),
+(243, 87, 0),
+(276, 87, 0),
+(3185, 99, 0),
+(3185, 97, 0),
+(3172, 89, 0),
+(3172, 91, 0),
+(3184, 99, 0),
+(3184, 97, 0),
+(3184, 103, 0),
+(3184, 105, 0),
+(3187, 86, 0),
+(3187, 103, 0),
+(3187, 104, 0),
+(3186, 100, 0),
+(3186, 97, 0),
+(3186, 104, 0),
+(3186, 105, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_productos_conf`
+-- Estructura de tabla para la tabla `mod_productos_conf`
 --
 
 CREATE TABLE `mod_productos_conf` (
@@ -1503,7 +1689,7 @@ CREATE TABLE `mod_productos_conf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `mod_productos_conf`
+-- Volcado de datos para la tabla `mod_productos_conf`
 --
 
 INSERT INTO `mod_productos_conf` (`mod_prod_conf_codigo`, `mod_prod_conf_sap`, `mod_prod_conf_modelo`, `mod_prod_conf_avanzado_img`, `mod_prod_conf_detalles`, `mod_prod_conf_especificaciones`, `mod_prod_conf_disponibilidad`, `mod_prod_conf_marca`, `mod_prod_conf_precio`, `mod_prod_conf_precio_detalle`, `mod_prod_conf_docs`, `mod_prod_conf_multimedia`, `mod_prod_conf_pestana`, `mod_prod_conf_json`) VALUES
@@ -1512,7 +1698,7 @@ INSERT INTO `mod_productos_conf` (`mod_prod_conf_codigo`, `mod_prod_conf_sap`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_productos_mul`
+-- Estructura de tabla para la tabla `mod_productos_mul`
 --
 
 CREATE TABLE `mod_productos_mul` (
@@ -1524,7 +1710,7 @@ CREATE TABLE `mod_productos_mul` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_productos_pestana`
+-- Estructura de tabla para la tabla `mod_productos_pestana`
 --
 
 CREATE TABLE `mod_productos_pestana` (
@@ -1535,7 +1721,7 @@ CREATE TABLE `mod_productos_pestana` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `mod_productos_pestana`
+-- Volcado de datos para la tabla `mod_productos_pestana`
 --
 
 INSERT INTO `mod_productos_pestana` (`mod_pro_pes_pro_id`, `mod_pro_pes_pes_id`, `mod_pro_pes_contenido`, `mod_pro_pes_orden`) VALUES
@@ -1544,7 +1730,7 @@ INSERT INTO `mod_productos_pestana` (`mod_pro_pes_pro_id`, `mod_pro_pes_pes_id`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_stock`
+-- Estructura de tabla para la tabla `mod_stock`
 --
 
 CREATE TABLE `mod_stock` (
@@ -1556,7 +1742,7 @@ CREATE TABLE `mod_stock` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_stock`
+-- Volcado de datos para la tabla `mod_stock`
 --
 
 INSERT INTO `mod_stock` (`mod_stk_prod`, `mod_stk_suc`, `mod_stk_cantidad`, `mod_stk_fecha`, `mod_stk_fecha_ingreso`) VALUES
@@ -1597,7 +1783,7 @@ INSERT INTO `mod_stock` (`mod_stk_prod`, `mod_stk_suc`, `mod_stk_cantidad`, `mod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_sucursales`
+-- Estructura de tabla para la tabla `mod_sucursales`
 --
 
 CREATE TABLE `mod_sucursales` (
@@ -1611,7 +1797,7 @@ CREATE TABLE `mod_sucursales` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `mod_sucursales`
+-- Volcado de datos para la tabla `mod_sucursales`
 --
 
 INSERT INTO `mod_sucursales` (`mod_suc_id`, `mod_suc_nombre`, `mod_suc_direccion`, `mod_suc_telefono`, `mod_suc_coordenadas`, `mod_suc_activar`, `mod_suc_correo`) VALUES
@@ -1624,7 +1810,7 @@ INSERT INTO `mod_sucursales` (`mod_suc_id`, `mod_suc_nombre`, `mod_suc_direccion
 -- --------------------------------------------------------
 
 --
--- Table structure for table `multimedia`
+-- Estructura de tabla para la tabla `multimedia`
 --
 
 CREATE TABLE `multimedia` (
@@ -1649,7 +1835,7 @@ CREATE TABLE `multimedia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `multimedia`
+-- Volcado de datos para la tabla `multimedia`
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
@@ -1677,7 +1863,7 @@ INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `multimedia_categorias`
+-- Estructura de tabla para la tabla `multimedia_categorias`
 --
 
 CREATE TABLE `multimedia_categorias` (
@@ -1687,7 +1873,7 @@ CREATE TABLE `multimedia_categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `multimedia_categorias`
+-- Volcado de datos para la tabla `multimedia_categorias`
 --
 
 INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_cat_orden`) VALUES
@@ -1705,7 +1891,7 @@ INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_ca
 -- --------------------------------------------------------
 
 --
--- Table structure for table `multimedia_conf`
+-- Estructura de tabla para la tabla `multimedia_conf`
 --
 
 CREATE TABLE `multimedia_conf` (
@@ -1713,7 +1899,7 @@ CREATE TABLE `multimedia_conf` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `multimedia_conf`
+-- Volcado de datos para la tabla `multimedia_conf`
 --
 
 INSERT INTO `multimedia_conf` (`mul_conf_cropp`) VALUES
@@ -1722,7 +1908,7 @@ INSERT INTO `multimedia_conf` (`mul_conf_cropp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota`
+-- Estructura de tabla para la tabla `nota`
 --
 
 CREATE TABLE `nota` (
@@ -1746,7 +1932,7 @@ CREATE TABLE `nota` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_categorias`
+-- Estructura de tabla para la tabla `nota_categorias`
 --
 
 CREATE TABLE `nota_categorias` (
@@ -1758,7 +1944,7 @@ CREATE TABLE `nota_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_comentarios`
+-- Estructura de tabla para la tabla `nota_comentarios`
 --
 
 CREATE TABLE `nota_comentarios` (
@@ -1772,7 +1958,7 @@ CREATE TABLE `nota_comentarios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_multimedia`
+-- Estructura de tabla para la tabla `nota_multimedia`
 --
 
 CREATE TABLE `nota_multimedia` (
@@ -1783,7 +1969,7 @@ CREATE TABLE `nota_multimedia` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nota_valores`
+-- Estructura de tabla para la tabla `nota_valores`
 --
 
 CREATE TABLE `nota_valores` (
@@ -1794,7 +1980,7 @@ CREATE TABLE `nota_valores` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pestana`
+-- Estructura de tabla para la tabla `pestana`
 --
 
 CREATE TABLE `pestana` (
@@ -1809,7 +1995,7 @@ CREATE TABLE `pestana` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `plantilla`
+-- Estructura de tabla para la tabla `plantilla`
 --
 
 CREATE TABLE `plantilla` (
@@ -1829,7 +2015,7 @@ CREATE TABLE `plantilla` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `plantilla`
+-- Volcado de datos para la tabla `plantilla`
 --
 
 INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono`, `pla_imagen`, `pla_meta`, `pla_css`, `pla_clase`, `pla_codigos`, `pla_tipo`, `pla_movil`, `pla_onload`, `pla_activar`) VALUES
@@ -1840,7 +2026,7 @@ INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- Estructura de tabla para la tabla `post`
 --
 
 CREATE TABLE `post` (
@@ -1857,7 +2043,7 @@ CREATE TABLE `post` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `printer`
+-- Estructura de tabla para la tabla `printer`
 --
 
 CREATE TABLE `printer` (
@@ -1871,7 +2057,7 @@ CREATE TABLE `printer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `printer`
+-- Volcado de datos para la tabla `printer`
 --
 
 INSERT INTO `printer` (`prit_id`, `prit_accion`, `prit_id_aux`, `prit_id_suc`, `prit_fecha`, `prit_estado`, `prit_txt`) VALUES
@@ -1927,7 +2113,7 @@ INSERT INTO `printer` (`prit_id`, `prit_accion`, `prit_id_aux`, `prit_id_suc`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publicacion`
+-- Estructura de tabla para la tabla `publicacion`
 --
 
 CREATE TABLE `publicacion` (
@@ -1948,7 +2134,7 @@ CREATE TABLE `publicacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `publicacion`
+-- Volcado de datos para la tabla `publicacion`
 --
 
 INSERT INTO `publicacion` (`pub_id`, `pub_nombre`, `pub_descripcion`, `pub_imagen`, `pub_titulo`, `pub_tipo`, `pub_archivo`, `pub_archivo_config`, `pub_css`, `pub_clase`, `pub_id_item`, `pub_numero`, `pub_id_cat`, `pub_activar`) VALUES
@@ -1971,7 +2157,7 @@ INSERT INTO `publicacion` (`pub_id`, `pub_nombre`, `pub_descripcion`, `pub_image
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publicacion_rel`
+-- Estructura de tabla para la tabla `publicacion_rel`
 --
 
 CREATE TABLE `publicacion_rel` (
@@ -1985,7 +2171,7 @@ CREATE TABLE `publicacion_rel` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `publicacion_rel`
+-- Volcado de datos para la tabla `publicacion_rel`
 --
 
 INSERT INTO `publicacion_rel` (`pubrel_id`, `pubrel_cat_id`, `pubrel_pla_id`, `pubrel_cont_id`, `pubrel_pub_id`, `pubrel_activar`, `pubrel_orden`) VALUES
@@ -2011,7 +2197,7 @@ INSERT INTO `publicacion_rel` (`pubrel_id`, `pubrel_cat_id`, `pubrel_pla_id`, `p
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol`
+-- Estructura de tabla para la tabla `rol`
 --
 
 CREATE TABLE `rol` (
@@ -2027,7 +2213,7 @@ CREATE TABLE `rol` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `rol`
+-- Volcado de datos para la tabla `rol`
 --
 
 INSERT INTO `rol` (`rol_id`, `rol_nombre`, `rol_descripcion`, `rol_funciones`, `rol_redireccion`, `rol_id_padre`, `rol_grupo`, `rol_permisos`, `rol_activar`) VALUES
@@ -2037,7 +2223,7 @@ INSERT INTO `rol` (`rol_id`, `rol_nombre`, `rol_descripcion`, `rol_funciones`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rol_categorias`
+-- Estructura de tabla para la tabla `rol_categorias`
 --
 
 CREATE TABLE `rol_categorias` (
@@ -2049,7 +2235,7 @@ CREATE TABLE `rol_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sistema`
+-- Estructura de tabla para la tabla `sistema`
 --
 
 CREATE TABLE `sistema` (
@@ -2064,7 +2250,7 @@ CREATE TABLE `sistema` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `sistema`
+-- Volcado de datos para la tabla `sistema`
 --
 
 INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `sis_color`, `sis_tipo`, `sis_activar`, `sis_orden`) VALUES
@@ -2081,7 +2267,7 @@ INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sistema_modulos`
+-- Estructura de tabla para la tabla `sistema_modulos`
 --
 
 CREATE TABLE `sistema_modulos` (
@@ -2091,7 +2277,7 @@ CREATE TABLE `sistema_modulos` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sistema_modulos`
+-- Volcado de datos para la tabla `sistema_modulos`
 --
 
 INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orden`) VALUES
@@ -2115,7 +2301,7 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sistema_roles`
+-- Estructura de tabla para la tabla `sistema_roles`
 --
 
 CREATE TABLE `sistema_roles` (
@@ -2124,7 +2310,7 @@ CREATE TABLE `sistema_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `sistema_roles`
+-- Volcado de datos para la tabla `sistema_roles`
 --
 
 INSERT INTO `sistema_roles` (`sis_rol_sis_id`, `sis_rol_rol_id`) VALUES
@@ -2133,7 +2319,7 @@ INSERT INTO `sistema_roles` (`sis_rol_sis_id`, `sis_rol_rol_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sitio`
+-- Estructura de tabla para la tabla `sitio`
 --
 
 CREATE TABLE `sitio` (
@@ -2148,7 +2334,7 @@ CREATE TABLE `sitio` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `sitio`
+-- Volcado de datos para la tabla `sitio`
 --
 
 INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
@@ -2159,7 +2345,7 @@ INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_rut
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sitio_categorias`
+-- Estructura de tabla para la tabla `sitio_categorias`
 --
 
 CREATE TABLE `sitio_categorias` (
@@ -2171,7 +2357,7 @@ CREATE TABLE `sitio_categorias` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sitio_roles`
+-- Estructura de tabla para la tabla `sitio_roles`
 --
 
 CREATE TABLE `sitio_roles` (
@@ -2181,7 +2367,7 @@ CREATE TABLE `sitio_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `sitio_roles`
+-- Volcado de datos para la tabla `sitio_roles`
 --
 
 INSERT INTO `sitio_roles` (`sitio_rol_sitio_id`, `sitio_rol_rol_id`, `sitio_rol_orden`) VALUES
@@ -2191,7 +2377,7 @@ INSERT INTO `sitio_roles` (`sitio_rol_sitio_id`, `sitio_rol_rol_id`, `sitio_rol_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `solicitud_permiso`
+-- Estructura de tabla para la tabla `solicitud_permiso`
 --
 
 CREATE TABLE `solicitud_permiso` (
@@ -2213,7 +2399,7 @@ CREATE TABLE `solicitud_permiso` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario`
+-- Estructura de tabla para la tabla `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -2230,7 +2416,7 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `usuario`
+-- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
@@ -2239,7 +2425,7 @@ INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `us
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario_grupos`
+-- Estructura de tabla para la tabla `usuario_grupos`
 --
 
 CREATE TABLE `usuario_grupos` (
@@ -2251,7 +2437,7 @@ CREATE TABLE `usuario_grupos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuario_roles`
+-- Estructura de tabla para la tabla `usuario_roles`
 --
 
 CREATE TABLE `usuario_roles` (
@@ -2261,7 +2447,7 @@ CREATE TABLE `usuario_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
--- Dumping data for table `usuario_roles`
+-- Volcado de datos para la tabla `usuario_roles`
 --
 
 INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`) VALUES
@@ -2272,7 +2458,7 @@ INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valor`
+-- Estructura de tabla para la tabla `valor`
 --
 
 CREATE TABLE `valor` (
@@ -2286,7 +2472,7 @@ CREATE TABLE `valor` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `valor_notas`
+-- Estructura de tabla para la tabla `valor_notas`
 --
 
 CREATE TABLE `valor_notas` (
@@ -2298,847 +2484,847 @@ CREATE TABLE `valor_notas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `album`
+-- Indices de la tabla `album`
 --
 ALTER TABLE `album`
   ADD PRIMARY KEY (`alb_id`);
 
 --
--- Indexes for table `album_multimedia`
+-- Indices de la tabla `album_multimedia`
 --
 ALTER TABLE `album_multimedia`
   ADD PRIMARY KEY (`alb_mul_mul_id`,`alb_mul_alb_id`);
 
 --
--- Indexes for table `aplicacion`
+-- Indices de la tabla `aplicacion`
 --
 ALTER TABLE `aplicacion`
   ADD PRIMARY KEY (`app_id`);
 
 --
--- Indexes for table `autor`
+-- Indices de la tabla `autor`
 --
 ALTER TABLE `autor`
   ADD PRIMARY KEY (`aut_id`);
 
 --
--- Indexes for table `calendario`
+-- Indices de la tabla `calendario`
 --
 ALTER TABLE `calendario`
   ADD PRIMARY KEY (`cal_id`);
 
 --
--- Indexes for table `calendario_categoria`
+-- Indices de la tabla `calendario_categoria`
 --
 ALTER TABLE `calendario_categoria`
   ADD PRIMARY KEY (`cal_cat_id_cal`,`cal_cat_id_cat`);
 
 --
--- Indexes for table `calendario_grupo`
+-- Indices de la tabla `calendario_grupo`
 --
 ALTER TABLE `calendario_grupo`
   ADD PRIMARY KEY (`cal_grp_id_cal`,`cal_grp_id_grp`);
 
 --
--- Indexes for table `categoria`
+-- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`cat_id`);
 ALTER TABLE `categoria` ADD FULLTEXT KEY `busqueda` (`cat_nombre`);
 
 --
--- Indexes for table `comentario`
+-- Indices de la tabla `comentario`
 --
 ALTER TABLE `comentario`
   ADD PRIMARY KEY (`com_id`);
 
 --
--- Indexes for table `configuracion`
+-- Indices de la tabla `configuracion`
 --
 ALTER TABLE `configuracion`
   ADD PRIMARY KEY (`conf_nombre_sitio`);
 
 --
--- Indexes for table `contenedor`
+-- Indices de la tabla `contenedor`
 --
 ALTER TABLE `contenedor`
   ADD PRIMARY KEY (`cont_id`);
 
 --
--- Indexes for table `contenedor_plantilla`
+-- Indices de la tabla `contenedor_plantilla`
 --
 ALTER TABLE `contenedor_plantilla`
   ADD PRIMARY KEY (`contenedor_cont_id`,`plantilla_pla_id`);
 
 --
--- Indexes for table `contenido`
+-- Indices de la tabla `contenido`
 --
 ALTER TABLE `contenido`
   ADD PRIMARY KEY (`conte_id`);
 
 --
--- Indexes for table `contenido_categorias`
+-- Indices de la tabla `contenido_categorias`
 --
 ALTER TABLE `contenido_categorias`
   ADD PRIMARY KEY (`conte_cat_conte_id`,`conte_cat_cat_id`);
 
 --
--- Indexes for table `contenido_documentos`
+-- Indices de la tabla `contenido_documentos`
 --
 ALTER TABLE `contenido_documentos`
   ADD PRIMARY KEY (`conte_doc_conte_id`,`conte_doc_doc_id`);
 
 --
--- Indexes for table `cron_jobs`
+-- Indices de la tabla `cron_jobs`
 --
 ALTER TABLE `cron_jobs`
   ADD PRIMARY KEY (`cron_id`);
 
 --
--- Indexes for table `cuenta`
+-- Indices de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
   ADD PRIMARY KEY (`cuenta_id`);
 
 --
--- Indexes for table `documento`
+-- Indices de la tabla `documento`
 --
 ALTER TABLE `documento`
   ADD PRIMARY KEY (`doc_id`);
 
 --
--- Indexes for table `empresa`
+-- Indices de la tabla `empresa`
 --
 ALTER TABLE `empresa`
   ADD PRIMARY KEY (`emp_id`);
 
 --
--- Indexes for table `empresa_categorias`
+-- Indices de la tabla `empresa_categorias`
 --
 ALTER TABLE `empresa_categorias`
   ADD PRIMARY KEY (`emp_cat_emp_id`);
 
 --
--- Indexes for table `empresa_tipos`
+-- Indices de la tabla `empresa_tipos`
 --
 ALTER TABLE `empresa_tipos`
   ADD PRIMARY KEY (`emp_tip_emp_id`,`emp_tip_tip_id`);
 
 --
--- Indexes for table `enlace`
+-- Indices de la tabla `enlace`
 --
 ALTER TABLE `enlace`
   ADD PRIMARY KEY (`enl_id`);
 
 --
--- Indexes for table `enlace_categorias`
+-- Indices de la tabla `enlace_categorias`
 --
 ALTER TABLE `enlace_categorias`
   ADD PRIMARY KEY (`enl_cat_enl_id`,`enl_cat_cat_id`);
 
 --
--- Indexes for table `enlace_grupo_usuarios`
+-- Indices de la tabla `enlace_grupo_usuarios`
 --
 ALTER TABLE `enlace_grupo_usuarios`
   ADD PRIMARY KEY (`enl_grp_us_enl_id`,`enl_grp_us_grp_us_id`);
 
 --
--- Indexes for table `enlace_publicaciones`
+-- Indices de la tabla `enlace_publicaciones`
 --
 ALTER TABLE `enlace_publicaciones`
   ADD PRIMARY KEY (`enl_pub_enl_id`,`enl_pub_pub_id`);
 
 --
--- Indexes for table `evento`
+-- Indices de la tabla `evento`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`eve_id`);
 
 --
--- Indexes for table `evento_calendarios`
+-- Indices de la tabla `evento_calendarios`
 --
 ALTER TABLE `evento_calendarios`
   ADD PRIMARY KEY (`eve_cal_eve_id`,`eve_cal_cal_id`);
 
 --
--- Indexes for table `evento_grupos`
+-- Indices de la tabla `evento_grupos`
 --
 ALTER TABLE `evento_grupos`
   ADD PRIMARY KEY (`eve_grp_id_eve`,`eve_grp_id_grp`);
 
 --
--- Indexes for table `evento_roles`
+-- Indices de la tabla `evento_roles`
 --
 ALTER TABLE `evento_roles`
   ADD PRIMARY KEY (`eve_rol_id_eve`,`eve_rol_id_rol`);
 
 --
--- Indexes for table `grupo`
+-- Indices de la tabla `grupo`
 --
 ALTER TABLE `grupo`
   ADD PRIMARY KEY (`grupo_id`);
 
 --
--- Indexes for table `modulo`
+-- Indices de la tabla `modulo`
 --
 ALTER TABLE `modulo`
   ADD PRIMARY KEY (`mod_id`);
 
 --
--- Indexes for table `modulo_categorias`
+-- Indices de la tabla `modulo_categorias`
 --
 ALTER TABLE `modulo_categorias`
   ADD PRIMARY KEY (`mod_cat_mod_id`,`mod_cat_cat_id`);
 
 --
--- Indexes for table `modulo_roles`
+-- Indices de la tabla `modulo_roles`
 --
 ALTER TABLE `modulo_roles`
   ADD PRIMARY KEY (`mod_rol_mod_id`,`mod_rol_rol_id`);
 
 --
--- Indexes for table `mod_almacen`
+-- Indices de la tabla `mod_almacen`
 --
 ALTER TABLE `mod_almacen`
   ADD PRIMARY KEY (`alm_id`);
 
 --
--- Indexes for table `mod_almacen_categorias`
+-- Indices de la tabla `mod_almacen_categorias`
 --
 ALTER TABLE `mod_almacen_categorias`
   ADD PRIMARY KEY (`cat_alm_id`);
 
 --
--- Indexes for table `mod_catalogo`
+-- Indices de la tabla `mod_catalogo`
 --
 ALTER TABLE `mod_catalogo`
   ADD PRIMARY KEY (`mod_catg_id`);
 
 --
--- Indexes for table `mod_catalogo_categorias`
+-- Indices de la tabla `mod_catalogo_categorias`
 --
 ALTER TABLE `mod_catalogo_categorias`
   ADD PRIMARY KEY (`mod_catg_cat_catg_id`,`mod_catg_cat_cat_id`);
 
 --
--- Indexes for table `mod_catalogo_roles`
+-- Indices de la tabla `mod_catalogo_roles`
 --
 ALTER TABLE `mod_catalogo_roles`
   ADD PRIMARY KEY (`mod_catg_rol_catg_id`,`mod_catg_rol_rol_id`);
 
 --
--- Indexes for table `mod_cats`
+-- Indices de la tabla `mod_cats`
 --
 ALTER TABLE `mod_cats`
   ADD PRIMARY KEY (`cts_id`);
 
 --
--- Indexes for table `mod_clientes`
+-- Indices de la tabla `mod_clientes`
 --
 ALTER TABLE `mod_clientes`
   ADD PRIMARY KEY (`mod_cli_id`);
 
 --
--- Indexes for table `mod_clientes_estados`
+-- Indices de la tabla `mod_clientes_estados`
 --
 ALTER TABLE `mod_clientes_estados`
   ADD PRIMARY KEY (`mod_cli_est_id`);
 
 --
--- Indexes for table `mod_kardex`
+-- Indices de la tabla `mod_kardex`
 --
 ALTER TABLE `mod_kardex`
   ADD PRIMARY KEY (`mod_kdx_id`);
 
 --
--- Indexes for table `mod_kardex_bancos`
+-- Indices de la tabla `mod_kardex_bancos`
 --
 ALTER TABLE `mod_kardex_bancos`
   ADD PRIMARY KEY (`mod_kdx_bnc_id`);
 
 --
--- Indexes for table `mod_kardex_cargo`
+-- Indices de la tabla `mod_kardex_cargo`
 --
 ALTER TABLE `mod_kardex_cargo`
   ADD PRIMARY KEY (`mod_kdx_car_id`);
 
 --
--- Indexes for table `mod_kardex_departamento`
+-- Indices de la tabla `mod_kardex_departamento`
 --
 ALTER TABLE `mod_kardex_departamento`
   ADD PRIMARY KEY (`mod_kdx_dep_id`);
 
 --
--- Indexes for table `mod_kardex_division`
+-- Indices de la tabla `mod_kardex_division`
 --
 ALTER TABLE `mod_kardex_division`
   ADD PRIMARY KEY (`mod_kdx_div_id`);
 
 --
--- Indexes for table `mod_kardex_empresa`
+-- Indices de la tabla `mod_kardex_empresa`
 --
 ALTER TABLE `mod_kardex_empresa`
   ADD PRIMARY KEY (`mod_kdx_emp_id`);
 
 --
--- Indexes for table `mod_kardex_formacion`
+-- Indices de la tabla `mod_kardex_formacion`
 --
 ALTER TABLE `mod_kardex_formacion`
   ADD PRIMARY KEY (`mod_kdx_frm_id`);
 
 --
--- Indexes for table `mod_kardex_hijos`
+-- Indices de la tabla `mod_kardex_hijos`
 --
 ALTER TABLE `mod_kardex_hijos`
   ADD PRIMARY KEY (`mod_kdx_hj_id`);
 
 --
--- Indexes for table `mod_kardex_historial_corporativo`
+-- Indices de la tabla `mod_kardex_historial_corporativo`
 --
 ALTER TABLE `mod_kardex_historial_corporativo`
   ADD PRIMARY KEY (`mod_kdx_his_corp_id`);
 
 --
--- Indexes for table `mod_kardex_manual_funciones`
+-- Indices de la tabla `mod_kardex_manual_funciones`
 --
 ALTER TABLE `mod_kardex_manual_funciones`
   ADD PRIMARY KEY (`mod_kdx_mf_id`);
 
 --
--- Indexes for table `mod_kardex_referencias`
+-- Indices de la tabla `mod_kardex_referencias`
 --
 ALTER TABLE `mod_kardex_referencias`
   ADD PRIMARY KEY (`mod_kardex_ref_id`);
 
 --
--- Indexes for table `mod_kardex_ref_emergencia`
+-- Indices de la tabla `mod_kardex_ref_emergencia`
 --
 ALTER TABLE `mod_kardex_ref_emergencia`
   ADD PRIMARY KEY (`mod_kdx_ref_emg_id`);
 
 --
--- Indexes for table `mod_marcas`
+-- Indices de la tabla `mod_marcas`
 --
 ALTER TABLE `mod_marcas`
   ADD PRIMARY KEY (`mod_mar_id`);
 
 --
--- Indexes for table `mod_pedidos`
+-- Indices de la tabla `mod_pedidos`
 --
 ALTER TABLE `mod_pedidos`
   ADD PRIMARY KEY (`mod_ped_id`);
 
 --
--- Indexes for table `mod_pedidos_almacen`
+-- Indices de la tabla `mod_pedidos_almacen`
 --
 ALTER TABLE `mod_pedidos_almacen`
   ADD PRIMARY KEY (`mod_ped_alm_id_pedido`,`mod_ped_alm_id_almacen`);
 
 --
--- Indexes for table `mod_pedidos_cats`
+-- Indices de la tabla `mod_pedidos_cats`
 --
 ALTER TABLE `mod_pedidos_cats`
   ADD PRIMARY KEY (`mod_ped_id`);
 
 --
--- Indexes for table `mod_pedidos_clientes`
+-- Indices de la tabla `mod_pedidos_clientes`
 --
 ALTER TABLE `mod_pedidos_clientes`
   ADD PRIMARY KEY (`mod_ped_cli_id`);
 
 --
--- Indexes for table `mod_pedidos_estados`
+-- Indices de la tabla `mod_pedidos_estados`
 --
 ALTER TABLE `mod_pedidos_estados`
   ADD PRIMARY KEY (`mod_ped_est_id`);
 
 --
--- Indexes for table `mod_pedidos_productos`
+-- Indices de la tabla `mod_pedidos_productos`
 --
 ALTER TABLE `mod_pedidos_productos`
   ADD PRIMARY KEY (`mod_ped_prod_id`);
 
 --
--- Indexes for table `mod_pedidos_tipo`
+-- Indices de la tabla `mod_pedidos_tipo`
 --
 ALTER TABLE `mod_pedidos_tipo`
   ADD PRIMARY KEY (`mod_ped_tipo_id`);
 
 --
--- Indexes for table `mod_pestana`
+-- Indices de la tabla `mod_pestana`
 --
 ALTER TABLE `mod_pestana`
   ADD PRIMARY KEY (`mod_pes_id`);
 
 --
--- Indexes for table `mod_plan`
+-- Indices de la tabla `mod_plan`
 --
 ALTER TABLE `mod_plan`
   ADD PRIMARY KEY (`mod_plan_id`);
 
 --
--- Indexes for table `mod_productos`
+-- Indices de la tabla `mod_productos`
 --
 ALTER TABLE `mod_productos`
   ADD PRIMARY KEY (`mod_prod_id`);
 ALTER TABLE `mod_productos` ADD FULLTEXT KEY `busqueda` (`mod_prod_nombre`,`mod_prod_tags`,`mod_prod_detalles`,`mod_prod_especificaciones`);
 
 --
--- Indexes for table `mod_productos_pestana`
+-- Indices de la tabla `mod_productos_pestana`
 --
 ALTER TABLE `mod_productos_pestana`
   ADD PRIMARY KEY (`mod_pro_pes_pro_id`,`mod_pro_pes_pes_id`);
 
 --
--- Indexes for table `mod_stock`
+-- Indices de la tabla `mod_stock`
 --
 ALTER TABLE `mod_stock`
   ADD PRIMARY KEY (`mod_stk_prod`,`mod_stk_suc`,`mod_stk_fecha`);
 
 --
--- Indexes for table `mod_sucursales`
+-- Indices de la tabla `mod_sucursales`
 --
 ALTER TABLE `mod_sucursales`
   ADD PRIMARY KEY (`mod_suc_id`);
 
 --
--- Indexes for table `multimedia`
+-- Indices de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
   ADD PRIMARY KEY (`mul_id`);
 
 --
--- Indexes for table `nota`
+-- Indices de la tabla `nota`
 --
 ALTER TABLE `nota`
   ADD PRIMARY KEY (`not_id`);
 
 --
--- Indexes for table `nota_comentarios`
+-- Indices de la tabla `nota_comentarios`
 --
 ALTER TABLE `nota_comentarios`
   ADD PRIMARY KEY (`not_com_id`);
 
 --
--- Indexes for table `nota_multimedia`
+-- Indices de la tabla `nota_multimedia`
 --
 ALTER TABLE `nota_multimedia`
   ADD PRIMARY KEY (`not_mul_not_id`,`not_mul_mul_id`);
 
 --
--- Indexes for table `nota_valores`
+-- Indices de la tabla `nota_valores`
 --
 ALTER TABLE `nota_valores`
   ADD PRIMARY KEY (`not_val_not_id`,`not_val_val_id`);
 
 --
--- Indexes for table `pestana`
+-- Indices de la tabla `pestana`
 --
 ALTER TABLE `pestana`
   ADD PRIMARY KEY (`mod_pes_id`) USING BTREE;
 
 --
--- Indexes for table `plantilla`
+-- Indices de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
   ADD PRIMARY KEY (`pla_id`),
   ADD KEY `pla_id` (`pla_id`) USING BTREE;
 
 --
--- Indexes for table `post`
+-- Indices de la tabla `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- Indexes for table `printer`
+-- Indices de la tabla `printer`
 --
 ALTER TABLE `printer`
   ADD PRIMARY KEY (`prit_id`);
 
 --
--- Indexes for table `publicacion`
+-- Indices de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
   ADD PRIMARY KEY (`pub_id`);
 
 --
--- Indexes for table `publicacion_rel`
+-- Indices de la tabla `publicacion_rel`
 --
 ALTER TABLE `publicacion_rel`
   ADD PRIMARY KEY (`pubrel_id`);
 
 --
--- Indexes for table `rol`
+-- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
   ADD PRIMARY KEY (`rol_id`);
 
 --
--- Indexes for table `sistema`
+-- Indices de la tabla `sistema`
 --
 ALTER TABLE `sistema`
   ADD PRIMARY KEY (`sis_id`);
 
 --
--- Indexes for table `sistema_roles`
+-- Indices de la tabla `sistema_roles`
 --
 ALTER TABLE `sistema_roles`
   ADD PRIMARY KEY (`sis_rol_sis_id`,`sis_rol_rol_id`);
 
 --
--- Indexes for table `sitio`
+-- Indices de la tabla `sitio`
 --
 ALTER TABLE `sitio`
   ADD PRIMARY KEY (`sitio_id`);
 
 --
--- Indexes for table `sitio_roles`
+-- Indices de la tabla `sitio_roles`
 --
 ALTER TABLE `sitio_roles`
   ADD PRIMARY KEY (`sitio_rol_sitio_id`,`sitio_rol_rol_id`);
 
 --
--- Indexes for table `solicitud_permiso`
+-- Indices de la tabla `solicitud_permiso`
 --
 ALTER TABLE `solicitud_permiso`
   ADD PRIMARY KEY (`sol_per_id`);
 
 --
--- Indexes for table `usuario`
+-- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`usu_id`);
 
 --
--- Indexes for table `usuario_grupos`
+-- Indices de la tabla `usuario_grupos`
 --
 ALTER TABLE `usuario_grupos`
   ADD PRIMARY KEY (`usu_grupo_usu_id`,`usu_grupo_grupo_id`);
 
 --
--- Indexes for table `usuario_roles`
+-- Indices de la tabla `usuario_roles`
 --
 ALTER TABLE `usuario_roles`
   ADD PRIMARY KEY (`usu_rol_usu_id`,`usu_rol_rol_id`);
 
 --
--- Indexes for table `valor`
+-- Indices de la tabla `valor`
 --
 ALTER TABLE `valor`
   ADD PRIMARY KEY (`val_id`);
 
 --
--- Indexes for table `valor_notas`
+-- Indices de la tabla `valor_notas`
 --
 ALTER TABLE `valor_notas`
   ADD PRIMARY KEY (`val_usuario`,`val_not_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `album`
+-- AUTO_INCREMENT de la tabla `album`
 --
 ALTER TABLE `album`
-  MODIFY `alb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `alb_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `aplicacion`
+-- AUTO_INCREMENT de la tabla `aplicacion`
 --
 ALTER TABLE `aplicacion`
   MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `autor`
+-- AUTO_INCREMENT de la tabla `autor`
 --
 ALTER TABLE `autor`
   MODIFY `aut_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `calendario`
+-- AUTO_INCREMENT de la tabla `calendario`
 --
 ALTER TABLE `calendario`
   MODIFY `cal_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `categoria`
+-- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
   MODIFY `cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 --
--- AUTO_INCREMENT for table `comentario`
+-- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
   MODIFY `com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `contenedor`
+-- AUTO_INCREMENT de la tabla `contenedor`
 --
 ALTER TABLE `contenedor`
   MODIFY `cont_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `contenido`
+-- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
   MODIFY `conte_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `cron_jobs`
+-- AUTO_INCREMENT de la tabla `cron_jobs`
 --
 ALTER TABLE `cron_jobs`
   MODIFY `cron_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `cuenta`
+-- AUTO_INCREMENT de la tabla `cuenta`
 --
 ALTER TABLE `cuenta`
   MODIFY `cuenta_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `documento`
+-- AUTO_INCREMENT de la tabla `documento`
 --
 ALTER TABLE `documento`
   MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `empresa`
+-- AUTO_INCREMENT de la tabla `empresa`
 --
 ALTER TABLE `empresa`
-  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `enlace`
+-- AUTO_INCREMENT de la tabla `enlace`
 --
 ALTER TABLE `enlace`
   MODIFY `enl_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `evento`
+-- AUTO_INCREMENT de la tabla `evento`
 --
 ALTER TABLE `evento`
   MODIFY `eve_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `grupo`
+-- AUTO_INCREMENT de la tabla `grupo`
 --
 ALTER TABLE `grupo`
   MODIFY `grupo_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `modulo`
+-- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
   MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=301;
 --
--- AUTO_INCREMENT for table `mod_almacen`
+-- AUTO_INCREMENT de la tabla `mod_almacen`
 --
 ALTER TABLE `mod_almacen`
   MODIFY `alm_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_almacen_categorias`
+-- AUTO_INCREMENT de la tabla `mod_almacen_categorias`
 --
 ALTER TABLE `mod_almacen_categorias`
   MODIFY `cat_alm_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_catalogo`
+-- AUTO_INCREMENT de la tabla `mod_catalogo`
 --
 ALTER TABLE `mod_catalogo`
-  MODIFY `mod_catg_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `mod_catg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mod_cats`
+-- AUTO_INCREMENT de la tabla `mod_cats`
 --
 ALTER TABLE `mod_cats`
   MODIFY `cts_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_clientes`
+-- AUTO_INCREMENT de la tabla `mod_clientes`
 --
 ALTER TABLE `mod_clientes`
   MODIFY `mod_cli_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_clientes_estados`
+-- AUTO_INCREMENT de la tabla `mod_clientes_estados`
 --
 ALTER TABLE `mod_clientes_estados`
   MODIFY `mod_cli_est_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex`
+-- AUTO_INCREMENT de la tabla `mod_kardex`
 --
 ALTER TABLE `mod_kardex`
   MODIFY `mod_kdx_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_bancos`
+-- AUTO_INCREMENT de la tabla `mod_kardex_bancos`
 --
 ALTER TABLE `mod_kardex_bancos`
   MODIFY `mod_kdx_bnc_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_cargo`
+-- AUTO_INCREMENT de la tabla `mod_kardex_cargo`
 --
 ALTER TABLE `mod_kardex_cargo`
   MODIFY `mod_kdx_car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mod_kardex_departamento`
+-- AUTO_INCREMENT de la tabla `mod_kardex_departamento`
 --
 ALTER TABLE `mod_kardex_departamento`
   MODIFY `mod_kdx_dep_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `mod_kardex_division`
+-- AUTO_INCREMENT de la tabla `mod_kardex_division`
 --
 ALTER TABLE `mod_kardex_division`
   MODIFY `mod_kdx_div_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mod_kardex_empresa`
+-- AUTO_INCREMENT de la tabla `mod_kardex_empresa`
 --
 ALTER TABLE `mod_kardex_empresa`
   MODIFY `mod_kdx_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `mod_kardex_formacion`
+-- AUTO_INCREMENT de la tabla `mod_kardex_formacion`
 --
 ALTER TABLE `mod_kardex_formacion`
   MODIFY `mod_kdx_frm_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_hijos`
+-- AUTO_INCREMENT de la tabla `mod_kardex_hijos`
 --
 ALTER TABLE `mod_kardex_hijos`
   MODIFY `mod_kdx_hj_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_historial_corporativo`
+-- AUTO_INCREMENT de la tabla `mod_kardex_historial_corporativo`
 --
 ALTER TABLE `mod_kardex_historial_corporativo`
   MODIFY `mod_kdx_his_corp_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_manual_funciones`
+-- AUTO_INCREMENT de la tabla `mod_kardex_manual_funciones`
 --
 ALTER TABLE `mod_kardex_manual_funciones`
   MODIFY `mod_kdx_mf_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_referencias`
+-- AUTO_INCREMENT de la tabla `mod_kardex_referencias`
 --
 ALTER TABLE `mod_kardex_referencias`
   MODIFY `mod_kardex_ref_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_kardex_ref_emergencia`
+-- AUTO_INCREMENT de la tabla `mod_kardex_ref_emergencia`
 --
 ALTER TABLE `mod_kardex_ref_emergencia`
   MODIFY `mod_kdx_ref_emg_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_marcas`
+-- AUTO_INCREMENT de la tabla `mod_marcas`
 --
 ALTER TABLE `mod_marcas`
   MODIFY `mod_mar_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos`
+-- AUTO_INCREMENT de la tabla `mod_pedidos`
 --
 ALTER TABLE `mod_pedidos`
   MODIFY `mod_ped_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos_cats`
+-- AUTO_INCREMENT de la tabla `mod_pedidos_cats`
 --
 ALTER TABLE `mod_pedidos_cats`
   MODIFY `mod_ped_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos_clientes`
+-- AUTO_INCREMENT de la tabla `mod_pedidos_clientes`
 --
 ALTER TABLE `mod_pedidos_clientes`
   MODIFY `mod_ped_cli_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos_estados`
+-- AUTO_INCREMENT de la tabla `mod_pedidos_estados`
 --
 ALTER TABLE `mod_pedidos_estados`
   MODIFY `mod_ped_est_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos_productos`
+-- AUTO_INCREMENT de la tabla `mod_pedidos_productos`
 --
 ALTER TABLE `mod_pedidos_productos`
   MODIFY `mod_ped_prod_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pedidos_tipo`
+-- AUTO_INCREMENT de la tabla `mod_pedidos_tipo`
 --
 ALTER TABLE `mod_pedidos_tipo`
   MODIFY `mod_ped_tipo_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_pestana`
+-- AUTO_INCREMENT de la tabla `mod_pestana`
 --
 ALTER TABLE `mod_pestana`
   MODIFY `mod_pes_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_plan`
+-- AUTO_INCREMENT de la tabla `mod_plan`
 --
 ALTER TABLE `mod_plan`
   MODIFY `mod_plan_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_productos`
+-- AUTO_INCREMENT de la tabla `mod_productos`
 --
 ALTER TABLE `mod_productos`
   MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3188;
 --
--- AUTO_INCREMENT for table `mod_sucursales`
+-- AUTO_INCREMENT de la tabla `mod_sucursales`
 --
 ALTER TABLE `mod_sucursales`
   MODIFY `mod_suc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `multimedia`
+-- AUTO_INCREMENT de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
   MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
--- AUTO_INCREMENT for table `nota`
+-- AUTO_INCREMENT de la tabla `nota`
 --
 ALTER TABLE `nota`
   MODIFY `not_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `nota_comentarios`
+-- AUTO_INCREMENT de la tabla `nota_comentarios`
 --
 ALTER TABLE `nota_comentarios`
   MODIFY `not_com_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `pestana`
+-- AUTO_INCREMENT de la tabla `pestana`
 --
 ALTER TABLE `pestana`
   MODIFY `mod_pes_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `plantilla`
+-- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
   MODIFY `pla_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `post`
+-- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
   MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `printer`
+-- AUTO_INCREMENT de la tabla `printer`
 --
 ALTER TABLE `printer`
   MODIFY `prit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
--- AUTO_INCREMENT for table `publicacion`
+-- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
   MODIFY `pub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
--- AUTO_INCREMENT for table `publicacion_rel`
+-- AUTO_INCREMENT de la tabla `publicacion_rel`
 --
 ALTER TABLE `publicacion_rel`
   MODIFY `pubrel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
--- AUTO_INCREMENT for table `rol`
+-- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
   MODIFY `rol_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `sistema`
+-- AUTO_INCREMENT de la tabla `sistema`
 --
 ALTER TABLE `sistema`
   MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- AUTO_INCREMENT for table `sitio`
+-- AUTO_INCREMENT de la tabla `sitio`
 --
 ALTER TABLE `sitio`
   MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `solicitud_permiso`
+-- AUTO_INCREMENT de la tabla `solicitud_permiso`
 --
 ALTER TABLE `solicitud_permiso`
   MODIFY `sol_per_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `usuario`
+-- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `valor`
+-- AUTO_INCREMENT de la tabla `valor`
 --
 ALTER TABLE `valor`
   MODIFY `val_id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
