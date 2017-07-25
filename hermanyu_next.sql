@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-07-2017 a las 20:59:02
+-- Tiempo de generación: 24-07-2017 a las 19:18:33
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 5.6.30
 
@@ -354,7 +354,8 @@ INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`) VA
 
 CREATE TABLE `contenido_documentos` (
   `conte_doc_conte_id` int(11) NOT NULL,
-  `conte_doc_doc_id` int(11) NOT NULL
+  `conte_doc_doc_id` int(11) NOT NULL,
+  `conte_doc_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -416,7 +417,7 @@ INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descr
 (7, 'wen nuevax', 'wen-nueva', '', 'archivos/docs/wen-nueva.pptx', '', 'pptx', '210249', '', '2017-07-03', 1, 0, 0, 1),
 (8, 'caja de ahorro ganadoblex', 'caja-de-ahorro-ganadoble', '', 'archivos/docs/caja-de-ahorro-ganadoble.docx', '', 'docx', '15334', '', '2017-07-03', 1, 0, 0, 1),
 (9, 'bg-v2', 'bg-v2', '', 'archivos/docs/bg-v2.pdf', '', 'pdf', '106104', '', '2017-07-03', 1, 0, 0, 1),
-(10, 'plantilla datos medley_conci_abril19x', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', 'xlsx', '27035', '', '2017-07-03', 1, 0, 0, 1);
+(10, 'plantilla datos medley_conci_abril19x cintura como', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', 'xlsx', '27035', '', '2017-07-03', 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -439,6 +440,7 @@ CREATE TABLE `empresa` (
   `emp_id` int(11) NOT NULL,
   `emp_nombre` varchar(255) NOT NULL,
   `emp_descripcion` varchar(255) NOT NULL,
+  `emp_ruta_amigable` varchar(50) NOT NULL,
   `emp_logo` varchar(255) NOT NULL,
   `emp_icon` varchar(255) NOT NULL,
   `emp_razon_social` varchar(255) NOT NULL,
@@ -449,10 +451,12 @@ CREATE TABLE `empresa` (
   `emp_telefono` varchar(255) NOT NULL,
   `emp_email` varchar(255) NOT NULL,
   `emp_web` varchar(255) NOT NULL,
-  `emp_activar` int(11) NOT NULL,
+  `emp_pais` varchar(50) NOT NULL,
+  `emp_ciudad` varchar(50) NOT NULL,
   `emp_nombre_contacto` varchar(150) NOT NULL,
   `emp_telefono_contacto` varchar(50) NOT NULL,
-  `emp_email_contacto` varchar(255) NOT NULL
+  `emp_email_contacto` varchar(255) NOT NULL,
+  `emp_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -652,17 +656,17 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (60, 'Notas', 'Modulo informativo, para sitios e intranet', 'notas', 'nota', 'not_', 'nota_categorias:not_cat_not_id,nota_multimedia:not_mul_not_id,nota_valores:not_val_not_id,nota_comentarios:not_com_not_id', 'modulos/notas/notas.adm.php', 'icn-newspaper color-text-naranja-a', '#2d9ee0', 0, 0, 1),
 (61, 'Configuración', '', 'config-noticias', '', '', '', 'modulos/noticias/noticias-config.adm.php', 'icn-conf ', '#eb5c43', 1, 51, 1),
 (70, 'Contenidos', '', 'contenidos', 'contenidos', 'conte_', 'contenidos_categorias:conte_cat_conte_id,contenidos_documento:conte_doc_conte_id', 'modulos/contenidos/contenidos.adm.php', 'icn-content', '#00bdc6', 0, 0, 1),
-(80, 'Documentos', '', 'documentos', 'documento', 'doc_', 'documento_categoria:doc_cat_doc_id', 'modulos/documentos/documentos.adm.php', 'icn-folder', '#00bdc6', 0, 0, 1),
+(80, 'Documentos', '', 'documentos', 'documento', 'doc_', 'documento_categorias:doc_cat_doc_id', 'modulos/documentos/documentos.adm.php', 'icn-folder', '#00bdc6', 0, 0, 1),
 (90, 'Calendarios', '', 'calendarios', 'calendario', 'cal_', 'calendario_categoria:cal_cat_cal_id, calendario_grupo:cal_grp_cal_id', 'modulos/calendarios/calendario.adm.php', 'icn-calendar', '#e83759', 0, 0, 1),
 (91, 'Eventos', '', '', 'eventos_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
 (100, 'Enlaces', '', 'enlaces', 'enlaces', 'enl_', 'enlaces_categorias:enl_cat_enl_id,enlaces_grupo_usuario:enl_grup_usu_enl_id,enlaces_publicaciones:enl_pub_enl_id', 'modulos/', 'icn-link', '#806aad', 0, 0, 1),
-(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#f39333', 0, 0, 1),
+(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_pro_mul_id_prod,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_rel:mod_prod_rel_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#c2975c', 0, 0, 1),
 (151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/ecommerce/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
 (152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_catalogo', 'mod_catg_', 'mod_catalogo_categorias:mod_catg_cat_catg_id,mod_catalogo_roles:	mod_catg_rol_catg_id', 'modulos/ecommerce/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
 (153, 'Marcas', '', 'marcas', 'mod_marcas', 'mod_mar_', 'mod_marcas_categorias:mod_mar_mar_id,mod_marcas_productos:mod_mar_mar_id', 'modulos/marcas/marcas.adm.php', 'icn-marca', '#24aa5b', 0, 10, 1),
 (154, 'Sucursales', '', 'sucursales', 'mod_sucursales', 'mod_suc_', '', 'modulos/productos/sucursales.adm.php', 'icn-shop', '#e71882', 1, 0, 1),
-(155, 'Configuración', 'E-commerse', 'configuracion-ec', '', '', '', 'modulos/productos/config-ec.adm.php', 'icn icn-conf', '#8b3b8f', 1, 150, 1),
-(200, 'Empresas', '', '', 'empresa', 'emp_', 'empresa_categoria:emp_cat_emp_id', 'modulos/adm/empresas.adm.php', 'icn-apartament', '#0076ff', 0, 0, 1),
+(155, 'Configuración', 'E-commerse', 'configuracion-ec', '', '', '', 'modulos/ecommerce/config-ec.adm.php', 'icn icn-conf', '#8b3b8f', 1, 150, 1),
+(200, 'Empresas', '', 'empresas', 'empresa', 'emp_', 'empresa_categoria:emp_cat_emp_id', 'modulos/adm/empresas.adm.php', 'icn-apartament', '#0076ff', 0, 0, 1),
 (210, 'Solicitud de Permiso Fuera de oficina', '', 'solicitud-permiso-fuera-oficina', '', '', '', 'modulos/solicitud_permiso/solicitud_permiso.adm.php', 'icn-order-ok', '#c2975c', 0, 0, 1),
 (220, 'Kardex', '', 'karex', 'mod_kardex', 'mod_krk_', '', 'modulos/rrhh/kardex.adm.php', 'icn-kardex', '#806aad', 0, 0, 1),
 (250, 'Inventario', '', '', 'mod_inventario', 'mod_inv_', '', 'modulos/rrhh/inventario.adm.php', 'icn-inventary', '#333333', 0, 0, 1),
@@ -1374,7 +1378,7 @@ CREATE TABLE `mod_productos` (
 --
 
 INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_amigable`, `mod_prod_tags`, `mod_prod_codigo`, `mod_prod_sap`, `mod_prod_modelo`, `mod_prod_resumen`, `mod_prod_detalles`, `mod_prod_especificaciones`, `mod_prod_disponibilidad`, `mod_prod_imagen`, `mod_prod_precio`, `mod_prod_id_marca`, `mod_prod_id_doc`, `mod_prod_id_mul`, `mod_prod_id_dominio`, `mod_prod_activar`, `mod_prod_activar_cat`, `mod_prod_json`, `mod_prod_precio_detalle`) VALUES
-(1, 'Producto 1', '', 'prueba tax', '', '', '', 'resumen corto', 'detalles', '', 0, 'archivos/multimedia/tomates.jpg', '', 0, '', 0, 0, 1, 0, '', '');
+(1, 'Producto 1', '', 'prueba tax', '', '', '', 'resumen corto', 'detalles', '', 0, 'archivos/multimedia/kris-mayonesa-1.jpg', '', 0, '', 0, 0, 1, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -1423,7 +1427,28 @@ CREATE TABLE `mod_productos_conf` (
 --
 
 INSERT INTO `mod_productos_conf` (`mod_prod_conf_codigo`, `mod_prod_conf_sap`, `mod_prod_conf_modelo`, `mod_prod_conf_avanzado_img`, `mod_prod_conf_detalles`, `mod_prod_conf_especificaciones`, `mod_prod_conf_disponibilidad`, `mod_prod_conf_marca`, `mod_prod_conf_precio`, `mod_prod_conf_precio_detalle`, `mod_prod_conf_docs`, `mod_prod_conf_multimedia`, `mod_prod_conf_pestana`, `mod_prod_conf_json`) VALUES
-(0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0);
+(0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_productos_docs`
+--
+
+CREATE TABLE `mod_productos_docs` (
+  `mod_prod_doc_doc_id` int(11) NOT NULL,
+  `mod_prod_doc_prod_id` int(11) NOT NULL,
+  `mod_prod_doc_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Volcado de datos para la tabla `mod_productos_docs`
+--
+
+INSERT INTO `mod_productos_docs` (`mod_prod_doc_doc_id`, `mod_prod_doc_prod_id`, `mod_prod_doc_orden`) VALUES
+(7, 1, 0),
+(8, 1, 2),
+(9, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1435,7 +1460,14 @@ CREATE TABLE `mod_productos_mul` (
   `mod_prod_mul_mul_id` int(11) NOT NULL,
   `mod_prod_mul_prod_id` int(11) NOT NULL,
   `mod_prod_mul_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Volcado de datos para la tabla `mod_productos_mul`
+--
+
+INSERT INTO `mod_productos_mul` (`mod_prod_mul_mul_id`, `mod_prod_mul_prod_id`, `mod_prod_mul_orden`) VALUES
+(11, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1933,16 +1965,18 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 (1, 60, 1),
 (1, 51, 5),
 (1, 50, 6),
-(2, 150, 0),
-(2, 151, 0),
-(2, 152, 0),
-(2, 153, 0),
-(2, 154, 0),
-(2, 155, 0),
-(2, 271, 0),
-(2, 272, 0),
-(2, 273, 0),
-(2, 300, 0);
+(2, 150, 1),
+(2, 151, 2),
+(2, 152, 9),
+(2, 153, 3),
+(2, 154, 4),
+(2, 155, 10),
+(2, 271, 5),
+(2, 272, 6),
+(2, 273, 7),
+(2, 300, 8),
+(5, 200, 0),
+(4, 220, 0);
 
 -- --------------------------------------------------------
 
@@ -2542,6 +2576,12 @@ ALTER TABLE `mod_productos`
 ALTER TABLE `mod_productos` ADD FULLTEXT KEY `busqueda` (`mod_prod_nombre`,`mod_prod_tags`,`mod_prod_detalles`,`mod_prod_especificaciones`);
 
 --
+-- Indices de la tabla `mod_productos_docs`
+--
+ALTER TABLE `mod_productos_docs`
+  ADD PRIMARY KEY (`mod_prod_doc_doc_id`,`mod_prod_doc_prod_id`);
+
+--
 -- Indices de la tabla `mod_productos_pestana`
 --
 ALTER TABLE `mod_productos_pestana`
@@ -2637,6 +2677,12 @@ ALTER TABLE `rol`
 --
 ALTER TABLE `sistema`
   ADD PRIMARY KEY (`sis_id`);
+
+--
+-- Indices de la tabla `sistema_modulos`
+--
+ALTER TABLE `sistema_modulos`
+  ADD PRIMARY KEY (`sis_mod_sis_id`,`sis_mod_mod_id`);
 
 --
 -- Indices de la tabla `sistema_roles`
