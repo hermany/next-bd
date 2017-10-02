@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 14, 2017 at 05:34 AM
+-- Generation Time: Oct 02, 2017 at 04:19 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -169,7 +169,7 @@ CREATE TABLE `categoria` (
   `cat_meta` text COLLATE utf8_spanish_ci NOT NULL,
   `cat_theme` text COLLATE utf8_spanish_ci NOT NULL,
   `cat_id_padre` int(11) NOT NULL DEFAULT '0',
-  `cat_id_plantilla` int(11) NOT NULL DEFAULT '0',
+  `cat_id_plantilla` int(11) NOT NULL DEFAULT '1',
   `cat_orden` int(11) NOT NULL DEFAULT '0',
   `cat_tipo` char(1) CHARACTER SET utf8 NOT NULL DEFAULT '0',
   `cat_url` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -343,6 +343,18 @@ CREATE TABLE `contenido_documentos` (
   `conte_doc_doc_id` int(11) NOT NULL,
   `conte_doc_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contenido_multimedia`
+--
+
+CREATE TABLE `contenido_multimedia` (
+  `conte_mul_conte_id` int(11) NOT NULL,
+  `conte_mul_mul_id` int(11) NOT NULL,
+  `conte_mul_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -859,10 +871,10 @@ CREATE TABLE `mod_cats` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_clientes`
+-- Table structure for table `mod_cliente`
 --
 
-CREATE TABLE `mod_clientes` (
+CREATE TABLE `mod_cliente` (
   `mod_cli_id` int(11) NOT NULL,
   `mod_cli_nombre` varchar(150) NOT NULL,
   `mod_cli_email` varchar(150) NOT NULL,
@@ -873,16 +885,18 @@ CREATE TABLE `mod_clientes` (
   `mod_cli_foto_facebook` varchar(255) NOT NULL,
   `mod_cli_password` varchar(50) NOT NULL,
   `mod_cli_estado` int(11) NOT NULL,
+  `mod_cli_id_usuario` int(11) NOT NULL,
+  `mod_cli_puntos` int(11) NOT NULL DEFAULT '0',
   `mod_cli_fecha_ingreso` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mod_clientes_estados`
+-- Table structure for table `mod_cliente_estados`
 --
 
-CREATE TABLE `mod_clientes_estados` (
+CREATE TABLE `mod_cliente_estados` (
   `mod_cli_est_id` int(11) NOT NULL,
   `mod_cli_est_nombre` varchar(100) NOT NULL,
   `mod_cli_est_descripcion` tinytext NOT NULL,
@@ -957,6 +971,29 @@ CREATE TABLE `mod_columnista_conf` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mod_cuenta_anunciante`
+--
+
+CREATE TABLE `mod_cuenta_anunciante` (
+  `mod_cuenta_id` int(11) NOT NULL,
+  `mod_nombre` int(11) NOT NULL,
+  `mod_estado` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_cuenta_anunciante_usuarios`
+--
+
+CREATE TABLE `mod_cuenta_anunciante_usuarios` (
+  `mod_cuenta_id_usuario` int(11) NOT NULL,
+  `mod_cuenta_id_cuenta_anunciante` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mod_kardex`
 --
 
@@ -972,7 +1009,7 @@ CREATE TABLE `mod_kardex` (
   `mod_kdx_fecha_nacimiento` date NOT NULL,
   `mod_kdx_nacionalidad` varchar(255) NOT NULL,
   `mod_kdx_lugar_nacimiento` varchar(255) NOT NULL,
-  `mod_kdx_sexo` int(11) NOT NULL,
+  `mod_kdx_sexo` int(11) NOT NULL COMMENT '2 Masculino, 1 Femenino',
   `mod_kdx_estado_civil` int(11) NOT NULL,
   `mod_kdx_nombre_esp` varchar(150) NOT NULL,
   `mod_kdx_formacion_esp` varchar(150) NOT NULL,
@@ -2267,6 +2304,7 @@ CREATE TABLE `usuario` (
   `usu_email` varchar(255) NOT NULL,
   `usu_password` varchar(45) DEFAULT NULL,
   `usu_estado` int(11) NOT NULL,
+  `usu_nivel` int(11) NOT NULL DEFAULT '1',
   `usu_imagen` varchar(255) NOT NULL,
   `usu_padre` int(11) NOT NULL,
   `usu_ruta_amigable` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -2277,9 +2315,9 @@ CREATE TABLE `usuario` (
 -- Dumping data for table `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
-(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 'archivos/multimedia/foto-hermany.png', 0, '', 1),
-(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, '', 1, '', 1);
+INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_nivel`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
+(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, 'archivos/multimedia/foto-hermany.png', 0, '', 1),
+(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, '', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -2437,6 +2475,12 @@ ALTER TABLE `contenido_documentos`
   ADD PRIMARY KEY (`conte_doc_conte_id`,`conte_doc_doc_id`);
 
 --
+-- Indexes for table `contenido_multimedia`
+--
+ALTER TABLE `contenido_multimedia`
+  ADD PRIMARY KEY (`conte_mul_conte_id`,`conte_mul_mul_id`);
+
+--
 -- Indexes for table `cron_jobs`
 --
 ALTER TABLE `cron_jobs`
@@ -2587,15 +2631,15 @@ ALTER TABLE `mod_cats`
   ADD PRIMARY KEY (`cts_id`);
 
 --
--- Indexes for table `mod_clientes`
+-- Indexes for table `mod_cliente`
 --
-ALTER TABLE `mod_clientes`
+ALTER TABLE `mod_cliente`
   ADD PRIMARY KEY (`mod_cli_id`);
 
 --
--- Indexes for table `mod_clientes_estados`
+-- Indexes for table `mod_cliente_estados`
 --
-ALTER TABLE `mod_clientes_estados`
+ALTER TABLE `mod_cliente_estados`
   ADD PRIMARY KEY (`mod_cli_est_id`);
 
 --
@@ -2615,6 +2659,18 @@ ALTER TABLE `mod_columnista`
 --
 ALTER TABLE `mod_columnista_categorias`
   ADD PRIMARY KEY (`mod_col_cat_cat_id`,`mod_col_cat_usu_id`);
+
+--
+-- Indexes for table `mod_cuenta_anunciante`
+--
+ALTER TABLE `mod_cuenta_anunciante`
+  ADD PRIMARY KEY (`mod_cuenta_id`);
+
+--
+-- Indexes for table `mod_cuenta_anunciante_usuarios`
+--
+ALTER TABLE `mod_cuenta_anunciante_usuarios`
+  ADD PRIMARY KEY (`mod_cuenta_id_cuenta_anunciante`);
 
 --
 -- Indexes for table `mod_kardex`
@@ -2934,7 +2990,7 @@ ALTER TABLE `usuario_grupos`
 -- Indexes for table `usuario_roles`
 --
 ALTER TABLE `usuario_roles`
-  ADD PRIMARY KEY (`usu_rol_usu_id`,`usu_rol_rol_id`);
+  ADD PRIMARY KEY (`usu_rol_usu_id`) USING BTREE;
 
 --
 -- Indexes for table `valor`
@@ -3058,14 +3114,14 @@ ALTER TABLE `mod_catalogo`
 ALTER TABLE `mod_cats`
   MODIFY `cts_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_clientes`
+-- AUTO_INCREMENT for table `mod_cliente`
 --
-ALTER TABLE `mod_clientes`
+ALTER TABLE `mod_cliente`
   MODIFY `mod_cli_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `mod_clientes_estados`
+-- AUTO_INCREMENT for table `mod_cliente_estados`
 --
-ALTER TABLE `mod_clientes_estados`
+ALTER TABLE `mod_cliente_estados`
   MODIFY `mod_cli_est_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mod_cliente_proyectos`
