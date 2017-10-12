@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 02, 2017 at 04:19 PM
+-- Generation Time: Oct 12, 2017 at 04:38 AM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -994,6 +994,36 @@ CREATE TABLE `mod_cuenta_anunciante_usuarios` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `mod_estadistica`
+--
+
+CREATE TABLE `mod_estadistica` (
+  `mod_est_id` int(11) NOT NULL,
+  `mod_est_nombre` varchar(255) NOT NULL,
+  `mod_est_descripcion` tinytext NOT NULL,
+  `mod_est_estado` int(11) NOT NULL,
+  `mos_est_fecha_inicio` date NOT NULL,
+  `mos_est_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mod_estadistica_usuarios`
+--
+
+CREATE TABLE `mod_estadistica_usuarios` (
+  `mod_est_id` int(11) NOT NULL,
+  `mod_est_usu_id` int(11) NOT NULL,
+  `mod_est_est_id` int(11) NOT NULL,
+  `mod_est_fecha` date NOT NULL,
+  `mod_est_hora` time NOT NULL,
+  `mod_est_accion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mod_kardex`
 --
 
@@ -1262,11 +1292,12 @@ CREATE TABLE `mod_kardex_ref_emergencia` (
 
 CREATE TABLE `mod_marcas` (
   `mod_mar_id` int(11) NOT NULL,
-  `mod_mar_nombre` varchar(255) NOT NULL,
-  `mod_mar_ruta_amigable` varchar(255) NOT NULL,
-  `mod_mar_imagen` varchar(255) NOT NULL,
+  `mod_mar_nombre` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `mod_mar_ruta_amigable` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `mod_mar_logo` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `mod_mar_imagen` varchar(255) CHARACTER SET utf8 NOT NULL,
   `mod_mar_usuario` int(11) NOT NULL,
-  `mod_mar_detalle` text NOT NULL,
+  `mod_mar_detalle` text CHARACTER SET utf8 NOT NULL,
   `mod_mar_id_dominio` int(11) NOT NULL,
   `mod_mar_activar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
@@ -2673,6 +2704,18 @@ ALTER TABLE `mod_cuenta_anunciante_usuarios`
   ADD PRIMARY KEY (`mod_cuenta_id_cuenta_anunciante`);
 
 --
+-- Indexes for table `mod_estadistica`
+--
+ALTER TABLE `mod_estadistica`
+  ADD PRIMARY KEY (`mod_est_id`);
+
+--
+-- Indexes for table `mod_estadistica_usuarios`
+--
+ALTER TABLE `mod_estadistica_usuarios`
+  ADD PRIMARY KEY (`mod_est_id`);
+
+--
 -- Indexes for table `mod_kardex`
 --
 ALTER TABLE `mod_kardex`
@@ -3128,6 +3171,16 @@ ALTER TABLE `mod_cliente_estados`
 --
 ALTER TABLE `mod_cliente_proyectos`
   MODIFY `mod_cli_proy_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `mod_estadistica`
+--
+ALTER TABLE `mod_estadistica`
+  MODIFY `mod_est_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `mod_estadistica_usuarios`
+--
+ALTER TABLE `mod_estadistica_usuarios`
+  MODIFY `mod_est_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `mod_kardex`
 --
