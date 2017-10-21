@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 12, 2017 at 04:38 AM
+-- Generation Time: Oct 17, 2017 at 03:57 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -322,15 +322,16 @@ INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `con
 
 CREATE TABLE `contenido_categorias` (
   `conte_cat_conte_id` int(11) NOT NULL,
-  `conte_cat_cat_id` int(11) NOT NULL
+  `conte_cat_cat_id` int(11) NOT NULL,
+  `conte_cat_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `contenido_categorias`
 --
 
-INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`) VALUES
-(1, 76);
+INSERT INTO `contenido_categorias` (`conte_cat_conte_id`, `conte_cat_cat_id`, `conte_cat_orden`) VALUES
+(1, 76, 0);
 
 -- --------------------------------------------------------
 
