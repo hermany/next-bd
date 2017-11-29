@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 22-11-2017 a las 04:56:42
+-- Tiempo de generación: 29-11-2017 a las 21:36:58
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -658,7 +658,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (80, 'Documentos', '', 'documentos', 'documento', 'doc_', 'documento_categorias:doc_cat_doc_id', 'modulos/documentos/documentos.adm.php', 'icn-folder', '#00bdc6', 0, 0, 1),
 (90, 'Calendarios', '', 'calendarios', 'calendario', 'cal_', 'calendario_categorias:cal_cat_cal_id, calendario_grupos:cal_grp_cal_id', 'modulos/calendarios/calendario.adm.php', 'icn-calendar', '#e83759', 0, 0, 1),
 (91, 'Eventos', '', 'eventos', 'evento_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
-(100, 'Enlaces', '', 'enlaces', 'enlace', 'enl_', 'enlace_categorias:enl_cat_enl_id,enlace_grupo_usuarios:enl_grup_usu_enl_id,enlace_publicaciones:enl_pub_enl_id', 'modulos/', 'icn-link', '#806aad', 0, 0, 1),
+(100, 'Enlaces', '', 'enlaces', 'enlace', 'enl_', 'enlace_categorias:enl_cat_enl_id,enlace_grupo_usuarios:enl_grup_usu_enl_id,enlace_publicaciones:enl_pub_enl_id', 'modulos/enlaces/enlaces.adm.php', 'icn-link', '#806aad', 0, 0, 1),
 (150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_prod_mul_id_prod,mod_productos_pestana:mod_prod_pes_prod_id,mod_productos_categorias:mod_prod_cat_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#c2975c', 0, 0, 1),
 (151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/ecommerce/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
 (152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_catalogo', 'mod_catg_', 'mod_catalogo_categorias:mod_catg_cat_catg_id,mod_catalogo_roles:	mod_catg_rol_catg_id', 'modulos/ecommerce/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
@@ -946,6 +946,13 @@ CREATE TABLE `mod_columnista` (
   `mod_col_usu_id` int(11) NOT NULL,
   `mod_col_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mod_columnista`
+--
+
+INSERT INTO `mod_columnista` (`mod_col_usu_id`, `mod_col_orden`) VALUES
+(3, 0);
 
 -- --------------------------------------------------------
 
@@ -2189,6 +2196,7 @@ CREATE TABLE `sitio` (
   `sitio_nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_ruta_amigable` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `sitio_url` varchar(255) NOT NULL,
   `sitio_tipo` int(11) NOT NULL DEFAULT '0',
   `sitio_carpeta` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_orden` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
@@ -2199,10 +2207,10 @@ CREATE TABLE `sitio` (
 -- Volcado de datos para la tabla `sitio`
 --
 
-INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
-(1, 'Sitio Raiz', '', '', 0, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', 2, '', '2', 1),
-(3, 'Intranet', '', 'intranet', 0, '', '3', 1);
+INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_url`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
+(1, 'Sitio Raiz', '', '', '', 0, '', '1', 1),
+(2, 'Dashboard', '', 'dashboard', '', 2, '', '2', 1),
+(3, 'Intranet', '', 'intranet', '', 0, '', '3', 1);
 
 -- --------------------------------------------------------
 
@@ -2303,23 +2311,23 @@ CREATE TABLE `solicitud_permiso` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_empresa`
+-- Estructura de tabla para la tabla `tipo_empresas`
 --
 
-CREATE TABLE `tipo_empresa` (
+CREATE TABLE `tipo_empresas` (
   `tip_emp_id` int(11) NOT NULL,
   `tip_emp_nombre` varchar(150) NOT NULL,
   `tip_emp_descripcion` varchar(255) NOT NULL,
   `tip_emp_activar` int(11) NOT NULL,
   `tip_emp_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `tipo_empresa`
+-- Volcado de datos para la tabla `tipo_empresas`
 --
 
-INSERT INTO `tipo_empresa` (`tip_emp_id`, `tip_emp_nombre`, `tip_emp_descripcion`, `tip_emp_activar`, `tip_emp_usuario`) VALUES
-(1, 'Corporación', '', 1, 1),
+INSERT INTO `tipo_empresas` (`tip_emp_id`, `tip_emp_nombre`, `tip_emp_descripcion`, `tip_emp_activar`, `tip_emp_usuario`) VALUES
+(1, 'Corporaci?n', '', 1, 1),
 (2, 'Proveedores', '', 1, 1);
 
 -- --------------------------------------------------------
@@ -2348,7 +2356,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_nivel`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
 (1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, 'archivos/multimedia/foto-hermany.png', 0, '', 1),
-(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, '', 1, '', 1);
+(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, '', 1, '', 1),
+(3, 'Editor', 'Prueba', 'editor@wappcom.com', 'MTIz', 1, 1, '', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -2400,7 +2409,8 @@ CREATE TABLE `usuario_roles` (
 
 INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`) VALUES
 (1, 1, 0),
-(2, 2, 0);
+(2, 2, 0),
+(3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -3032,9 +3042,9 @@ ALTER TABLE `solicitud_permiso`
   ADD PRIMARY KEY (`sol_per_id`);
 
 --
--- Indices de la tabla `tipo_empresa`
+-- Indices de la tabla `tipo_empresas`
 --
-ALTER TABLE `tipo_empresa`
+ALTER TABLE `tipo_empresas`
   ADD PRIMARY KEY (`tip_emp_id`);
 
 --
@@ -3450,16 +3460,16 @@ ALTER TABLE `solicitud_permiso`
   MODIFY `sol_per_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_empresa`
+-- AUTO_INCREMENT de la tabla `tipo_empresas`
 --
-ALTER TABLE `tipo_empresa`
+ALTER TABLE `tipo_empresas`
   MODIFY `tip_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usu_id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `usu_id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `valor`
