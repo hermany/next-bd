@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-11-2017 a las 21:36:58
+-- Tiempo de generación: 11-12-2017 a las 14:27:02
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -681,7 +681,12 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (504, 'Operaciones', '', 'operaciones', '', '', '', 'modulos/proyectos/operaciones.adm.php', 'icn icn-diagram-operation', '#ddabce', 0, 0, 1),
 (505, 'Configuración', 'proyectos', 'config-proyectos', '', '', '', 'modulos/proyectos/config-proyectos.adm.php', 'icn icn-conf', '#f39333', 0, 0, 1),
 (506, 'Tareas', '', 'tareas', '', '', '', 'modulos/proyectos/tareas.adm.php', 'icn icn-checked', '#e83759', 0, 0, 1),
-(601, 'Agenda', '', 'agenda', 'mod_agenda', 'mod_agd_', '', 'modulos/crm/agenda.adm.php', 'icn icn-contact', '#c2975c', 0, 0, 1);
+(601, 'Agenda', '', 'agenda', 'mod_agenda', 'mod_agd_', '', 'modulos/crm/agenda.adm.php', 'icn icn-contact', '#c2975c', 0, 0, 1),
+(702, 'Administración de Campañas', '', 'ads', '', '', '', 'modulos/marketing/adm-camp.adm.php', 'icn icn-tabs-mobile', '#0076ff', 0, 0, 1),
+(703, 'Métricas', '', 'ads-metricas', '', '', '', 'modulos/marketing/metricas.adm.php', 'icn icn-clock', '#f39333', 0, 0, 1),
+(704, 'Cuenta', '', 'ads-cuenta', '', '', '', 'modulos/marketing/cuenta.adm.php', 'icn icn-folder-up', '#33aadd', 0, 0, 1),
+(705, 'Puntos & Mapas', '', 'puntos-mapas', '', '', '', 'modulos/marketing/puntos.adm.php', 'icn icn-point-map', '#99c14c', 0, 0, 1),
+(706, 'Configuración', 'Ads', 'ads-config', '', '', '', 'modulos/marketing/config-ads.adm.php', 'icn icn-conf', '#e83759', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -794,6 +799,66 @@ CREATE TABLE `mod_almacen_categorias` (
   `cat_alm_usuario` int(11) NOT NULL,
   `cat_alm_orden` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_billetera`
+--
+
+CREATE TABLE `mod_billetera` (
+  `mod_bill_id` int(11) NOT NULL,
+  `mod_bill_nombre` varchar(255) NOT NULL,
+  `mod_bill_descripcion` varchar(255) NOT NULL,
+  `mod_bill_anu_corp` int(11) NOT NULL,
+  `mod_bill_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mod_billetera`
+--
+
+INSERT INTO `mod_billetera` (`mod_bill_id`, `mod_bill_nombre`, `mod_bill_descripcion`, `mod_bill_anu_corp`, `mod_bill_activar`) VALUES
+(1, 'Tigo ', 'Billetera Tigo S.A', 22, 1),
+(2, 'Marca Santa Cruz', 'Billetera Marca Santa Cruz.', 23, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_billetera_usuarios`
+--
+
+CREATE TABLE `mod_billetera_usuarios` (
+  `mod_bill_usu_usu_id` int(11) NOT NULL,
+  `mod_bill_usu_bill_id` int(11) NOT NULL,
+  `mod_bill_usu_inta_id` int(11) NOT NULL,
+  `mod_bill_usu_valor` int(11) NOT NULL,
+  `mod_bill_usu_fecha_hora` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `mod_billetera_usuarios`
+--
+
+INSERT INTO `mod_billetera_usuarios` (`mod_bill_usu_usu_id`, `mod_bill_usu_bill_id`, `mod_bill_usu_inta_id`, `mod_bill_usu_valor`, `mod_bill_usu_fecha_hora`) VALUES
+(2, 2, 1, 5, '2017-12-08 11:55:33'),
+(3, 2, 1, 5, '2017-12-08 11:56:46'),
+(2, 1, 1, 5, '2017-12-08 11:56:51'),
+(3, 1, 1, 5, '2017-12-08 11:56:59');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_campana`
+--
+
+CREATE TABLE `mod_campana` (
+  `mod_camp_id` int(11) NOT NULL,
+  `mod_camp_nombre` varchar(255) NOT NULL,
+  `mod_camp_fecha_inicio` datetime NOT NULL,
+  `mod_camp_fecha_fin` datetime NOT NULL,
+  `mod_camp_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1028,6 +1093,34 @@ CREATE TABLE `mod_estadistica_usuarios` (
   `mod_est_hora` time NOT NULL,
   `mod_est_accion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_interaccion`
+--
+
+CREATE TABLE `mod_interaccion` (
+  `mod_inta_id` int(11) NOT NULL,
+  `mod_inta_nombre` varchar(255) NOT NULL,
+  `mod_inta_detalle` varchar(255) NOT NULL,
+  `mod_inta_imagen` varchar(255) NOT NULL,
+  `mod_inta_valor` int(11) NOT NULL,
+  `mod_inta_activar` int(11) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mod_interaccion`
+--
+
+INSERT INTO `mod_interaccion` (`mod_inta_id`, `mod_inta_nombre`, `mod_inta_detalle`, `mod_inta_imagen`, `mod_inta_valor`, `mod_inta_activar`) VALUES
+(1, 'Click en punto', '', '', 5, 1),
+(2, 'Llegar al punto ', '', '', 10, 1),
+(3, 'Click en promoción de punto', '', '', 5, 1),
+(4, 'Activar QR compra', '', '', 100, 1),
+(5, 'Responde preguntados correctamente', '', '', 10, 1),
+(6, 'Completo Ruta &-& ', '', '', 100, 1),
+(7, 'Capturo un personaje', '', '', 10, 1);
 
 -- --------------------------------------------------------
 
@@ -1307,6 +1400,7 @@ CREATE TABLE `mod_marcas` (
   `mod_mar_usuario` int(11) NOT NULL,
   `mod_mar_detalle` text CHARACTER SET utf8 NOT NULL,
   `mod_mar_id_dominio` int(11) NOT NULL,
+  `mod_mar_orden` int(11) NOT NULL,
   `mod_mar_activar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -1901,6 +1995,22 @@ CREATE TABLE `nota_valores` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `notificacion`
+--
+
+CREATE TABLE `notificacion` (
+  `ntf_id` int(11) NOT NULL,
+  `ntf_nombre` varchar(255) NOT NULL,
+  `ntf_descripcion` varchar(255) NOT NULL,
+  `ntf_contexto` tinytext NOT NULL,
+  `ntf_ruta_archivo` varchar(255) NOT NULL,
+  `ntf_html` text NOT NULL,
+  `ntf_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `plantilla`
 --
 
@@ -2113,15 +2223,16 @@ CREATE TABLE `sistema` (
 
 INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `sis_color`, `sis_tipo`, `sis_activar`, `sis_orden`) VALUES
 (1, 'Websites', '', 'icn-code', '#ffda43', 1, 1, 1),
-(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 1, 2),
-(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 1, 7),
-(4, 'Recursos Humanos', '', 'icn-rrhh color-text-violeta', '#8b3b8f', 4, 1, 5),
-(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 1, 4),
-(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 6),
-(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 8),
-(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 9),
-(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 10),
-(10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 3);
+(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 1, 5),
+(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 1, 11),
+(4, 'Recursos Humanos', '', 'icn-rrhh color-text-violeta', '#8b3b8f', 4, 1, 9),
+(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 1, 8),
+(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 10),
+(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 2),
+(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 3),
+(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 4),
+(10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 7),
+(11, 'Ads', '', 'icn icn-megaphone', '#806aad', 0, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -2165,7 +2276,12 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 (6, 503, 2),
 (6, 506, 4),
 (6, 502, 1),
-(6, 601, 5);
+(6, 601, 5),
+(11, 702, 0),
+(11, 703, 0),
+(11, 704, 0),
+(11, 705, 0),
+(11, 706, 0);
 
 -- --------------------------------------------------------
 
@@ -2196,8 +2312,10 @@ CREATE TABLE `sitio` (
   `sitio_nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_ruta_amigable` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `sitio_icono` varchar(25) NOT NULL,
   `sitio_url` varchar(255) NOT NULL,
-  `sitio_tipo` int(11) NOT NULL DEFAULT '0',
+  `sitio_target` varchar(10) NOT NULL DEFAULT '_blank',
+  `sitio_tipo` int(11) NOT NULL DEFAULT '0' COMMENT '0. normal 1.Logeado 2.Site',
   `sitio_carpeta` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_orden` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_activar` int(1) NOT NULL DEFAULT '0'
@@ -2207,10 +2325,9 @@ CREATE TABLE `sitio` (
 -- Volcado de datos para la tabla `sitio`
 --
 
-INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_url`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
-(1, 'Sitio Raiz', '', '', '', 0, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', '', 2, '', '2', 1),
-(3, 'Intranet', '', 'intranet', '', 0, '', '3', 1);
+INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_icono`, `sitio_url`, `sitio_target`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
+(1, 'Sitio Raiz', '', '', '', '', '_blank', 2, '', '1', 1),
+(2, 'Dashboard', '', 'dashboard', '', '', '', 1, '', '2', 1);
 
 -- --------------------------------------------------------
 
@@ -2668,6 +2785,24 @@ ALTER TABLE `mod_almacen_categorias`
   ADD PRIMARY KEY (`cat_alm_id`);
 
 --
+-- Indices de la tabla `mod_billetera`
+--
+ALTER TABLE `mod_billetera`
+  ADD PRIMARY KEY (`mod_bill_id`);
+
+--
+-- Indices de la tabla `mod_billetera_usuarios`
+--
+ALTER TABLE `mod_billetera_usuarios`
+  ADD PRIMARY KEY (`mod_bill_usu_fecha_hora`);
+
+--
+-- Indices de la tabla `mod_campana`
+--
+ALTER TABLE `mod_campana`
+  ADD PRIMARY KEY (`mod_camp_id`);
+
+--
 -- Indices de la tabla `mod_catalogo`
 --
 ALTER TABLE `mod_catalogo`
@@ -2744,6 +2879,12 @@ ALTER TABLE `mod_estadistica`
 --
 ALTER TABLE `mod_estadistica_usuarios`
   ADD PRIMARY KEY (`mod_est_id`);
+
+--
+-- Indices de la tabla `mod_interaccion`
+--
+ALTER TABLE `mod_interaccion`
+  ADD PRIMARY KEY (`mod_inta_id`);
 
 --
 -- Indices de la tabla `mod_kardex`
@@ -2949,6 +3090,12 @@ ALTER TABLE `nota_productos`
 --
 ALTER TABLE `nota_valores`
   ADD PRIMARY KEY (`not_val_not_id`,`not_val_val_id`);
+
+--
+-- Indices de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  ADD PRIMARY KEY (`ntf_id`);
 
 --
 -- Indices de la tabla `plantilla`
@@ -3181,7 +3328,7 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=602;
+  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=707;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_agenda`
@@ -3200,6 +3347,18 @@ ALTER TABLE `mod_almacen`
 --
 ALTER TABLE `mod_almacen_categorias`
   MODIFY `cat_alm_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_billetera`
+--
+ALTER TABLE `mod_billetera`
+  MODIFY `mod_bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_campana`
+--
+ALTER TABLE `mod_campana`
+  MODIFY `mod_camp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_catalogo`
@@ -3242,6 +3401,12 @@ ALTER TABLE `mod_estadistica`
 --
 ALTER TABLE `mod_estadistica_usuarios`
   MODIFY `mod_est_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_interaccion`
+--
+ALTER TABLE `mod_interaccion`
+  MODIFY `mod_inta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_kardex`
@@ -3400,6 +3565,12 @@ ALTER TABLE `nota_comentarios`
   MODIFY `not_com_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `notificacion`
+--
+ALTER TABLE `notificacion`
+  MODIFY `ntf_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
@@ -3439,13 +3610,13 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `sistema`
 --
 ALTER TABLE `sistema`
-  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `sitio`
 --
 ALTER TABLE `sitio`
-  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `slide`
