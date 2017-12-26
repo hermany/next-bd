@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-12-2017 a las 14:27:02
+-- Tiempo de generación: 26-12-2017 a las 17:28:05
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -849,20 +849,6 @@ INSERT INTO `mod_billetera_usuarios` (`mod_bill_usu_usu_id`, `mod_bill_usu_bill_
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mod_campana`
---
-
-CREATE TABLE `mod_campana` (
-  `mod_camp_id` int(11) NOT NULL,
-  `mod_camp_nombre` varchar(255) NOT NULL,
-  `mod_camp_fecha_inicio` datetime NOT NULL,
-  `mod_camp_fecha_fin` datetime NOT NULL,
-  `mod_camp_activar` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `mod_catalogo`
 --
 
@@ -1121,6 +1107,30 @@ INSERT INTO `mod_interaccion` (`mod_inta_id`, `mod_inta_nombre`, `mod_inta_detal
 (5, 'Responde preguntados correctamente', '', '', 10, 1),
 (6, 'Completo Ruta &-& ', '', '', 100, 1),
 (7, 'Capturo un personaje', '', '', 10, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_interaccion_notificaciones`
+--
+
+CREATE TABLE `mod_interaccion_notificaciones` (
+  `mod_inta_ntf_ntf_id` int(11) NOT NULL,
+  `mod_inta_ntf_inta_id` int(11) NOT NULL,
+  `mod_inta_ntf_fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_interaccion_usuarios`
+--
+
+CREATE TABLE `mod_interaccion_usuarios` (
+  `mod_inta_usu_usu_id` int(11) NOT NULL,
+  `mod_inta_usu_inta_id` int(11) NOT NULL,
+  `mod_inta_usu_fecha_hora` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=FIXED;
 
 -- --------------------------------------------------------
 
@@ -1400,7 +1410,6 @@ CREATE TABLE `mod_marcas` (
   `mod_mar_usuario` int(11) NOT NULL,
   `mod_mar_detalle` text CHARACTER SET utf8 NOT NULL,
   `mod_mar_id_dominio` int(11) NOT NULL,
-  `mod_mar_orden` int(11) NOT NULL,
   `mod_mar_activar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -2464,6 +2473,7 @@ CREATE TABLE `usuario` (
   `usu_imagen` varchar(255) NOT NULL,
   `usu_padre` int(11) NOT NULL,
   `usu_ruta_amigable` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `usu_amigos` text NOT NULL,
   `usu_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -2471,10 +2481,10 @@ CREATE TABLE `usuario` (
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_nivel`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_activar`) VALUES
-(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, 'archivos/multimedia/foto-hermany.png', 0, '', 1),
-(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, '', 1, '', 1),
-(3, 'Editor', 'Prueba', 'editor@wappcom.com', 'MTIz', 1, 1, '', 1, '', 1);
+INSERT INTO `usuario` (`usu_id`, `usu_nombre`, `usu_apellidos`, `usu_email`, `usu_password`, `usu_estado`, `usu_nivel`, `usu_imagen`, `usu_padre`, `usu_ruta_amigable`, `usu_amigos`, `usu_activar`) VALUES
+(1, 'Hermany', 'Terrazas', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, 'archivos/multimedia/foto-hermany.png', 0, '', '', 1),
+(2, 'Design', 'wapp', 'hterrazas@wappcom.com', 'NDg2Mg==', 1, 0, '', 1, '', '', 1),
+(3, 'Editor', 'Prueba', 'editor@wappcom.com', 'MTIz', 1, 1, '', 1, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -2528,6 +2538,21 @@ INSERT INTO `usuario_roles` (`usu_rol_usu_id`, `usu_rol_rol_id`, `usu_rol_orden`
 (1, 1, 0),
 (2, 2, 0),
 (3, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario_seguidos`
+--
+
+CREATE TABLE `usuario_seguidos` (
+  `usu_sgd_id` int(11) NOT NULL,
+  `usu_sgd_seguido_usu_id` int(11) NOT NULL,
+  `usu_sgd_seguidor_usu_id` int(11) NOT NULL,
+  `usu_sgd_red_social` int(11) NOT NULL COMMENT '1.facebook 2.google 3.instagram',
+  `usu_sgd_tipo` int(11) NOT NULL COMMENT '1. Amigo 2. Anunciante',
+  `usu_sgd_fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2797,12 +2822,6 @@ ALTER TABLE `mod_billetera_usuarios`
   ADD PRIMARY KEY (`mod_bill_usu_fecha_hora`);
 
 --
--- Indices de la tabla `mod_campana`
---
-ALTER TABLE `mod_campana`
-  ADD PRIMARY KEY (`mod_camp_id`);
-
---
 -- Indices de la tabla `mod_catalogo`
 --
 ALTER TABLE `mod_catalogo`
@@ -2885,6 +2904,18 @@ ALTER TABLE `mod_estadistica_usuarios`
 --
 ALTER TABLE `mod_interaccion`
   ADD PRIMARY KEY (`mod_inta_id`);
+
+--
+-- Indices de la tabla `mod_interaccion_notificaciones`
+--
+ALTER TABLE `mod_interaccion_notificaciones`
+  ADD PRIMARY KEY (`mod_inta_ntf_fecha`);
+
+--
+-- Indices de la tabla `mod_interaccion_usuarios`
+--
+ALTER TABLE `mod_interaccion_usuarios`
+  ADD PRIMARY KEY (`mod_inta_usu_fecha_hora`);
 
 --
 -- Indices de la tabla `mod_kardex`
@@ -3219,6 +3250,12 @@ ALTER TABLE `usuario_roles`
   ADD PRIMARY KEY (`usu_rol_usu_id`) USING BTREE;
 
 --
+-- Indices de la tabla `usuario_seguidos`
+--
+ALTER TABLE `usuario_seguidos`
+  ADD PRIMARY KEY (`usu_sgd_id`);
+
+--
 -- Indices de la tabla `valor`
 --
 ALTER TABLE `valor`
@@ -3353,12 +3390,6 @@ ALTER TABLE `mod_almacen_categorias`
 --
 ALTER TABLE `mod_billetera`
   MODIFY `mod_bill_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `mod_campana`
---
-ALTER TABLE `mod_campana`
-  MODIFY `mod_camp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_catalogo`
@@ -3641,6 +3672,12 @@ ALTER TABLE `tipo_empresas`
 --
 ALTER TABLE `usuario`
   MODIFY `usu_id` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario_seguidos`
+--
+ALTER TABLE `usuario_seguidos`
+  MODIFY `usu_sgd_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `valor`
