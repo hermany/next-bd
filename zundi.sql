@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-12-2017 a las 17:28:05
+-- Tiempo de generación: 08-01-2018 a las 20:46:51
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -2057,11 +2057,11 @@ INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `post_texto` text NOT NULL,
-  `post_id_usu_emisor` int(11) NOT NULL,
-  `post_id_usu_receptor` int(11) NOT NULL,
+  `post_url` varchar(255) NOT NULL,
   `post_fecha` datetime NOT NULL,
-  `post_version` int(11) NOT NULL,
   `post_tipo` int(11) NOT NULL,
+  `post_permiso` int(11) NOT NULL DEFAULT '0',
+  `post_estado` int(11) NOT NULL DEFAULT '0',
   `post_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
