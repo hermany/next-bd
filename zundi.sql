@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-01-2018 a las 20:46:51
+-- Tiempo de generación: 10-02-2018 a las 00:10:05
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -304,6 +304,8 @@ CREATE TABLE `contenido` (
   `conte_id_usuario` int(11) NOT NULL,
   `conte_tag` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `conte_id_dominio` int(11) NOT NULL,
+  `conte_clase` varchar(255) NOT NULL,
+  `conte_activar_titulo` int(1) NOT NULL,
   `conte_activar` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
@@ -311,8 +313,8 @@ CREATE TABLE `contenido` (
 -- Volcado de datos para la tabla `contenido`
 --
 
-INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `conte_subtitulo`, `conte_cuerpo`, `conte_foto`, `conte_fecha`, `conte_id_usuario`, `conte_tag`, `conte_id_dominio`, `conte_activar`) VALUES
-(1, 'sobre nosotros', 'sobre-nosotros', '', '<h3 class=\"label-intro\" style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Creando desde 1925…</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Nuestra experiencia con cuatro generaciones de trabajo hasta la fecha, tiene sus inicios en la ciudad de Santa Cruz de la Sierra el año 1925; con la iniciativa del Sr. Santiago Sauto quien realiza el proceso de pan con harina de trigo y aplica por primera vez en la ciudad, el manejo de la levadura en panificación. Con el tiempo se hace cargo de la empresa Eduardo Sauto, hijo mayor de la familia, siguiendo la fabricación de forma artesanal. Con el emprendimiento creativo de su esposa Nelly Vaca, dan inicio a la diversificación de los productos y al mejoramiento tecnológico con la compra de maquinaria moderna. Posteriormente se incorpora a la empresa Javier Sauto, consolidando el crecimiento y mejora constante. El 14 de octubre de 1985 al retirarse la pareja, los hijos: Maria Nelly, Victoria y Javier Sauto conforman una nueva sociedad y nace la razón social Panadería Victoria Ltda., dando paso a una renovación de la empresa con nuevos equipos, a la diversificación de productos en panadería y dando inicio a la producción en pastelería. En el año 1998 se inaugura una nueva planta Industrial, con maquinaria totalmente nueva, logrando construir una fábrica modelo de panificación. La cuarta generación, con Greta y Carolina y Gabriela Banzer Sauto, ha dado un impulso a la línea de repostería y confitería, desarrollando nuevos productos para eventos infantiles y de fiesta. Actualmente, estamos trabajando en nuevos proyectos sobre futuras ampliaciones, tanto en panadería como en pastelería en otros sectores de la ciudad.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Misión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Panadería Victoria elabora productos de panificación y pastelería con materia prima de excelente calidad, procesos operativos estandarizados, brindando asesoramiento en la compra de los productos, por el conocimiento de las preferencias de sus clientes, satisfaciendo sus necesidades, a través de la capacitación constante del personal y la mejora continua, avalados por más de 90 años de experiencia y con el mismo cariño de siempre.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Visión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Ser una empresa eficiente, rentable, líder en el mercado cruceño en panificación y pastelería, con productos y servicios de excelente calidad. a través de: procesos productivos estandarizados, personal capacitado y comprometido, mejor infraestructura del país y sistemas de gestión e informático integrados.</span><br></p>', '', '2016-10-31 05:43:00', 1, '', 0, 1);
+INSERT INTO `contenido` (`conte_id`, `conte_titulo`, `conte_ruta_amigable`, `conte_subtitulo`, `conte_cuerpo`, `conte_foto`, `conte_fecha`, `conte_id_usuario`, `conte_tag`, `conte_id_dominio`, `conte_clase`, `conte_activar_titulo`, `conte_activar`) VALUES
+(1, 'sobre nosotros', 'sobre-nosotros', '', '<h3 class=\"label-intro\" style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Creando desde 1925…</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Nuestra experiencia con cuatro generaciones de trabajo hasta la fecha, tiene sus inicios en la ciudad de Santa Cruz de la Sierra el año 1925; con la iniciativa del Sr. Santiago Sauto quien realiza el proceso de pan con harina de trigo y aplica por primera vez en la ciudad, el manejo de la levadura en panificación. Con el tiempo se hace cargo de la empresa Eduardo Sauto, hijo mayor de la familia, siguiendo la fabricación de forma artesanal. Con el emprendimiento creativo de su esposa Nelly Vaca, dan inicio a la diversificación de los productos y al mejoramiento tecnológico con la compra de maquinaria moderna. Posteriormente se incorpora a la empresa Javier Sauto, consolidando el crecimiento y mejora constante. El 14 de octubre de 1985 al retirarse la pareja, los hijos: Maria Nelly, Victoria y Javier Sauto conforman una nueva sociedad y nace la razón social Panadería Victoria Ltda., dando paso a una renovación de la empresa con nuevos equipos, a la diversificación de productos en panadería y dando inicio a la producción en pastelería. En el año 1998 se inaugura una nueva planta Industrial, con maquinaria totalmente nueva, logrando construir una fábrica modelo de panificación. La cuarta generación, con Greta y Carolina y Gabriela Banzer Sauto, ha dado un impulso a la línea de repostería y confitería, desarrollando nuevos productos para eventos infantiles y de fiesta. Actualmente, estamos trabajando en nuevos proyectos sobre futuras ampliaciones, tanto en panadería como en pastelería en otros sectores de la ciudad.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Misión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Panadería Victoria elabora productos de panificación y pastelería con materia prima de excelente calidad, procesos operativos estandarizados, brindando asesoramiento en la compra de los productos, por el conocimiento de las preferencias de sus clientes, satisfaciendo sus necesidades, a través de la capacitación constante del personal y la mejora continua, avalados por más de 90 años de experiencia y con el mismo cariño de siempre.</span></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><p style=\"margin-bottom: 25px; color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\"></p><h3 style=\"font-family: shpro-light, arial, serif; color: rgb(51, 51, 51); text-align: justify;\">Nuestra Visión</h3><p><span style=\"color: rgb(51, 51, 51); font-family: shpro-light, arial, serif; text-align: justify;\">Ser una empresa eficiente, rentable, líder en el mercado cruceño en panificación y pastelería, con productos y servicios de excelente calidad. a través de: procesos productivos estandarizados, personal capacitado y comprometido, mejor infraestructura del país y sistemas de gestión e informático integrados.</span><br></p>', '', '2016-10-31 05:43:00', 1, '', 0, '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -397,26 +399,26 @@ CREATE TABLE `documento` (
   `doc_descripcion` text NOT NULL,
   `doc_url` varchar(255) NOT NULL,
   `doc_imagen` varchar(255) NOT NULL,
-  `doc_tipo_archivo` varchar(255) NOT NULL,
-  `doc_tamano` varchar(255) NOT NULL,
+  `doc_tipo_archivo` varchar(255) CHARACTER SET utf32 NOT NULL,
+  `doc_tamano` varchar(255) CHARACTER SET utf16 NOT NULL,
   `doc_tags` varchar(255) NOT NULL,
   `doc_fecha` date NOT NULL,
   `doc_usuario` int(11) NOT NULL,
   `doc_id_dominio` int(11) NOT NULL,
   `doc_orden` int(11) NOT NULL,
   `doc_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `documento`
 --
 
 INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descripcion`, `doc_url`, `doc_imagen`, `doc_tipo_archivo`, `doc_tamano`, `doc_tags`, `doc_fecha`, `doc_usuario`, `doc_id_dominio`, `doc_orden`, `doc_activar`) VALUES
-(6, 'como participarx', 'como-participar', '', 'archivos/docs/como-participar.docx', '', 'docx', '13349', '', '2017-07-03', 1, 0, 0, 1),
-(7, 'wen nuevax', 'wen-nueva', '', 'archivos/docs/wen-nueva.pptx', '', 'pptx', '210249', '', '2017-07-03', 1, 0, 0, 1),
-(8, 'caja de ahorro ganadoblex', 'caja-de-ahorro-ganadoble', '', 'archivos/docs/caja-de-ahorro-ganadoble.docx', '', 'docx', '15334', '', '2017-07-03', 1, 0, 0, 1),
-(9, 'bg-v2', 'bg-v2', '', 'archivos/docs/bg-v2.pdf', '', 'pdf', '106104', '', '2017-07-03', 1, 0, 0, 1),
-(10, 'plantilla datos medley_conci_abril19x cintura como', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', 'xlsx', '27035', '', '2017-07-03', 1, 0, 0, 1);
+(6, 'como participarx', 'como-participar', '', 'archivos/docs/como-participar.docx', '', '????', '1㌳㐹', '', '2017-07-03', 1, 0, 0, 1),
+(7, 'wen nuevax', 'wen-nueva', '', 'archivos/docs/wen-nueva.pptx', '', '????', '㈱〲㐹', '', '2017-07-03', 1, 0, 0, 1),
+(8, 'caja de ahorro ganadoblex', 'caja-de-ahorro-ganadoble', '', 'archivos/docs/caja-de-ahorro-ganadoble.docx', '', '????', '1㔳㌴', '', '2017-07-03', 1, 0, 0, 1),
+(9, 'bg-v2', 'bg-v2', '', 'archivos/docs/bg-v2.pdf', '', '?', '㄰㘱〴', '', '2017-07-03', 1, 0, 0, 1),
+(10, 'plantilla datos medley_conci_abril19x cintura como', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', '????', '2㜰㌵', '', '2017-07-03', 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -426,7 +428,8 @@ INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descr
 
 CREATE TABLE `documento_categorias` (
   `doc_cat_doc_id` int(11) NOT NULL,
-  `doc_cat_cat_id` int(11) NOT NULL
+  `doc_cat_cat_id` int(11) NOT NULL,
+  `doc_cat_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -659,7 +662,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (90, 'Calendarios', '', 'calendarios', 'calendario', 'cal_', 'calendario_categorias:cal_cat_cal_id, calendario_grupos:cal_grp_cal_id', 'modulos/calendarios/calendario.adm.php', 'icn-calendar', '#e83759', 0, 0, 1),
 (91, 'Eventos', '', 'eventos', 'evento_', 'eve_', '', 'modulos/eventos/evento.adm.php', 'icn-calendar-ok', '#eb5c43', 0, 0, 1),
 (100, 'Enlaces', '', 'enlaces', 'enlace', 'enl_', 'enlace_categorias:enl_cat_enl_id,enlace_grupo_usuarios:enl_grup_usu_enl_id,enlace_publicaciones:enl_pub_enl_id', 'modulos/enlaces/enlaces.adm.php', 'icn-link', '#806aad', 0, 0, 1),
-(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_prod_mul_id_prod,mod_productos_pestana:mod_prod_pes_prod_id,mod_productos_categorias:mod_prod_cat_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#c2975c', 0, 0, 1),
+(150, 'Productos', '', 'productos', 'mod_productos', 'mod_prod_', 'mod_productos_mul:mod_prod_mul_prod_id,mod_productos_pestana:mod_pro_pes_pro_id,mod_productos_categorias:mod_prod_cat_prod_id', 'modulos/ecommerce/productos.adm.php', 'icn-box-o ', '#c2975c', 0, 0, 1),
 (151, 'Catalogo interno ', '', 'catalogo-interno', '', '', '', 'modulos/ecommerce/catalogo.adm.php', 'icn icn-catalog', '#f39333', 0, 0, 1),
 (152, 'Configuración Catálogo ', '', 'config-catalogo', 'mod_catalogo', 'mod_catg_', 'mod_catalogo_categorias:mod_catg_cat_catg_id,mod_catalogo_roles:	mod_catg_rol_catg_id', 'modulos/ecommerce/config-catalogo.adm.php', 'icn-conf', '#e71882', 0, 151, 1),
 (153, 'Marcas', '', 'marcas', 'mod_marcas', 'mod_mar_', 'mod_marcas_categorias:mod_mar_mar_id,mod_marcas_productos:mod_mar_mar_id', 'modulos/marcas/marcas.adm.php', 'icn-marca', '#24aa5b', 0, 10, 1),
@@ -686,7 +689,8 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (703, 'Métricas', '', 'ads-metricas', '', '', '', 'modulos/marketing/metricas.adm.php', 'icn icn-clock', '#f39333', 0, 0, 1),
 (704, 'Cuenta', '', 'ads-cuenta', '', '', '', 'modulos/marketing/cuenta.adm.php', 'icn icn-folder-up', '#33aadd', 0, 0, 1),
 (705, 'Puntos & Mapas', '', 'puntos-mapas', '', '', '', 'modulos/marketing/puntos.adm.php', 'icn icn-point-map', '#99c14c', 0, 0, 1),
-(706, 'Configuración', 'Ads', 'ads-config', '', '', '', 'modulos/marketing/config-ads.adm.php', 'icn icn-conf', '#e83759', 0, 0, 1);
+(706, 'Configuración', 'Ads', 'ads-config', '', '', '', 'modulos/marketing/config-ads.adm.php', 'icn icn-conf', '#e83759', 0, 0, 1),
+(801, 'Lugares', '', 'lugares', '', '', '', 'modulos/geolocalizacion/lugar.adm.php', 'icn icn-point-map', '#e83759', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1398,6 +1402,44 @@ CREATE TABLE `mod_kardex_ref_emergencia` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mod_lugar`
+--
+
+CREATE TABLE `mod_lugar` (
+  `mod_lug_id` int(11) NOT NULL,
+  `mod_lug_nombre` varchar(255) NOT NULL,
+  `mod_lug_direccion` varchar(255) NOT NULL COMMENT 'ej: Av. 3 pasos al frente, Calle Isoso #34 Edificio Lourdes Dep. 54',
+  `mod_lug_telefono` int(12) NOT NULL,
+  `mod_lug_info` text NOT NULL,
+  `mod_lug_imagen` varchar(255) NOT NULL,
+  `mod_lug_coordenada_principal` varchar(100) NOT NULL,
+  `mod_lug_coordenadas` varchar(255) NOT NULL,
+  `mod_lug_estado` int(11) NOT NULL,
+  `mod_lug_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mod_lugar`
+--
+
+INSERT INTO `mod_lugar` (`mod_lug_id`, `mod_lug_nombre`, `mod_lug_direccion`, `mod_lug_telefono`, `mod_lug_info`, `mod_lug_imagen`, `mod_lug_coordenada_principal`, `mod_lug_coordenadas`, `mod_lug_estado`, `mod_lug_activar`) VALUES
+(1, 'La Plaza principal 24 de Septiembre', ' Calle 24 de Septiembre.', 0, '', 'archivos/multimedia/mscz-ad-1.png', '-17.783354, -63.182146', '-17.783832, -63.182572,-17.783760, -63.181598, -17.782762, -63.181676,-17.782843, -63.182647,-17.783832, -63.182572', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_lugar_categorias`
+--
+
+CREATE TABLE `mod_lugar_categorias` (
+  `mod_lug_cat_lug_id` int(11) NOT NULL,
+  `mod_lug_cat_cat_id` int(11) NOT NULL,
+  `mod_lug_cat_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mod_marcas`
 --
 
@@ -1974,7 +2016,8 @@ INSERT INTO `nota_comentarios` (`not_com_id`, `not_com_not_id`, `not_com_com_id`
 
 CREATE TABLE `nota_multimedia` (
   `not_mul_not_id` int(11) NOT NULL,
-  `not_mul_mul_id` int(11) NOT NULL
+  `not_mul_mul_id` int(11) NOT NULL,
+  `not_mul_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
@@ -2232,16 +2275,17 @@ CREATE TABLE `sistema` (
 
 INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `sis_color`, `sis_tipo`, `sis_activar`, `sis_orden`) VALUES
 (1, 'Websites', '', 'icn-code', '#ffda43', 1, 1, 1),
-(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 1, 5),
-(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 1, 11),
-(4, 'Recursos Humanos', '', 'icn-rrhh color-text-violeta', '#8b3b8f', 4, 1, 9),
-(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 1, 8),
-(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 10),
-(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 2),
-(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 3),
-(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 4),
-(10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 7),
-(11, 'Ads', '', 'icn icn-megaphone', '#806aad', 0, 1, 6);
+(2, 'E-commerce', '', 'icn-cart', '#e83759', 10, 1, 8),
+(3, 'Intranet', '', 'icn-intranet', '#879099', 0, 1, 3),
+(4, 'Recursos Humanos', '', 'icn-rrhh color-text-violeta', '#8b3b8f', 4, 1, 12),
+(5, 'Gerencia', '', 'icn-suitcase color-text-naranja', '#8a7354', 0, 1, 11),
+(6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 2),
+(7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 4),
+(8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 5),
+(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 7),
+(10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 10),
+(11, 'Ads', '', 'icn icn-megaphone', '#806aad', 0, 1, 9),
+(12, 'Geo', '', 'icn icn-zone', '#dcdc07', 0, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -2290,7 +2334,8 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 (11, 703, 0),
 (11, 704, 0),
 (11, 705, 0),
-(11, 706, 0);
+(11, 706, 0),
+(12, 801, 0);
 
 -- --------------------------------------------------------
 
@@ -2990,6 +3035,18 @@ ALTER TABLE `mod_kardex_ref_emergencia`
   ADD PRIMARY KEY (`mod_kdx_ref_emg_id`);
 
 --
+-- Indices de la tabla `mod_lugar`
+--
+ALTER TABLE `mod_lugar`
+  ADD PRIMARY KEY (`mod_lug_id`);
+
+--
+-- Indices de la tabla `mod_lugar_categorias`
+--
+ALTER TABLE `mod_lugar_categorias`
+  ADD PRIMARY KEY (`mod_lug_cat_lug_id`,`mod_lug_cat_cat_id`);
+
+--
 -- Indices de la tabla `mod_marcas`
 --
 ALTER TABLE `mod_marcas`
@@ -3365,7 +3422,7 @@ ALTER TABLE `grupo`
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=707;
+  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=802;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_agenda`
@@ -3512,6 +3569,12 @@ ALTER TABLE `mod_kardex_ref_emergencia`
   MODIFY `mod_kdx_ref_emg_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mod_lugar`
+--
+ALTER TABLE `mod_lugar`
+  MODIFY `mod_lug_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `mod_marcas`
 --
 ALTER TABLE `mod_marcas`
@@ -3641,7 +3704,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `sistema`
 --
 ALTER TABLE `sistema`
-  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `sitio`
