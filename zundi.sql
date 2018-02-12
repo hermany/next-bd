@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-02-2018 a las 15:45:09
+-- Tiempo de generación: 12-02-2018 a las 15:57:57
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -1414,6 +1414,9 @@ CREATE TABLE `mod_lugar` (
   `mod_lug_imagen` varchar(255) NOT NULL,
   `mod_lug_coordenada_principal` varchar(100) NOT NULL,
   `mod_lug_coordenadas` varchar(255) NOT NULL,
+  `mod_lug_icono` varchar(55) NOT NULL,
+  `mod_lug_contenido` text NOT NULL,
+  `mod_lug_usuario` int(11) NOT NULL,
   `mod_lug_estado` int(11) NOT NULL,
   `mod_lug_activar` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1422,8 +1425,8 @@ CREATE TABLE `mod_lugar` (
 -- Volcado de datos para la tabla `mod_lugar`
 --
 
-INSERT INTO `mod_lugar` (`mod_lug_id`, `mod_lug_nombre`, `mod_lug_direccion`, `mod_lug_telefono`, `mod_lug_info`, `mod_lug_imagen`, `mod_lug_coordenada_principal`, `mod_lug_coordenadas`, `mod_lug_estado`, `mod_lug_activar`) VALUES
-(1, 'La Plaza principal 24 de Septiembre', ' Calle 24 de Septiembre.', 0, '', 'archivos/multimedia/mscz-ad-1.png', '-17.783354, -63.182146', '-17.783832, -63.182572,-17.783760, -63.181598, -17.782762, -63.181676,-17.782843, -63.182647,-17.783832, -63.182572', 1, 1);
+INSERT INTO `mod_lugar` (`mod_lug_id`, `mod_lug_nombre`, `mod_lug_direccion`, `mod_lug_telefono`, `mod_lug_info`, `mod_lug_imagen`, `mod_lug_coordenada_principal`, `mod_lug_coordenadas`, `mod_lug_icono`, `mod_lug_contenido`, `mod_lug_usuario`, `mod_lug_estado`, `mod_lug_activar`) VALUES
+(1, 'La Plaza principal 24 de Septiembre', ' Calle 24 de Septiembre.', 0, '', 'archivos/multimedia/mscz-ad-1.png', '-17.783354, -63.182146', '-17.783832, -63.182572,-17.783760, -63.181598, -17.782762, -63.181676,-17.782843, -63.182647,-17.783832, -63.182572', '', '', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1435,7 +1438,7 @@ CREATE TABLE `mod_lugar_categorias` (
   `mod_lug_cat_lug_id` int(11) NOT NULL,
   `mod_lug_cat_cat_id` int(11) NOT NULL,
   `mod_lug_cat_orden` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2098,14 +2101,44 @@ INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
-  `post_texto` text NOT NULL,
-  `post_url` varchar(255) NOT NULL,
+  `post_texto` text CHARACTER SET latin1 NOT NULL,
   `post_fecha` datetime NOT NULL,
   `post_tipo` int(11) NOT NULL,
   `post_permiso` int(11) NOT NULL DEFAULT '0',
   `post_estado` int(11) NOT NULL DEFAULT '0',
+  `post_usuario` int(11) NOT NULL,
+  `post_lugar_id` int(11) NOT NULL,
   `post_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `post_imagenes`
+--
+
+CREATE TABLE `post_imagenes` (
+  `post_img_id` int(11) NOT NULL,
+  `post_img_post_id` int(11) NOT NULL,
+  `post_img_url_archivo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `post_img_usu_id` int(11) NOT NULL,
+  `post_img_orden` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `post_valor`
+--
+
+CREATE TABLE `post_valor` (
+  `post_val_id` int(11) NOT NULL,
+  `post_val_post_id` int(11) NOT NULL,
+  `post_val_usu_id` int(11) NOT NULL COMMENT 'Del ejecutor',
+  `post_val_tipo` int(11) NOT NULL COMMENT '1. Like 2. De 0 a 5 3. V o F 4. De 1 a 10 5. De…',
+  `post_val_valor` int(11) NOT NULL DEFAULT '0',
+  `post_val_fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2608,7 +2641,7 @@ CREATE TABLE `valor` (
   `val_id` int(11) NOT NULL,
   `val_tipo` int(11) NOT NULL COMMENT '1. Like  2. De 0 a 5 3. V o F  4. De 1 a 10  5. De 1 a 100',
   `val_valor` int(11) NOT NULL,
-  `val_usario` int(11) NOT NULL,
+  `val_usuario` int(11) NOT NULL,
   `val_fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
@@ -3198,6 +3231,18 @@ ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
 
 --
+-- Indices de la tabla `post_imagenes`
+--
+ALTER TABLE `post_imagenes`
+  ADD PRIMARY KEY (`post_img_id`);
+
+--
+-- Indices de la tabla `post_valor`
+--
+ALTER TABLE `post_valor`
+  ADD PRIMARY KEY (`post_val_id`);
+
+--
 -- Indices de la tabla `printer`
 --
 ALTER TABLE `printer`
@@ -3673,7 +3718,19 @@ ALTER TABLE `plantilla`
 -- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `post_imagenes`
+--
+ALTER TABLE `post_imagenes`
+  MODIFY `post_img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `post_valor`
+--
+ALTER TABLE `post_valor`
+  MODIFY `post_val_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `printer`
