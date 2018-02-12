@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-02-2018 a las 15:57:57
+-- Tiempo de generación: 12-02-2018 a las 22:09:57
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -148,6 +148,98 @@ CREATE TABLE `calendario_grupo` (
   `cal_grp_id_cal` int(11) NOT NULL,
   `cal_grp_id_grp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_checkbox`
+--
+
+CREATE TABLE `campo_checkbox` (
+  `camp_ckb_id` int(11) NOT NULL,
+  `camp_ckb_nombre` varchar(255) NOT NULL,
+  `camp_ckb_descripcion` varchar(255) NOT NULL,
+  `camp_ckb_opciones` text NOT NULL,
+  `camp_ckb_valores` text NOT NULL,
+  `camp_ckb_imagenes` text NOT NULL,
+  `camp_ckb_clase` varchar(50) NOT NULL,
+  `camp_ckb_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_input`
+--
+
+CREATE TABLE `campo_input` (
+  `camp_inp_id` int(11) NOT NULL,
+  `camp_inp_nombre` varchar(255) NOT NULL,
+  `camp_inp_contenido` varchar(255) NOT NULL,
+  `camp_inp_clase` varchar(50) NOT NULL,
+  `camp_inp_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_input_file`
+--
+
+CREATE TABLE `campo_input_file` (
+  `camp_ipf_id` int(11) NOT NULL,
+  `camp_ipf_nombre` varchar(255) NOT NULL,
+  `camp_ipf_descripcion` tinytext NOT NULL,
+  `camp_ipf_url_archivo` varchar(255) NOT NULL,
+  `camp_ipf_clase` varchar(50) NOT NULL,
+  `camp_ipf_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_radio`
+--
+
+CREATE TABLE `campo_radio` (
+  `camp_rad_id` int(11) NOT NULL,
+  `camp_rad_nombre` varchar(255) NOT NULL,
+  `camp_rad_opciones` text NOT NULL,
+  `camp_rad_valores` text NOT NULL,
+  `camp_rad_imagenes` text NOT NULL,
+  `camp_rad_class` int(11) NOT NULL,
+  `camp_rad_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_select`
+--
+
+CREATE TABLE `campo_select` (
+  `camp_sel_id` int(11) NOT NULL,
+  `camp_sel_nombre` varchar(255) NOT NULL,
+  `camp_sel_descripcion` varchar(255) NOT NULL,
+  `camp_sel_opciones` text NOT NULL,
+  `camp_sel_valores` text NOT NULL,
+  `camp_sel_clase` varchar(50) NOT NULL,
+  `camp_sel_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `campo_textarea`
+--
+
+CREATE TABLE `campo_textarea` (
+  `camp_tex_id` int(11) NOT NULL,
+  `camp_tex_titulo` varchar(255) NOT NULL,
+  `camp_tex_contenido` tinytext NOT NULL,
+  `camp_tex_clase` varchar(50) NOT NULL,
+  `camp_tex_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -399,8 +491,8 @@ CREATE TABLE `documento` (
   `doc_descripcion` text NOT NULL,
   `doc_url` varchar(255) NOT NULL,
   `doc_imagen` varchar(255) NOT NULL,
-  `doc_tipo_archivo` varchar(255) CHARACTER SET utf32 NOT NULL,
-  `doc_tamano` varchar(255) CHARACTER SET utf16 NOT NULL,
+  `doc_tipo_archivo` varchar(255) NOT NULL,
+  `doc_tamano` varchar(255) NOT NULL,
   `doc_tags` varchar(255) NOT NULL,
   `doc_fecha` date NOT NULL,
   `doc_usuario` int(11) NOT NULL,
@@ -414,11 +506,11 @@ CREATE TABLE `documento` (
 --
 
 INSERT INTO `documento` (`doc_id`, `doc_nombre`, `doc_ruta_amigable`, `doc_descripcion`, `doc_url`, `doc_imagen`, `doc_tipo_archivo`, `doc_tamano`, `doc_tags`, `doc_fecha`, `doc_usuario`, `doc_id_dominio`, `doc_orden`, `doc_activar`) VALUES
-(6, 'como participarx', 'como-participar', '', 'archivos/docs/como-participar.docx', '', '????', '1㌳㐹', '', '2017-07-03', 1, 0, 0, 1),
-(7, 'wen nuevax', 'wen-nueva', '', 'archivos/docs/wen-nueva.pptx', '', '????', '㈱〲㐹', '', '2017-07-03', 1, 0, 0, 1),
-(8, 'caja de ahorro ganadoblex', 'caja-de-ahorro-ganadoble', '', 'archivos/docs/caja-de-ahorro-ganadoble.docx', '', '????', '1㔳㌴', '', '2017-07-03', 1, 0, 0, 1),
-(9, 'bg-v2', 'bg-v2', '', 'archivos/docs/bg-v2.pdf', '', '?', '㄰㘱〴', '', '2017-07-03', 1, 0, 0, 1),
-(10, 'plantilla datos medley_conci_abril19x cintura como', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', '????', '2㜰㌵', '', '2017-07-03', 1, 0, 0, 1);
+(6, 'como participarx', 'como-participar', '', 'archivos/docs/como-participar.docx', '', '\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '\013349', '', '2017-07-03', 1, 0, 0, 1),
+(7, 'wen nuevax', 'wen-nueva', '', 'archivos/docs/wen-nueva.pptx', '', '\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '210249', '', '2017-07-03', 1, 0, 0, 1),
+(8, 'caja de ahorro ganadoblex', 'caja-de-ahorro-ganadoble', '', 'archivos/docs/caja-de-ahorro-ganadoble.docx', '', '\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '\015334', '', '2017-07-03', 1, 0, 0, 1),
+(9, 'bg-v2', 'bg-v2', '', 'archivos/docs/bg-v2.pdf', '', '\0\0\0?', '106104', '', '2017-07-03', 1, 0, 0, 1),
+(10, 'plantilla datos medley_conci_abril19x cintura como', 'plantilla-datos-medley_conci_abril19', '', 'archivos/docs/plantilla-datos-medley_conci_abril19.xlsx', '', '\0\0\0?\0\0\0?\0\0\0?\0\0\0?', '\027035', '', '2017-07-03', 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1481,6 +1573,67 @@ CREATE TABLE `mod_marcas_productos` (
   `mod_mar_mar_id` int(11) NOT NULL,
   `mod_mar_orden` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=FIXED;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta`
+--
+
+CREATE TABLE `mod_oferta` (
+  `mod_ofr_id` int(11) NOT NULL,
+  `mod_ofr_titulo` varchar(255) NOT NULL,
+  `mod_ofr_descripcion` varchar(255) NOT NULL,
+  `mod_ofr_usu_id` int(11) NOT NULL,
+  `mod_ofr_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta_campos`
+--
+
+CREATE TABLE `mod_oferta_campos` (
+  `mod_ofr_camp_tipo_id` int(11) NOT NULL,
+  `mod_ofr_camp_camp_id` int(11) NOT NULL,
+  `mod_ofr_camp_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta_categorias`
+--
+
+CREATE TABLE `mod_oferta_categorias` (
+  `mod_ofr_ofr_id` int(11) NOT NULL,
+  `mod_ofr_cat_id` int(11) NOT NULL,
+  `mod_ofr_cat_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta_multimedia`
+--
+
+CREATE TABLE `mod_oferta_multimedia` (
+  `mod_ofr_mul_ofr_id` int(11) NOT NULL,
+  `mod_ofr_mul_url_mul` varchar(255) NOT NULL,
+  `mod_ofr_mul_orden` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta_tipos`
+--
+
+CREATE TABLE `mod_oferta_tipos` (
+  `mod_ofr_tipo_ofr_id` int(11) NOT NULL,
+  `mod_ofr_tipo_tipo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2706,6 +2859,36 @@ ALTER TABLE `calendario_grupo`
   ADD PRIMARY KEY (`cal_grp_id_cal`,`cal_grp_id_grp`);
 
 --
+-- Indices de la tabla `campo_checkbox`
+--
+ALTER TABLE `campo_checkbox`
+  ADD PRIMARY KEY (`camp_ckb_id`);
+
+--
+-- Indices de la tabla `campo_input`
+--
+ALTER TABLE `campo_input`
+  ADD PRIMARY KEY (`camp_inp_id`);
+
+--
+-- Indices de la tabla `campo_radio`
+--
+ALTER TABLE `campo_radio`
+  ADD PRIMARY KEY (`camp_rad_id`);
+
+--
+-- Indices de la tabla `campo_select`
+--
+ALTER TABLE `campo_select`
+  ADD PRIMARY KEY (`camp_sel_id`);
+
+--
+-- Indices de la tabla `campo_textarea`
+--
+ALTER TABLE `campo_textarea`
+  ADD PRIMARY KEY (`camp_tex_id`);
+
+--
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -3085,6 +3268,30 @@ ALTER TABLE `mod_marcas`
   ADD PRIMARY KEY (`mod_mar_id`);
 
 --
+-- Indices de la tabla `mod_oferta`
+--
+ALTER TABLE `mod_oferta`
+  ADD PRIMARY KEY (`mod_ofr_id`);
+
+--
+-- Indices de la tabla `mod_oferta_campos`
+--
+ALTER TABLE `mod_oferta_campos`
+  ADD PRIMARY KEY (`mod_ofr_camp_tipo_id`,`mod_ofr_camp_camp_id`);
+
+--
+-- Indices de la tabla `mod_oferta_categorias`
+--
+ALTER TABLE `mod_oferta_categorias`
+  ADD PRIMARY KEY (`mod_ofr_ofr_id`,`mod_ofr_cat_id`);
+
+--
+-- Indices de la tabla `mod_oferta_tipos`
+--
+ALTER TABLE `mod_oferta_tipos`
+  ADD PRIMARY KEY (`mod_ofr_tipo_ofr_id`,`mod_ofr_tipo_tipo_id`);
+
+--
 -- Indices de la tabla `mod_pedidos`
 --
 ALTER TABLE `mod_pedidos`
@@ -3397,6 +3604,36 @@ ALTER TABLE `calendario`
   MODIFY `cal_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `campo_checkbox`
+--
+ALTER TABLE `campo_checkbox`
+  MODIFY `camp_ckb_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `campo_input`
+--
+ALTER TABLE `campo_input`
+  MODIFY `camp_inp_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `campo_radio`
+--
+ALTER TABLE `campo_radio`
+  MODIFY `camp_rad_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `campo_select`
+--
+ALTER TABLE `campo_select`
+  MODIFY `camp_sel_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `campo_textarea`
+--
+ALTER TABLE `campo_textarea`
+  MODIFY `camp_tex_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -3623,6 +3860,12 @@ ALTER TABLE `mod_lugar`
 --
 ALTER TABLE `mod_marcas`
   MODIFY `mod_mar_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_oferta`
+--
+ALTER TABLE `mod_oferta`
+  MODIFY `mod_ofr_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_pedidos`
