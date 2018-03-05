@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-02-2018 a las 22:09:57
+-- Tiempo de generación: 06-03-2018 a las 00:09:41
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -92,7 +92,7 @@ CREATE TABLE `aplicacion` (
 --
 
 INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_amigable`, `app_nav_url`, `app_url`, `app_icono`, `app_color`, `app_orden`, `app_activar`) VALUES
-(1, 'Mensajes', '', '', '', '', 'icn-comment', '#2D9EE0', 0, 0),
+(1, 'Mensajes', '', 'mensajes', '', 'modulos/mensajes/mensajes.adm.php', 'icn icn-comment', '#1FA2FF', 0, 1),
 (2, 'Alertas', '', '', '', '', '', '', 0, 0),
 (3, 'Calendarios', '', '', '', '', '', '', 0, 0);
 
@@ -244,6 +244,48 @@ CREATE TABLE `campo_textarea` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `canal`
+--
+
+CREATE TABLE `canal` (
+  `canal_id` int(11) NOT NULL,
+  `canal_nombre` varchar(255) NOT NULL,
+  `canal_descripcion` tinytext NOT NULL,
+  `canal_estado` int(11) NOT NULL,
+  `canal_activar` int(11) NOT NULL,
+  `canal_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `canal_usuarios`
+--
+
+CREATE TABLE `canal_usuarios` (
+  `canal_usu_id` int(11) NOT NULL,
+  `canal_usu_usu_id` int(11) NOT NULL,
+  `canal_usu_canal_id` int(11) NOT NULL,
+  `canal_usu_rol` int(11) NOT NULL,
+  `canal_usu_estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `canal_usuarios_estados`
+--
+
+CREATE TABLE `canal_usuarios_estados` (
+  `canal_usu_est_usu_id` int(11) NOT NULL,
+  `canal_usu_est_canal_id` int(11) NOT NULL,
+  `canal_usu_est_fecha` datetime NOT NULL,
+  `canal_usu_est_estado` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categoria`
 --
 
@@ -278,7 +320,7 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_descripcion`, `cat_ruta_amigable`, `cat_imagen`, `cat_icono`, `cat_color`, `cat_codigos`, `cat_css`, `cat_clase`, `cat_meta`, `cat_theme`, `cat_id_padre`, `cat_id_plantilla`, `cat_orden`, `cat_tipo`, `cat_url`, `cat_destino`, `cat_favicon`, `cat_analitica`, `cat_ruta_sitio`, `cat_dominio`, `cat_activar`) VALUES
-(1, 'Portada', '', 'portada', '', '', '', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 1),
+(1, 'Portada', '', 'portada', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 1),
 (2, 'Apps', '', 'apps', '', '', '#ffffff', '', '', '', '', '', 0, 1, 2, '0', '', '_self', '', '', '', '', 1),
 (3, 'Blog', '', 'blog', '', '', '#ffffff', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', '', '', 1),
 (4, 'Precios', '', 'precios', '', '', '#ffffff', '', '', '', '', '', 0, 1, 3, '0', '', '_self', '', '', '', '', 1),
@@ -708,6 +750,22 @@ CREATE TABLE `grupo` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mensaje`
+--
+
+CREATE TABLE `mensaje` (
+  `men_id` int(11) NOT NULL,
+  `men_emisor_usu_id` int(11) NOT NULL,
+  `men_receptor_usu_id` int(11) NOT NULL,
+  `men_cuerpo` tinytext NOT NULL,
+  `men_fecha` datetime NOT NULL,
+  `men_canal` int(11) NOT NULL,
+  `men_estado` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `modulo`
 --
 
@@ -734,13 +792,13 @@ CREATE TABLE `modulo` (
 INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amigable`, `mod_bd`, `mod_bd_prefijo`, `mod_bd_relaciones`, `mod_url`, `mod_icono`, `mod_color`, `mod_tipo`, `mod_id_padre`, `mod_activar`) VALUES
 (1, 'Sistemas', '', 'sistemas', 'sistema', 'sis_', 'sistema_modulos:sis_mod_sis_id', 'modulos/sistemas/sistemas.adm.php', 'icn-system', '#191B1C', 2, 0, 1),
 (2, 'Modulos', '', 'modulos', 'modulo', 'mod_', 'modulo_categorias:mod_cat_mod_id,sistema_modulos:sis_mod_mod_id', 'modulos/modulos/modulos.adm.php', 'icn-box', '#99C14C', 2, 1, 1),
-(3, 'Aplicaciones', '', 'aplicaciones', 'aplicacion', 'app_', '', 'modulos/aplicaciones/apps.adm.php', 'icn-apps', '#f39333', 2, 0, 1),
+(3, 'Aplicaciones', '', 'apps', 'aplicacion', 'app_', '', 'modulos/apps/apps.adm.php', 'icn-apps', '#f39333', 2, 0, 1),
 (4, 'Usuarios', '', 'usuarios', 'usuario', 'usu_', 'usuario_grupos:usu_grupo_usu_id,usuario_roles:usu_rol_usu_id', 'modulos/usuarios/usuarios.adm.php', 'icn-users', '#0076ff', 2, 0, 1),
 (5, 'Estructura', '', 'estructura', 'categoria', 'cat_', '', 'modulos/categorias/categorias.adm.php', 'icn-category color-text-violeta-a', '#806aad', 2, 0, 1),
 (6, 'Estructura-Contenidos', '', 'estructura-contenidos', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/categorias/contenedor.adm.php', 'icn-block-page', '#806aad', 2, 5, 1),
 (7, 'Sitios', '', 'sitios', 'sitios', 'sitios_', '', 'modulos/sitios/sitios.adm.php', 'icn-boxs', '#2d9ee0', 2, 0, 1),
 (8, 'Contenedores', '', 'contenedores', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/config/contenedores.adm.php', ' icn-block-page', '#0076ff', 2, 13, 1),
-(9, 'Publicaciones', '', 'publicaciones', 'publicacion', 'pub_', 'publicacion_rel:pub_rel_pub_id', 'modulos/config/publicaciones.adm.php', 'icn-rocket', '#e71882', 2, 13, 1),
+(9, 'Publicaciones', '', 'publicaciones', 'publicacion', 'pub_', 'publicacion_rel:pubrel_pub_id', 'modulos/config/publicaciones.adm.php', 'icn-rocket', '#e71882', 2, 13, 1),
 (10, 'Plantillas', '', 'plantillas', 'plantilla', 'pla_', '', 'modulos/config/plantilas.adm.php', 'icn-level-page', '#8a7354', 2, 13, 1),
 (11, 'Roles', '', 'roles', 'rol', 'rol_', 'sitio_roles:sis_rol_rol_id,usuario_roles:usu_rol_rol_id,sistema_roles:sis_rol_rol_id,modulo_roles:mod_rol_rol_id,rol_categorias:rol_cat_rol_id', 'modulos/usuarios/roles.adm.php', 'icn icn-credential', '#8b3b8f', 2, 4, 1),
 (12, 'Grupos', '', 'grupos', 'grupos', 'grupo_', '', 'modulos/usuarios/grupos.adm.php', 'icn icn-group', '#eb5c43', 2, 4, 1),
@@ -782,7 +840,8 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (704, 'Cuenta', '', 'ads-cuenta', '', '', '', 'modulos/marketing/cuenta.adm.php', 'icn icn-folder-up', '#33aadd', 0, 0, 1),
 (705, 'Puntos & Mapas', '', 'puntos-mapas', '', '', '', 'modulos/marketing/puntos.adm.php', 'icn icn-point-map', '#99c14c', 0, 0, 1),
 (706, 'Configuración', 'Ads', 'ads-config', '', '', '', 'modulos/marketing/config-ads.adm.php', 'icn icn-conf', '#e83759', 0, 0, 1),
-(801, 'Lugares', '', 'lugares', '', '', '', 'modulos/geolocalizacion/lugar.adm.php', 'icn icn-point-map', '#e83759', 1, 0, 1);
+(801, 'Lugares', '', 'lugares', '', '', '', 'modulos/geolocalizacion/lugar.adm.php', 'icn icn-point-map', '#e83759', 1, 0, 1),
+(902, 'canales', '', 'canales', 'canal', 'canal_', 'canal_usuarios:canal_usu_canal_id', 'modulos/crm/canales.adm.php', 'icn icn-channels', '#806aad', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -938,8 +997,8 @@ CREATE TABLE `mod_billetera_usuarios` (
 
 INSERT INTO `mod_billetera_usuarios` (`mod_bill_usu_usu_id`, `mod_bill_usu_bill_id`, `mod_bill_usu_inta_id`, `mod_bill_usu_valor`, `mod_bill_usu_fecha_hora`) VALUES
 (2, 2, 1, 5, '2017-12-08 11:55:33'),
-(3, 2, 1, 5, '2017-12-08 11:56:46'),
 (2, 1, 1, 5, '2017-12-08 11:56:51'),
+(3, 2, 1, 5, '2017-12-08 11:56:46'),
 (3, 1, 1, 5, '2017-12-08 11:56:59');
 
 -- --------------------------------------------------------
@@ -1041,6 +1100,36 @@ CREATE TABLE `mod_cliente` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mod_cliente_atencion`
+--
+
+CREATE TABLE `mod_cliente_atencion` (
+  `mod_cli_ate_id` int(11) NOT NULL,
+  `mod_cli_ate_usu_id` int(11) NOT NULL,
+  `mod_cli_ate_canal` int(11) NOT NULL,
+  `mod_cli_ate_nombre` varchar(100) NOT NULL,
+  `mod_cli_ate_ci` varchar(25) NOT NULL,
+  `mod_cli_ate_fecha_registro` datetime NOT NULL,
+  `mod_cli_ate_estado` int(11) NOT NULL DEFAULT '0',
+  `mod_cli_ate_consulta` tinytext NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_cliente_atencion_conf`
+--
+
+CREATE TABLE `mod_cliente_atencion_conf` (
+  `mod_cli_ate_conf_activar` tinyint(11) NOT NULL DEFAULT '1',
+  `mod_cli_ate_conf_hora_inicio` varchar(5) NOT NULL,
+  `mod_cli_ate_conf_hora_fin` varchar(5) NOT NULL,
+  `mod_cli_ate_conf_dias` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mod_cliente_estados`
 --
 
@@ -1056,6 +1145,19 @@ CREATE TABLE `mod_cliente_estados` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mod_cliente_persona_natural`
+--
+
+CREATE TABLE `mod_cliente_persona_natural` (
+  `mod_cli_per_nat_id` int(11) NOT NULL,
+  `mod_cli_per_nat_ci` varchar(12) NOT NULL,
+  `mod_cli_per_nat_ap_paterno` varchar(50) NOT NULL,
+  `mod_cli_per_nat_ap_materno` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mod_cliente_proyectos`
 --
 
@@ -1063,15 +1165,13 @@ CREATE TABLE `mod_cliente_proyectos` (
   `mod_cli_proy_id` int(11) NOT NULL,
   `mod_cli_proy_nombre` varchar(100) NOT NULL,
   `mod_cli_proy_codigo` varchar(40) NOT NULL,
-  `mod_cli_proy_detalle` varchar(300) NOT NULL,
+  `mod_cli_proy_descripcion` varchar(300) NOT NULL,
   `mod_cli_proy_logo` varchar(100) NOT NULL,
   `mod_cli_proy_direccion` varchar(140) NOT NULL,
   `mod_cli_proy_coordenadas` varchar(100) NOT NULL,
   `mod_cli_proy_ciudad` varchar(100) NOT NULL,
   `mod_cli_proy_pais` varchar(100) NOT NULL,
   `mod_cli_proy_telefono` varchar(14) NOT NULL,
-  `mod_cli_proy_razon_social` varchar(100) NOT NULL,
-  `mod_cli_proy_nit` int(200) NOT NULL,
   `mod_cli_proy_etiqueta` int(11) NOT NULL COMMENT '1 prioridad alta, 2 prioridad media, 3 prioridad normal, 4 prioridad baja, 5 Cliente Sin actividad'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1079,9 +1179,9 @@ CREATE TABLE `mod_cliente_proyectos` (
 -- Volcado de datos para la tabla `mod_cliente_proyectos`
 --
 
-INSERT INTO `mod_cliente_proyectos` (`mod_cli_proy_id`, `mod_cli_proy_nombre`, `mod_cli_proy_codigo`, `mod_cli_proy_detalle`, `mod_cli_proy_logo`, `mod_cli_proy_direccion`, `mod_cli_proy_coordenadas`, `mod_cli_proy_ciudad`, `mod_cli_proy_pais`, `mod_cli_proy_telefono`, `mod_cli_proy_razon_social`, `mod_cli_proy_nit`, `mod_cli_proy_etiqueta`) VALUES
-(1, 'Landicorp S.A', 'LND', 'Empresa matriz', '', '3er anillo. Av. La Salle ', '23434435345, 2342388234', 'Santa Cruz de la Sierra', 'Bolivia', '234234', 'Landicorp S.A', 23425435, 1),
-(2, 'Tiendas Exito Srl.', 'TEX', '', '', '', '', '', '', '', '', 0, 5);
+INSERT INTO `mod_cliente_proyectos` (`mod_cli_proy_id`, `mod_cli_proy_nombre`, `mod_cli_proy_codigo`, `mod_cli_proy_descripcion`, `mod_cli_proy_logo`, `mod_cli_proy_direccion`, `mod_cli_proy_coordenadas`, `mod_cli_proy_ciudad`, `mod_cli_proy_pais`, `mod_cli_proy_telefono`, `mod_cli_proy_etiqueta`) VALUES
+(1, 'Landicorp S.A', 'LND', '', '', '3er anillo. Av. La Salle ', '23434435345, 2342388234', 'Santa Cruz de la Sierra', 'Bolivia', '234234', 1),
+(2, 'Tiendas Exito Srl.', 'TEX', '', '', '', '', '', '', '', 5);
 
 -- --------------------------------------------------------
 
@@ -1225,6 +1325,8 @@ CREATE TABLE `mod_interaccion_notificaciones` (
 CREATE TABLE `mod_interaccion_usuarios` (
   `mod_inta_usu_usu_id` int(11) NOT NULL,
   `mod_inta_usu_inta_id` int(11) NOT NULL,
+  `mod_inta_usu_lugar_id` int(11) NOT NULL,
+  `mod_inta_usu_estado` int(11) NOT NULL COMMENT '0. inicial 1. accion realizada  2. accion en espera',
   `mod_inta_usu_fecha_hora` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=FIXED;
 
@@ -1531,6 +1633,18 @@ CREATE TABLE `mod_lugar_categorias` (
   `mod_lug_cat_cat_id` int(11) NOT NULL,
   `mod_lug_cat_orden` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_lugar_usuarios`
+--
+
+CREATE TABLE `mod_lugar_usuarios` (
+  `mod_lug_usu_id` int(11) NOT NULL,
+  `mod_lug_lug_id` int(11) NOT NULL,
+  `mod_lug_lug_fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -1983,29 +2097,34 @@ INSERT INTO `mod_stock` (`mod_stk_prod`, `mod_stk_suc`, `mod_stk_cantidad`, `mod
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mod_sucursales`
+-- Estructura de tabla para la tabla `mod_sucursal`
 --
 
-CREATE TABLE `mod_sucursales` (
+CREATE TABLE `mod_sucursal` (
   `mod_suc_id` int(11) NOT NULL,
   `mod_suc_nombre` varchar(50) NOT NULL,
+  `mod_suc_ruta_amigable` varchar(255) NOT NULL,
+  `mod_suc_orden` int(11) NOT NULL,
   `mod_suc_direccion` varchar(150) NOT NULL,
+  `mod_suc_email` varchar(150) NOT NULL,
   `mod_suc_telefono` varchar(100) NOT NULL,
   `mod_suc_coordenadas` varchar(50) NOT NULL,
-  `mod_suc_activar` int(11) NOT NULL,
-  `mod_suc_correo` varchar(150) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `mod_suc_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
 
 --
--- Volcado de datos para la tabla `mod_sucursales`
+-- Estructura de tabla para la tabla `mod_zona_distribucion`
 --
 
-INSERT INTO `mod_sucursales` (`mod_suc_id`, `mod_suc_nombre`, `mod_suc_direccion`, `mod_suc_telefono`, `mod_suc_coordenadas`, `mod_suc_activar`, `mod_suc_correo`) VALUES
-(1, 'Sucursal Las Palmas', 'Av. Grigota #885 entre 3er y 4to anillo', '591 - 3 - 354-4149', '-17.809727,-63.206155', 1, 'laspalmas@panaderiavictoria.com'),
-(2, 'Sucursal Alemana', 'Av. Alemana entre 3er y 4to anillo', '591 - 3 - 33419677', '-17.755105,-63.165109', 1, 'alemana@panaderiavictoria.com'),
-(3, 'Sucursal Buenos Aires', 'Calle Buenos Aires No. 285', '591 - 3 - 332-3409 / 591 - 3- 333-4897', '-17.780973,-63.18546922', 1, 'ventascentral@panaderiavictoria.com'),
-(4, 'Sucursal Brasil', 'Av. Brasil y Calle 1', '591 - 3 - 348-7070', '-17.785580,-63.15628', 1, 'brasil@panaderiavictoria.com'),
-(5, 'Sucursal Prueba', 'Av. Brasil Tercer anillo', '333333', '', 1, 'angel11982@gmail.com');
+CREATE TABLE `mod_zona_distribucion` (
+  `mod_zod_id` int(11) NOT NULL,
+  `mod_zod_nombre` varchar(255) NOT NULL,
+  `mod_zod_descripcion` tinytext NOT NULL,
+  `mod_zod_tipo` int(11) NOT NULL,
+  `mod_zod_activar` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2254,7 +2373,7 @@ INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
-  `post_texto` text CHARACTER SET latin1 NOT NULL,
+  `post_texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `post_fecha` datetime NOT NULL,
   `post_tipo` int(11) NOT NULL,
   `post_permiso` int(11) NOT NULL DEFAULT '0',
@@ -2262,7 +2381,7 @@ CREATE TABLE `post` (
   `post_usuario` int(11) NOT NULL,
   `post_lugar_id` int(11) NOT NULL,
   `post_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2347,7 +2466,8 @@ CREATE TABLE `publicacion` (
 INSERT INTO `publicacion` (`pub_id`, `pub_nombre`, `pub_descripcion`, `pub_imagen`, `pub_titulo`, `pub_tipo`, `pub_archivo`, `pub_archivo_config`, `pub_css`, `pub_clase`, `pub_id_item`, `pub_numero`, `pub_id_cat`, `pub_activar`) VALUES
 (1, 'nav', '', '', '', 1, 'modulos/nav.pub.php', '', '', '', 0, 0, 0, 1),
 (2, 'slide', '', '', '', 1, 'modulos/slide.pub.php', '', '', '', 0, 0, 0, 1),
-(3, 'signup', '', '', '', 1, 'modulos/signup.pub.php', '', '', '', 0, 0, 0, 1);
+(3, 'signup', '', '', '', 1, 'modulos/signup.pub.php', '', '', '', 0, 0, 0, 1),
+(4, 'atencion-clientes', '', '', '', 1, 'modulos/atencion-clientes.pub.php', '', '', '', 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2389,8 +2509,7 @@ INSERT INTO `publicacion_rel` (`pubrel_id`, `pubrel_cat_id`, `pubrel_pla_id`, `p
 (20, 101, 3, 1, 15, 1, 0),
 (23, 9, 1, 3, 1, 1, 0),
 (24, 9, 1, 4, 3, 1, 0),
-(25, 1, 1, 1, 2, 1, 0),
-(26, 1, 1, 1, 1, 1, 1);
+(25, 1, 1, 3, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2417,6 +2536,18 @@ CREATE TABLE `rol` (
 INSERT INTO `rol` (`rol_id`, `rol_nombre`, `rol_descripcion`, `rol_funciones`, `rol_redireccion`, `rol_id_padre`, `rol_grupo`, `rol_permisos`, `rol_activar`) VALUES
 (1, 'Administrador', '', 'todo poderoso', 2, 0, 1, '', 1),
 (2, 'Diseñador web', '', '', 1, 1, 1, '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rol_aplicaciones`
+--
+
+CREATE TABLE `rol_aplicaciones` (
+  `rol_app_app_id` int(11) NOT NULL,
+  `rol_app_rol_id` int(11) NOT NULL,
+  `rol_app_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2467,7 +2598,7 @@ INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `
 (6, 'Proyectos', '', 'icn icn-proyect', '#0076ff', 0, 1, 2),
 (7, 'Finazas', '', 'icn icn-finance', '#00bdc6', 6, 1, 4),
 (8, 'Logistica', '', 'icn icn-logistics', '#99c14c', 10, 1, 5),
-(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 7),
+(9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 0),
 (10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 10),
 (11, 'Ads', '', 'icn icn-megaphone', '#806aad', 0, 1, 9),
 (12, 'Geo', '', 'icn icn-zone', '#dcdc07', 0, 1, 6);
@@ -2520,7 +2651,8 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 (11, 704, 0),
 (11, 705, 0),
 (11, 706, 0),
-(12, 801, 0);
+(12, 801, 0),
+(9, 902, 0);
 
 -- --------------------------------------------------------
 
@@ -2551,10 +2683,7 @@ CREATE TABLE `sitio` (
   `sitio_nombre` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_descripcion` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_ruta_amigable` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `sitio_icono` varchar(25) NOT NULL,
-  `sitio_url` varchar(255) NOT NULL,
-  `sitio_target` varchar(10) NOT NULL DEFAULT '_blank',
-  `sitio_tipo` int(11) NOT NULL DEFAULT '0' COMMENT '0. normal 1.Logeado 2.Site',
+  `sitio_tipo` int(11) NOT NULL DEFAULT '0',
   `sitio_carpeta` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_orden` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `sitio_activar` int(1) NOT NULL DEFAULT '0'
@@ -2564,9 +2693,9 @@ CREATE TABLE `sitio` (
 -- Volcado de datos para la tabla `sitio`
 --
 
-INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_icono`, `sitio_url`, `sitio_target`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
-(1, 'Sitio Raiz', '', '', '', '', '_blank', 2, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', '', '', '', 1, '', '2', 1);
+INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
+(1, 'Sitio Raiz', '', '', 2, '', '1', 1),
+(2, 'Dashboard', '', 'dashboard', 1, '', '2', 1);
 
 -- --------------------------------------------------------
 
@@ -2667,24 +2796,16 @@ CREATE TABLE `solicitud_permiso` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipo_empresas`
+-- Estructura de tabla para la tabla `tipo_empresa`
 --
 
-CREATE TABLE `tipo_empresas` (
+CREATE TABLE `tipo_empresa` (
   `tip_emp_id` int(11) NOT NULL,
   `tip_emp_nombre` varchar(150) NOT NULL,
   `tip_emp_descripcion` varchar(255) NOT NULL,
   `tip_emp_activar` int(11) NOT NULL,
   `tip_emp_usuario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `tipo_empresas`
---
-
-INSERT INTO `tipo_empresas` (`tip_emp_id`, `tip_emp_nombre`, `tip_emp_descripcion`, `tip_emp_activar`, `tip_emp_usuario`) VALUES
-(1, 'Corporaci?n', '', 1, 1),
-(2, 'Proveedores', '', 1, 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2889,6 +3010,24 @@ ALTER TABLE `campo_textarea`
   ADD PRIMARY KEY (`camp_tex_id`);
 
 --
+-- Indices de la tabla `canal`
+--
+ALTER TABLE `canal`
+  ADD PRIMARY KEY (`canal_id`);
+
+--
+-- Indices de la tabla `canal_usuarios`
+--
+ALTER TABLE `canal_usuarios`
+  ADD PRIMARY KEY (`canal_usu_id`);
+
+--
+-- Indices de la tabla `canal_usuarios_estados`
+--
+ALTER TABLE `canal_usuarios_estados`
+  ADD PRIMARY KEY (`canal_usu_est_fecha`);
+
+--
 -- Indices de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -3034,6 +3173,12 @@ ALTER TABLE `grupo`
   ADD PRIMARY KEY (`grupo_id`);
 
 --
+-- Indices de la tabla `mensaje`
+--
+ALTER TABLE `mensaje`
+  ADD PRIMARY KEY (`men_id`);
+
+--
 -- Indices de la tabla `modulo`
 --
 ALTER TABLE `modulo`
@@ -3079,7 +3224,7 @@ ALTER TABLE `mod_billetera`
 -- Indices de la tabla `mod_billetera_usuarios`
 --
 ALTER TABLE `mod_billetera_usuarios`
-  ADD PRIMARY KEY (`mod_bill_usu_fecha_hora`);
+  ADD PRIMARY KEY (`mod_bill_usu_usu_id`,`mod_bill_usu_inta_id`,`mod_bill_usu_fecha_hora`);
 
 --
 -- Indices de la tabla `mod_catalogo`
@@ -3112,10 +3257,22 @@ ALTER TABLE `mod_cliente`
   ADD PRIMARY KEY (`mod_cli_id`);
 
 --
+-- Indices de la tabla `mod_cliente_atencion`
+--
+ALTER TABLE `mod_cliente_atencion`
+  ADD PRIMARY KEY (`mod_cli_ate_id`);
+
+--
 -- Indices de la tabla `mod_cliente_estados`
 --
 ALTER TABLE `mod_cliente_estados`
   ADD PRIMARY KEY (`mod_cli_est_id`);
+
+--
+-- Indices de la tabla `mod_cliente_persona_natural`
+--
+ALTER TABLE `mod_cliente_persona_natural`
+  ADD PRIMARY KEY (`mod_cli_per_nat_id`);
 
 --
 -- Indices de la tabla `mod_cliente_proyectos`
@@ -3262,6 +3419,12 @@ ALTER TABLE `mod_lugar_categorias`
   ADD PRIMARY KEY (`mod_lug_cat_lug_id`,`mod_lug_cat_cat_id`);
 
 --
+-- Indices de la tabla `mod_lugar_usuarios`
+--
+ALTER TABLE `mod_lugar_usuarios`
+  ADD PRIMARY KEY (`mod_lug_lug_fecha`);
+
+--
 -- Indices de la tabla `mod_marcas`
 --
 ALTER TABLE `mod_marcas`
@@ -3371,10 +3534,16 @@ ALTER TABLE `mod_stock`
   ADD PRIMARY KEY (`mod_stk_prod`,`mod_stk_suc`,`mod_stk_fecha`);
 
 --
--- Indices de la tabla `mod_sucursales`
+-- Indices de la tabla `mod_sucursal`
 --
-ALTER TABLE `mod_sucursales`
+ALTER TABLE `mod_sucursal`
   ADD PRIMARY KEY (`mod_suc_id`);
+
+--
+-- Indices de la tabla `mod_zona_distribucion`
+--
+ALTER TABLE `mod_zona_distribucion`
+  ADD PRIMARY KEY (`mod_zod_id`);
 
 --
 -- Indices de la tabla `multimedia`
@@ -3528,9 +3697,9 @@ ALTER TABLE `solicitud_permiso`
   ADD PRIMARY KEY (`sol_per_id`);
 
 --
--- Indices de la tabla `tipo_empresas`
+-- Indices de la tabla `tipo_empresa`
 --
-ALTER TABLE `tipo_empresas`
+ALTER TABLE `tipo_empresa`
   ADD PRIMARY KEY (`tip_emp_id`);
 
 --
@@ -3634,6 +3803,18 @@ ALTER TABLE `campo_textarea`
   MODIFY `camp_tex_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `canal`
+--
+ALTER TABLE `canal`
+  MODIFY `canal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `canal_usuarios`
+--
+ALTER TABLE `canal_usuarios`
+  MODIFY `canal_usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
@@ -3700,10 +3881,16 @@ ALTER TABLE `grupo`
   MODIFY `grupo_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mensaje`
+--
+ALTER TABLE `mensaje`
+  MODIFY `men_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=802;
+  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=903;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_agenda`
@@ -3748,10 +3935,22 @@ ALTER TABLE `mod_cliente`
   MODIFY `mod_cli_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mod_cliente_atencion`
+--
+ALTER TABLE `mod_cliente_atencion`
+  MODIFY `mod_cli_ate_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- AUTO_INCREMENT de la tabla `mod_cliente_estados`
 --
 ALTER TABLE `mod_cliente_estados`
   MODIFY `mod_cli_est_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_cliente_persona_natural`
+--
+ALTER TABLE `mod_cliente_persona_natural`
+  MODIFY `mod_cli_per_nat_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_cliente_proyectos`
@@ -3922,10 +4121,16 @@ ALTER TABLE `mod_productos`
   MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `mod_sucursales`
+-- AUTO_INCREMENT de la tabla `mod_sucursal`
 --
-ALTER TABLE `mod_sucursales`
-  MODIFY `mod_suc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `mod_sucursal`
+  MODIFY `mod_suc_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_zona_distribucion`
+--
+ALTER TABLE `mod_zona_distribucion`
+  MODIFY `mod_zod_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `multimedia`
@@ -3961,7 +4166,7 @@ ALTER TABLE `plantilla`
 -- AUTO_INCREMENT de la tabla `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `post_imagenes`
@@ -3985,13 +4190,13 @@ ALTER TABLE `printer`
 -- AUTO_INCREMENT de la tabla `publicacion`
 --
 ALTER TABLE `publicacion`
-  MODIFY `pub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pub_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `publicacion_rel`
 --
 ALTER TABLE `publicacion_rel`
-  MODIFY `pubrel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `pubrel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -4024,9 +4229,9 @@ ALTER TABLE `solicitud_permiso`
   MODIFY `sol_per_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `tipo_empresas`
+-- AUTO_INCREMENT de la tabla `tipo_empresa`
 --
-ALTER TABLE `tipo_empresas`
+ALTER TABLE `tipo_empresa`
   MODIFY `tip_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
