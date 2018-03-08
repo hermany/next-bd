@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-03-2018 a las 00:09:41
+-- Tiempo de generación: 08-03-2018 a las 02:08:23
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -292,11 +292,13 @@ CREATE TABLE `canal_usuarios_estados` (
 CREATE TABLE `categoria` (
   `cat_id` int(11) NOT NULL,
   `cat_nombre` varchar(250) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `cat_descripcion` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `cat_ruta_amigable` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
-  `cat_imagen` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `cat_tags` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `cat_descripcion` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `cat_icono` varchar(45) CHARACTER SET utf8 NOT NULL,
   `cat_color` varchar(7) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `cat_banner` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `cat_imagen` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
   `cat_codigos` text CHARACTER SET utf8 NOT NULL,
   `cat_css` varchar(255) CHARACTER SET utf8 NOT NULL,
   `cat_clase` varchar(255) CHARACTER SET utf8 NOT NULL,
@@ -310,8 +312,6 @@ CREATE TABLE `categoria` (
   `cat_destino` varchar(20) COLLATE utf8_spanish_ci NOT NULL DEFAULT '_self',
   `cat_favicon` varchar(255) CHARACTER SET utf8 NOT NULL,
   `cat_analitica` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `cat_ruta_sitio` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `cat_dominio` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `cat_activar` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
@@ -319,15 +319,15 @@ CREATE TABLE `categoria` (
 -- Volcado de datos para la tabla `categoria`
 --
 
-INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_descripcion`, `cat_ruta_amigable`, `cat_imagen`, `cat_icono`, `cat_color`, `cat_codigos`, `cat_css`, `cat_clase`, `cat_meta`, `cat_theme`, `cat_id_padre`, `cat_id_plantilla`, `cat_orden`, `cat_tipo`, `cat_url`, `cat_destino`, `cat_favicon`, `cat_analitica`, `cat_ruta_sitio`, `cat_dominio`, `cat_activar`) VALUES
-(1, 'Portada', '', 'portada', '', '', '#ffffff', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', '', '', 1),
-(2, 'Apps', '', 'apps', '', '', '#ffffff', '', '', '', '', '', 0, 1, 2, '0', '', '_self', '', '', '', '', 1),
-(3, 'Blog', '', 'blog', '', '', '#ffffff', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', '', '', 1),
-(4, 'Precios', '', 'precios', '', '', '#ffffff', '', '', '', '', '', 0, 1, 3, '0', '', '_self', '', '', '', '', 1),
-(5, 'Documentación', '', 'documentacin', '', '', '#ffffff', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', '', '', 1),
-(7, 'Contácto', '', 'contacto', '', '', '', '', '', '', '', '', 0, 1, 7, '0', '', '_self', '', '', '', '', 1),
-(8, 'Soporte', '', 'soporte', '', '', '#ffffff', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', '', '', 1),
-(9, 'Signup', '', 'signup', '', '', '#ffffff', '', '', '', '', '', 0, 1, 12, '0', '', '_self', '', '', '', '', 0);
+INSERT INTO `categoria` (`cat_id`, `cat_nombre`, `cat_ruta_amigable`, `cat_tags`, `cat_descripcion`, `cat_icono`, `cat_color`, `cat_banner`, `cat_imagen`, `cat_codigos`, `cat_css`, `cat_clase`, `cat_meta`, `cat_theme`, `cat_id_padre`, `cat_id_plantilla`, `cat_orden`, `cat_tipo`, `cat_url`, `cat_destino`, `cat_favicon`, `cat_analitica`, `cat_activar`) VALUES
+(1, 'Portada', 'portada', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 1, '0', '', '_self', '', '', 1),
+(2, 'Apps', 'apps', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 2, '0', '', '_self', '', '', 1),
+(3, 'Blog', 'blog', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 4, '0', '', '_self', '', '', 1),
+(4, 'Precios', 'precios', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 3, '0', '', '_self', '', '', 1),
+(5, 'Documentación', 'documentacin', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', 1),
+(7, 'Contácto', 'contacto', '', '', '', '', '', '', '', '', '', '', '', 0, 1, 7, '0', '', '_self', '', '', 1),
+(8, 'Soporte', 'soporte', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 5, '0', '', '_self', '', '', 1),
+(9, 'Signup', 'signup', '', '', '', '#ffffff', '', '', '', '', '', '', '', 0, 1, 12, '0', '', '_self', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1602,6 +1602,7 @@ CREATE TABLE `mod_kardex_ref_emergencia` (
 CREATE TABLE `mod_lugar` (
   `mod_lug_id` int(11) NOT NULL,
   `mod_lug_nombre` varchar(255) NOT NULL,
+  `mod_lug_tags` varchar(255) NOT NULL,
   `mod_lug_direccion` varchar(255) NOT NULL COMMENT 'ej: Av. 3 pasos al frente, Calle Isoso #34 Edificio Lourdes Dep. 54',
   `mod_lug_telefono` int(12) NOT NULL,
   `mod_lug_info` text NOT NULL,
@@ -1619,8 +1620,8 @@ CREATE TABLE `mod_lugar` (
 -- Volcado de datos para la tabla `mod_lugar`
 --
 
-INSERT INTO `mod_lugar` (`mod_lug_id`, `mod_lug_nombre`, `mod_lug_direccion`, `mod_lug_telefono`, `mod_lug_info`, `mod_lug_imagen`, `mod_lug_coordenada_principal`, `mod_lug_coordenadas`, `mod_lug_icono`, `mod_lug_contenido`, `mod_lug_usuario`, `mod_lug_estado`, `mod_lug_activar`) VALUES
-(1, 'La Plaza principal 24 de Septiembre', ' Calle 24 de Septiembre.', 0, '', 'archivos/multimedia/mscz-ad-1.png', '-17.783354, -63.182146', '-17.783832, -63.182572,-17.783760, -63.181598, -17.782762, -63.181676,-17.782843, -63.182647,-17.783832, -63.182572', '', '', 0, 1, 1);
+INSERT INTO `mod_lugar` (`mod_lug_id`, `mod_lug_nombre`, `mod_lug_tags`, `mod_lug_direccion`, `mod_lug_telefono`, `mod_lug_info`, `mod_lug_imagen`, `mod_lug_coordenada_principal`, `mod_lug_coordenadas`, `mod_lug_icono`, `mod_lug_contenido`, `mod_lug_usuario`, `mod_lug_estado`, `mod_lug_activar`) VALUES
+(1, 'La Plaza principal 24 de Septiembre', '', ' Calle 24 de Septiembre.', 0, '', 'archivos/multimedia/mscz-ad-1.png', '-17.783354, -63.182146', '-17.783832, -63.182572,-17.783760, -63.181598, -17.782762, -63.181676,-17.782843, -63.182647,-17.783832, -63.182572', '', '', 0, 1, 1);
 
 -- --------------------------------------------------------
 
