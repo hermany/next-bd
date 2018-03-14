@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-03-2018 a las 02:08:23
+-- Tiempo de generación: 14-03-2018 a las 01:51:13
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -841,7 +841,8 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (705, 'Puntos & Mapas', '', 'puntos-mapas', '', '', '', 'modulos/marketing/puntos.adm.php', 'icn icn-point-map', '#99c14c', 0, 0, 1),
 (706, 'Configuración', 'Ads', 'ads-config', '', '', '', 'modulos/marketing/config-ads.adm.php', 'icn icn-conf', '#e83759', 0, 0, 1),
 (801, 'Lugares', '', 'lugares', '', '', '', 'modulos/geolocalizacion/lugar.adm.php', 'icn icn-point-map', '#e83759', 1, 0, 1),
-(902, 'canales', '', 'canales', 'canal', 'canal_', 'canal_usuarios:canal_usu_canal_id', 'modulos/crm/canales.adm.php', 'icn icn-channels', '#806aad', 1, 0, 1);
+(902, 'canales', '', 'canales', 'canal', 'canal_', 'canal_usuarios:canal_usu_canal_id', 'modulos/crm/canales.adm.php', 'icn icn-channels', '#806aad', 1, 0, 1),
+(1002, 'Ofertas', '', 'ofertas', '', '', '', 'modulos/clasificados/ofertas.adm.php', 'icn icn-tag', '#806aad', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -1596,6 +1597,27 @@ CREATE TABLE `mod_kardex_ref_emergencia` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mod_lista`
+--
+
+CREATE TABLE `mod_lista` (
+  `mod_list_id` int(11) NOT NULL,
+  `mod_list_nombre` varchar(255) NOT NULL,
+  `mod_list_descripcion` varchar(255) NOT NULL,
+  `mod_list_imagen` varchar(255) NOT NULL,
+  `mod_list_banner` varchar(255) NOT NULL,
+  `mod_list_id_padre` int(11) NOT NULL,
+  `mod_list_sexo` int(11) NOT NULL COMMENT '1.',
+  `mod_list_rango_lugar` varchar(400) NOT NULL COMMENT 'Ej.: Santa Cruz, Porongo...',
+  `mod_list_rango_edad` int(11) NOT NULL COMMENT '1. 5-11, 2. 12-16 3.17-21 4.22-35 5. 36-45 6. 46-x',
+  `mod_list_tags` varchar(250) NOT NULL,
+  `mod_list_estado` int(11) NOT NULL,
+  `mod_list_activar` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mod_lugar`
 --
 
@@ -1700,6 +1722,8 @@ CREATE TABLE `mod_oferta` (
   `mod_ofr_titulo` varchar(255) NOT NULL,
   `mod_ofr_descripcion` varchar(255) NOT NULL,
   `mod_ofr_usu_id` int(11) NOT NULL,
+  `mod_ofr_fecha` datetime NOT NULL,
+  `mod_ofr_estado` int(11) NOT NULL,
   `mod_ofr_activar` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1735,7 +1759,7 @@ CREATE TABLE `mod_oferta_categorias` (
 
 CREATE TABLE `mod_oferta_multimedia` (
   `mod_ofr_mul_ofr_id` int(11) NOT NULL,
-  `mod_ofr_mul_url_mul` varchar(255) NOT NULL,
+  `mod_ofr_mul_mul_id` int(11) NOT NULL,
   `mod_ofr_mul_orden` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -1748,6 +1772,19 @@ CREATE TABLE `mod_oferta_multimedia` (
 CREATE TABLE `mod_oferta_tipos` (
   `mod_ofr_tipo_ofr_id` int(11) NOT NULL,
   `mod_ofr_tipo_tipo_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_oferta_usuarios`
+--
+
+CREATE TABLE `mod_oferta_usuarios` (
+  `mod_ofr_usu_id` int(11) NOT NULL,
+  `mod_ofr_ubicacion` varchar(255) NOT NULL,
+  `mod_ofr_telefono` varchar(50) NOT NULL,
+  `mod_ofr_mail` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2159,16 +2196,7 @@ CREATE TABLE `multimedia` (
 --
 
 INSERT INTO `multimedia` (`mul_id`, `mul_nombre`, `mul_tags`, `mul_url_archivo`, `mul_ruta_amigable`, `mul_url`, `mul_destino`, `mul_embed`, `mul_tipo_archivo`, `mul_leyenda`, `mul_texto_alternativo`, `mul_descripcion`, `mul_dimension`, `mul_tamano`, `mul_fecha`, `mul_usuario`, `mul_id_dominio`, `mul_activar`) VALUES
-(2, 'manosde', '', 'archivos/multimedia/manosde.jpg', 'manosde.jpg', '', '_self', '', 'jpeg', '', '', '', '480 x 287', '99454', '2017-06-16 13:31:44', 1, 0, 1),
-(3, 'prubea', '', '', 'prubea', '', '_self', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/LHkMo9pZkq0\" frameborder=\"0\" allowfullscreen></iframe>', 'embed', '', '', '', '', '', '2017-06-16 14:30:57', 1, 0, 1),
-(4, 'bg-1', '', 'archivos/multimedia/bg-1.jpg', '', '', '', '', 'jpeg', 'Organiza y haz crecer tu <strong>negocio</strong>', '', 'Next  es la forma más sencilla de controlar tu negocio pyme, aplicaciones simples, eficientes y poderosas,  supera tus necesidades y lleva al éxito a tu empresa.', '1500 x 513', '168 KB', '2017-06-17 14:14:42', 1, 0, 1),
-(11, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2017-06-15 15:20:16', 1, 0, 1),
-(12, 'victoria-5', '', 'archivos/multimedia/victoria-5.mp4', 'victoria-5.mp4', '', '_self', '', 'mp4', '', '', '', ' x ', '200x200', '2017-06-18 01:49:09', 1, 0, 1),
-(13, 'kris-mayonesa-1', '', 'archivos/multimedia/kris-mayonesa-1.jpg', 'kris-mayonesa-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '78256', '2017-06-23 15:18:42', 1, 0, 1),
-(14, 'kris-salsa-golf-1', '', 'archivos/multimedia/kris-salsa-golf-1.jpg', 'kris-salsa-golf-1.jpg', '', '_self', '', 'jpeg', '', '', '', '680 x 680', '77685', '2017-06-23 15:18:42', 1, 0, 1),
-(15, '02-milord', '', 'archivos/multimedia/02-milord.mp3', '02-milord.mp3', '', '_self', '', 'mp3', '', '', '', ' x ', '6536071', '2017-07-01 16:50:40', 1, 0, 1),
-(16, 'afp-revision-logo', '', 'archivos/multimedia/afp-revision-logo.png', 'afp-revision-logo.png', '', '_self', '', 'png', '', '', '', '420 x 218', '34915', '2017-08-04 18:18:24', 1, 0, 1),
-(17, 'steve-nacif', '', 'archivos/multimedia/steve-nacif.png', 'steve-nacif.png', '', '_self', '', 'png', '', '', '', '534 x 507', '328777', '2017-08-04 23:09:07', 1, 0, 1);
+(1, 'foto-hermany', '', 'archivos/multimedia/foto-hermany.png', 'foto-hermany.png', '', '_self', '', 'png', '', '', '', '542 x 498', '447993', '2018-03-08 15:54:27', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2191,9 +2219,7 @@ INSERT INTO `multimedia_categorias` (`mul_cat_mul_id`, `mul_cat_cat_id`, `mul_ca
 (8, 97, 1),
 (7, 90, 1),
 (9, 1, 5),
-(3, 83, 2),
-(22, 76, 1),
-(4, 1, 6);
+(22, 76, 1);
 
 -- --------------------------------------------------------
 
@@ -2602,7 +2628,8 @@ INSERT INTO `sistema` (`sis_id`, `sis_nombre`, `sis_descripcion`, `sis_icono`, `
 (9, 'CRM', '', 'icn icn-crm', '#e71882', 2, 1, 0),
 (10, 'Editorial', '', 'icn icn-newspaper', '#3f444b', 0, 1, 10),
 (11, 'Ads', '', 'icn icn-megaphone', '#806aad', 0, 1, 9),
-(12, 'Geo', '', 'icn icn-zone', '#dcdc07', 0, 1, 6);
+(12, 'Geo', '', 'icn icn-zone', '#dcdc07', 0, 1, 6),
+(13, 'Clasificados', '', 'icn icn-classification', '#eb5c43', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2653,7 +2680,8 @@ INSERT INTO `sistema_modulos` (`sis_mod_sis_id`, `sis_mod_mod_id`, `sis_mod_orde
 (11, 705, 0),
 (11, 706, 0),
 (12, 801, 0),
-(9, 902, 0);
+(9, 902, 0),
+(13, 1002, 0);
 
 -- --------------------------------------------------------
 
@@ -3408,6 +3436,12 @@ ALTER TABLE `mod_kardex_ref_emergencia`
   ADD PRIMARY KEY (`mod_kdx_ref_emg_id`);
 
 --
+-- Indices de la tabla `mod_lista`
+--
+ALTER TABLE `mod_lista`
+  ADD PRIMARY KEY (`mod_list_id`);
+
+--
 -- Indices de la tabla `mod_lugar`
 --
 ALTER TABLE `mod_lugar`
@@ -3454,6 +3488,12 @@ ALTER TABLE `mod_oferta_categorias`
 --
 ALTER TABLE `mod_oferta_tipos`
   ADD PRIMARY KEY (`mod_ofr_tipo_ofr_id`,`mod_ofr_tipo_tipo_id`);
+
+--
+-- Indices de la tabla `mod_oferta_usuarios`
+--
+ALTER TABLE `mod_oferta_usuarios`
+  ADD PRIMARY KEY (`mod_ofr_usu_id`);
 
 --
 -- Indices de la tabla `mod_pedidos`
@@ -3807,13 +3847,13 @@ ALTER TABLE `campo_textarea`
 -- AUTO_INCREMENT de la tabla `canal`
 --
 ALTER TABLE `canal`
-  MODIFY `canal_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `canal_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `canal_usuarios`
 --
 ALTER TABLE `canal_usuarios`
-  MODIFY `canal_usu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `canal_usu_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categoria`
@@ -3891,7 +3931,7 @@ ALTER TABLE `mensaje`
 -- AUTO_INCREMENT de la tabla `modulo`
 --
 ALTER TABLE `modulo`
-  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=903;
+  MODIFY `mod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_agenda`
@@ -4050,6 +4090,12 @@ ALTER TABLE `mod_kardex_ref_emergencia`
   MODIFY `mod_kdx_ref_emg_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `mod_lista`
+--
+ALTER TABLE `mod_lista`
+  MODIFY `mod_list_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `mod_lugar`
 --
 ALTER TABLE `mod_lugar`
@@ -4066,6 +4112,12 @@ ALTER TABLE `mod_marcas`
 --
 ALTER TABLE `mod_oferta`
   MODIFY `mod_ofr_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_oferta_usuarios`
+--
+ALTER TABLE `mod_oferta_usuarios`
+  MODIFY `mod_ofr_usu_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_pedidos`
@@ -4137,7 +4189,7 @@ ALTER TABLE `mod_zona_distribucion`
 -- AUTO_INCREMENT de la tabla `multimedia`
 --
 ALTER TABLE `multimedia`
-  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `mul_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `nota`
@@ -4209,7 +4261,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `sistema`
 --
 ALTER TABLE `sistema`
-  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `sis_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `sitio`
@@ -4233,7 +4285,7 @@ ALTER TABLE `solicitud_permiso`
 -- AUTO_INCREMENT de la tabla `tipo_empresa`
 --
 ALTER TABLE `tipo_empresa`
-  MODIFY `tip_emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tip_emp_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
