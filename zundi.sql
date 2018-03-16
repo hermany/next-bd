@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-03-2018 a las 01:51:13
+-- Tiempo de generación: 16-03-2018 a las 17:59:28
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -1683,7 +1683,7 @@ CREATE TABLE `mod_marcas` (
   `mod_mar_imagen` varchar(255) CHARACTER SET utf8 NOT NULL,
   `mod_mar_usuario` int(11) NOT NULL,
   `mod_mar_detalle` text CHARACTER SET utf8 NOT NULL,
-  `mod_mar_id_dominio` int(11) NOT NULL,
+  `mod_mar_orden` int(11) NOT NULL,
   `mod_mar_activar` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
