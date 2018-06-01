@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-03-2018 a las 17:59:28
+-- Tiempo de generación: 01-06-2018 a las 21:11:33
 -- Versión del servidor: 10.1.28-MariaDB
 -- Versión de PHP: 5.6.32
 
@@ -94,7 +94,8 @@ CREATE TABLE `aplicacion` (
 INSERT INTO `aplicacion` (`app_id`, `app_nombre`, `app_descripcion`, `app_ruta_amigable`, `app_nav_url`, `app_url`, `app_icono`, `app_color`, `app_orden`, `app_activar`) VALUES
 (1, 'Mensajes', '', 'mensajes', '', 'modulos/mensajes/mensajes.adm.php', 'icn icn-comment', '#1FA2FF', 0, 1),
 (2, 'Alertas', '', '', '', '', '', '', 0, 0),
-(3, 'Calendarios', '', '', '', '', '', '', 0, 0);
+(3, 'Calendarios', '', '', '', '', '', '', 0, 0),
+(4, 'Timer Proyectos', '', 'timer-proy', '', 'modulos/proyectos/timer.adm.php', 'icn icn-clock', '#FFF', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -363,15 +364,16 @@ CREATE TABLE `configuracion` (
   `conf_favicon` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `conf_script_head` text CHARACTER SET utf8 NOT NULL,
   `conf_script_footer` text CHARACTER SET utf8 NOT NULL,
-  `conf_meta` varchar(255) CHARACTER SET utf8 NOT NULL
+  `conf_meta` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `conf_thumbs` varchar(255) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
 
 --
 -- Volcado de datos para la tabla `configuracion`
 --
 
-INSERT INTO `configuracion` (`conf_nombre_sitio`, `conf_imagen`, `conf_favicon`, `conf_script_head`, `conf_script_footer`, `conf_meta`) VALUES
-('Zundi CMS v2.5x', 'images/logo.svg', 'images/favicon.png', '', '', 'modulos/meta.pub.php');
+INSERT INTO `configuracion` (`conf_nombre_sitio`, `conf_imagen`, `conf_favicon`, `conf_script_head`, `conf_script_footer`, `conf_meta`, `conf_thumbs`) VALUES
+('Zundi CMS v2.5x', 'images/logo.svg', 'images/favicon.png', '', '', 'modulos/meta.pub.php', '');
 
 -- --------------------------------------------------------
 
@@ -519,6 +521,60 @@ CREATE TABLE `cuenta` (
   `cuenta_id` int(11) NOT NULL,
   `cuenta_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `curso`
+--
+
+CREATE TABLE `curso` (
+  `cur_id` int(11) NOT NULL,
+  `cur_nombre` varchar(255) NOT NULL,
+  `cur_ruta_amigable` varchar(255) NOT NULL,
+  `cur_leyenda` varchar(255) NOT NULL,
+  `cur_resumen` tinytext NOT NULL,
+  `cur_tags` varchar(255) NOT NULL,
+  `cur_importante` text NOT NULL,
+  `cur_objetivo` text NOT NULL,
+  `cur_dirigido` varchar(500) NOT NULL,
+  `cur_certificacion` text NOT NULL,
+  `cur_duracion` varchar(255) NOT NULL,
+  `cur_contenido_min` text NOT NULL,
+  `cur_instructor` text NOT NULL,
+  `cur_instructor_id` int(11) NOT NULL,
+  `cur_imagen` varchar(255) NOT NULL,
+  `cur_estado` int(11) NOT NULL,
+  `cur_fecha_inicio` datetime NOT NULL,
+  `cur_fecha_fin` datetime NOT NULL,
+  `cur_activar` int(11) NOT NULL,
+  `cur_usu_id` int(11) NOT NULL,
+  `cur_fecha_registro` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `curso_categorias`
+--
+
+CREATE TABLE `curso_categorias` (
+  `cur_cat_cur_id` int(11) NOT NULL,
+  `cur_cat_cat_id` int(11) NOT NULL,
+  `cur_cat_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `curso_documentos`
+--
+
+CREATE TABLE `curso_documentos` (
+  `cur_doc_cur_id` int(11) NOT NULL,
+  `cur_doc_doc_id` int(11) NOT NULL,
+  `cur_doc_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -796,7 +852,7 @@ INSERT INTO `modulo` (`mod_id`, `mod_nombre`, `mod_descripcion`, `mod_ruta_amiga
 (4, 'Usuarios', '', 'usuarios', 'usuario', 'usu_', 'usuario_grupos:usu_grupo_usu_id,usuario_roles:usu_rol_usu_id', 'modulos/usuarios/usuarios.adm.php', 'icn-users', '#0076ff', 2, 0, 1),
 (5, 'Estructura', '', 'estructura', 'categoria', 'cat_', '', 'modulos/categorias/categorias.adm.php', 'icn-category color-text-violeta-a', '#806aad', 2, 0, 1),
 (6, 'Estructura-Contenidos', '', 'estructura-contenidos', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/categorias/contenedor.adm.php', 'icn-block-page', '#806aad', 2, 5, 1),
-(7, 'Sitios', '', 'sitios', 'sitios', 'sitios_', '', 'modulos/sitios/sitios.adm.php', 'icn-boxs', '#2d9ee0', 2, 0, 1),
+(7, 'Sitios', '', 'sitios', 'sitio', 'sitio_', 'sitio_categorias:sitio_cat_sitio_id,sitio_roles:sitio_rol_sitio_id', 'modulos/sitios/sitios.adm.php', 'icn-boxs', '#2d9ee0', 2, 0, 1),
 (8, 'Contenedores', '', 'contenedores', 'contenedor', 'cont_', 'contenedor_plantilla:contenedor_cont_id', 'modulos/config/contenedores.adm.php', ' icn-block-page', '#0076ff', 2, 13, 1),
 (9, 'Publicaciones', '', 'publicaciones', 'publicacion', 'pub_', 'publicacion_rel:pubrel_pub_id', 'modulos/config/publicaciones.adm.php', 'icn-rocket', '#e71882', 2, 13, 1),
 (10, 'Plantillas', '', 'plantillas', 'plantilla', 'pla_', '', 'modulos/config/plantilas.adm.php', 'icn-level-page', '#8a7354', 2, 13, 1),
@@ -1091,6 +1147,7 @@ CREATE TABLE `mod_cliente` (
   `mod_cli_razon_social` varchar(100) NOT NULL,
   `mod_cli_id_facebook` varchar(50) NOT NULL,
   `mod_cli_foto_facebook` varchar(255) NOT NULL,
+  `mod_cli_id_google` varchar(50) NOT NULL,
   `mod_cli_password` varchar(50) NOT NULL,
   `mod_cli_estado` int(11) NOT NULL,
   `mod_cli_id_usuario` int(11) NOT NULL,
@@ -1980,7 +2037,7 @@ CREATE TABLE `mod_productos` (
   `mod_prod_especificaciones` text NOT NULL,
   `mod_prod_disponibilidad` int(11) NOT NULL DEFAULT '0' COMMENT '0 disponible, 1 disponible a 15 dias, 2 disponible a 30 dias, 3 disponible a pedido,4 agotado',
   `mod_prod_imagen` varchar(255) NOT NULL DEFAULT 'images/producto_default.png',
-  `mod_prod_precio` int(11) NOT NULL,
+  `mod_prod_precio` decimal(11,2) NOT NULL,
   `mod_prod_precio_detalle` varchar(255) NOT NULL,
   `mod_prod_precio_oferta` int(11) NOT NULL,
   `mod_prod_id_marca` int(11) NOT NULL,
@@ -1998,7 +2055,7 @@ CREATE TABLE `mod_productos` (
 --
 
 INSERT INTO `mod_productos` (`mod_prod_id`, `mod_prod_nombre`, `mod_prod_ruta_amigable`, `mod_prod_tags`, `mod_prod_codigo`, `mod_prod_sap`, `mod_prod_modelo`, `mod_prod_resumen`, `mod_prod_detalles`, `mod_prod_especificaciones`, `mod_prod_disponibilidad`, `mod_prod_imagen`, `mod_prod_precio`, `mod_prod_precio_detalle`, `mod_prod_precio_oferta`, `mod_prod_id_marca`, `mod_prod_id_doc`, `mod_prod_id_mul`, `mod_prod_id_dominio`, `mod_prod_json`, `mod_prod_activar_cat`, `mod_prod_activar`, `mod_prod_nuevo`) VALUES
-(1, 'Producto 1', '', 'prueba tax', '', '', '', 'resumen corto', 'detalles', '', 0, 'archivos/multimedia/kris-mayonesa-1.jpg', 0, '', 0, 0, '', 0, 0, '', 0, 1, 0);
+(1, 'Producto 1', '', 'prueba tax', '', '', '', 'resumen corto', 'detalles', '', 0, 'archivos/multimedia/kris-mayonesa-1.jpg', '0.00', '', 0, 0, '', 0, 0, '', 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2112,6 +2169,35 @@ INSERT INTO `mod_productos_pestana` (`mod_pro_pes_pro_id`, `mod_pro_pes_pes_id`,
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `mod_proyecto`
+--
+
+CREATE TABLE `mod_proyecto` (
+  `mod_proy_id` int(11) NOT NULL,
+  `mod_proy_nombre` tinytext NOT NULL,
+  `mod_proy_descripcion` varchar(255) NOT NULL,
+  `mod_proy_estado` int(11) NOT NULL COMMENT '1. Iniciado 2. En proceso 3.En StanBy 4.Cancelado 5.Terminado',
+  `mod_proy_fecha_registro` datetime NOT NULL,
+  `mod_proy_fecha_incio` date NOT NULL,
+  `mod_proy_fecha_fin` date NOT NULL,
+  `mod_proy_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_proyecto_clientes`
+--
+
+CREATE TABLE `mod_proyecto_clientes` (
+  `mod_proy_cli_proy_id` int(11) NOT NULL,
+  `mod_proy_cli_cli_id` int(11) NOT NULL,
+  `mod_proy_cli_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `mod_stock`
 --
 
@@ -2149,6 +2235,53 @@ CREATE TABLE `mod_sucursal` (
   `mod_suc_coordenadas` varchar(50) NOT NULL,
   `mod_suc_activar` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_tarea`
+--
+
+CREATE TABLE `mod_tarea` (
+  `mod_tar_id` int(11) NOT NULL,
+  `mod_tar_descripcion` tinytext NOT NULL,
+  `mod_tar_fechahora_inicio` datetime NOT NULL,
+  `mod_tar_fechahora_fin` datetime NOT NULL,
+  `mod_tar_estado` int(11) NOT NULL,
+  `mod_tar_activar` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_tarea_proyectos`
+--
+
+CREATE TABLE `mod_tarea_proyectos` (
+  `mod_tar_proy_tar_id` int(11) NOT NULL,
+  `mod_tar_proy_proy_id` int(11) NOT NULL,
+  `mod_tar_proy_orden` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mod_transaccion`
+--
+
+CREATE TABLE `mod_transaccion` (
+  `mod_tra_id` int(11) NOT NULL,
+  `mod_tra_detalle` varchar(300) NOT NULL,
+  `mod_tra_monto` decimal(20,2) NOT NULL,
+  `mod_tra_tipo` int(11) NOT NULL,
+  `mod_tra_tipo_pago` int(11) NOT NULL,
+  `mod_tra_fecha` datetime NOT NULL,
+  `mod_tra_entregado` varchar(255) NOT NULL,
+  `mod_tra_aprobo` int(11) NOT NULL,
+  `mod_tra_recibio` int(11) NOT NULL,
+  `mod_tra_usu_id` int(11) NOT NULL,
+  `mod_tra_estado` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2400,7 +2533,7 @@ INSERT INTO `plantilla` (`pla_id`, `pla_nombre`, `pla_ruta_amigable`, `pla_icono
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
-  `post_texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `post_texto` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `post_fecha` datetime NOT NULL,
   `post_tipo` int(11) NOT NULL,
   `post_permiso` int(11) NOT NULL DEFAULT '0',
@@ -2408,7 +2541,7 @@ CREATE TABLE `post` (
   `post_usuario` int(11) NOT NULL,
   `post_lugar_id` int(11) NOT NULL,
   `post_activar` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- --------------------------------------------------------
 
@@ -2724,7 +2857,8 @@ CREATE TABLE `sitio` (
 
 INSERT INTO `sitio` (`sitio_id`, `sitio_nombre`, `sitio_descripcion`, `sitio_ruta_amigable`, `sitio_tipo`, `sitio_carpeta`, `sitio_orden`, `sitio_activar`) VALUES
 (1, 'Sitio Raiz', '', '', 2, '', '1', 1),
-(2, 'Dashboard', '', 'dashboard', 1, '', '2', 1);
+(2, 'Dashboard', '', 'dashboard', 1, '', '2', 1),
+(3, 'Intranet', '', 'intranet', 1, '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -2737,6 +2871,18 @@ CREATE TABLE `sitio_categorias` (
   `sitio_cat_cat_id` int(11) NOT NULL,
   `sitio_cat_orden` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `sitio_categorias`
+--
+
+INSERT INTO `sitio_categorias` (`sitio_cat_sitio_id`, `sitio_cat_cat_id`, `sitio_cat_orden`) VALUES
+(2, 1, 0),
+(2, 5, 1),
+(2, 1, 0),
+(2, 5, 1),
+(3, 5, 1),
+(3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2755,8 +2901,7 @@ CREATE TABLE `sitio_roles` (
 --
 
 INSERT INTO `sitio_roles` (`sitio_rol_sitio_id`, `sitio_rol_rol_id`, `sitio_rol_orden`) VALUES
-(2, 1, 0),
-(2, 2, 0);
+(3, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -3122,6 +3267,24 @@ ALTER TABLE `cron_jobs`
 --
 ALTER TABLE `cuenta`
   ADD PRIMARY KEY (`cuenta_id`);
+
+--
+-- Indices de la tabla `curso`
+--
+ALTER TABLE `curso`
+  ADD PRIMARY KEY (`cur_id`);
+
+--
+-- Indices de la tabla `curso_categorias`
+--
+ALTER TABLE `curso_categorias`
+  ADD PRIMARY KEY (`cur_cat_cur_id`,`cur_cat_cat_id`);
+
+--
+-- Indices de la tabla `curso_documentos`
+--
+ALTER TABLE `curso_documentos`
+  ADD PRIMARY KEY (`cur_doc_cur_id`,`cur_doc_doc_id`);
 
 --
 -- Indices de la tabla `documento`
@@ -3569,6 +3732,18 @@ ALTER TABLE `mod_productos_pestana`
   ADD PRIMARY KEY (`mod_pro_pes_pro_id`,`mod_pro_pes_pes_id`);
 
 --
+-- Indices de la tabla `mod_proyecto`
+--
+ALTER TABLE `mod_proyecto`
+  ADD PRIMARY KEY (`mod_proy_id`);
+
+--
+-- Indices de la tabla `mod_proyecto_clientes`
+--
+ALTER TABLE `mod_proyecto_clientes`
+  ADD PRIMARY KEY (`mod_proy_cli_proy_id`,`mod_proy_cli_cli_id`);
+
+--
 -- Indices de la tabla `mod_stock`
 --
 ALTER TABLE `mod_stock`
@@ -3579,6 +3754,24 @@ ALTER TABLE `mod_stock`
 --
 ALTER TABLE `mod_sucursal`
   ADD PRIMARY KEY (`mod_suc_id`);
+
+--
+-- Indices de la tabla `mod_tarea`
+--
+ALTER TABLE `mod_tarea`
+  ADD PRIMARY KEY (`mod_tar_id`);
+
+--
+-- Indices de la tabla `mod_tarea_proyectos`
+--
+ALTER TABLE `mod_tarea_proyectos`
+  ADD PRIMARY KEY (`mod_tar_proy_tar_id`,`mod_tar_proy_proy_id`);
+
+--
+-- Indices de la tabla `mod_transaccion`
+--
+ALTER TABLE `mod_transaccion`
+  ADD PRIMARY KEY (`mod_tra_id`);
 
 --
 -- Indices de la tabla `mod_zona_distribucion`
@@ -3799,7 +3992,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT de la tabla `aplicacion`
 --
 ALTER TABLE `aplicacion`
-  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `autor`
@@ -3890,6 +4083,12 @@ ALTER TABLE `cron_jobs`
 --
 ALTER TABLE `cuenta`
   MODIFY `cuenta_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `curso`
+--
+ALTER TABLE `curso`
+  MODIFY `cur_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `documento`
@@ -4174,10 +4373,28 @@ ALTER TABLE `mod_productos`
   MODIFY `mod_prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `mod_proyecto`
+--
+ALTER TABLE `mod_proyecto`
+  MODIFY `mod_proy_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `mod_sucursal`
 --
 ALTER TABLE `mod_sucursal`
   MODIFY `mod_suc_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_tarea`
+--
+ALTER TABLE `mod_tarea`
+  MODIFY `mod_tar_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `mod_transaccion`
+--
+ALTER TABLE `mod_transaccion`
+  MODIFY `mod_tra_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `mod_zona_distribucion`
@@ -4267,7 +4484,7 @@ ALTER TABLE `sistema`
 -- AUTO_INCREMENT de la tabla `sitio`
 --
 ALTER TABLE `sitio`
-  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sitio_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `slide`
